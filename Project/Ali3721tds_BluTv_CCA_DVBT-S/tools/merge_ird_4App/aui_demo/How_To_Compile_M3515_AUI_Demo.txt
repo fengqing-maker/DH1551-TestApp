@@ -1,0 +1,40 @@
+Compiler in the Linux environment--gcc 4.7.3 or Cygwin with gcc3.4.4
+
+******************* M3515A aui_demo compile *****************************
+
+step1. compiler libsee libcore. (If compile the SDK package, please skip the step1)
+
+	$cd see\src\see\m36f
+	$make path config_3503 new all
+	
+step2. modify compiler_3503.def (Path: prj\app\demo\combo\aui_demo\compiler_3503.def)
+
+	enable macro:
+		 	_BOARD_M3515_01V01_ = 1
+			if the chipset is M3503B, please open one more Macro _M3503B_ENABLE = 1, otherwise, do not open the macro.	
+			_ENABLE_BL_ENCRYPTED_ = 1  (for compiling in the encrypted bootloader environment)
+Step3. compile the aui library(libaui.a) and aui sample test library(libaui_test.a)
+
+	$cd prj\app\demo\combo\aui_demo
+	$make path config_3503
+	$cd aui
+	$./build.sh tds aui
+	$./build.sh tds aui_test
+	
+Step4. compile aui-demo
+1> compile full source code (If compile the SDK package, please skip the step)
+  $cd prj\app\demo\combo\aui_demo
+  $make new sdk_clean sdk all
+  
+2> release package for CSTM (If compile the source code, please skip the step)
+  $cd prj\app\demo\combo\aui_demo
+  $make new ddk_clean ddk all 
+  
+3> generate abs
+  $cd prj\app\demo\combo\sabbat_dual
+  $make path config_3503 ddkbin
+  The generated obj file (product_sabbat_dual.abs) is in the obj path.
+  
+	
+
+

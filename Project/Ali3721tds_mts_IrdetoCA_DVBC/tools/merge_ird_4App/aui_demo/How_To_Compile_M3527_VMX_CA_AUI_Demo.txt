@@ -1,0 +1,60 @@
+# M3527 AUI VMX CA project compile guide
+------------------------------------------------------------------------------------
+
+Include `ALI RD` & `Customer/ALI QT` introduce.
+
+## Compiler version
+	1. Linux environment: gcc 4.7.3
+	2. Cygwin : gcc3.4.4
+
+------------------------------------------------------------------------------------
+
+## For Customer/ALI QT ##
+
+
+------------------------------------------------------------------------------------
+
+
+
+## For ALI internal RD ##
+
+Compile with full sdk source code.
+
+### Step 1: (compile SEE)
+	1. cd $PRJ_ROOT/src/see/m36f
+	2. make path config_3505 new all
+	
+### Step 2: (build SDK from sabbat_dual)
+	1. cd  $PRJ_ROOT/prj/app/demo/combo/sabbat_dual
+	2. make path config_3505 new sdk_clean sync_vmxsec sdk
+	
+### Step 3: (Config project)
+	Edit compiler_3505.def, 
+		- Enable->		_BOARD_M3527_01V01_ = 1
+		  Disable all other boards
+		- Ensure `_BC_CA_ENABLE_ = 1` is enable, and other CA is disable
+		- Ensure `_ENABLE_BL_ENCRYPTED_ = 1` is enable if your board is use encrypted booloader
+		- Ensure '_DD_SUPPORT = 1' is enable if you need DD/DD+ support
+		- Ensure `_RD_DEBUG_ = 1` is enable
+		- Ensure '_SMI_CF_ENABLE_ = 1' is enable if you use SMI project
+		- Ensure '_SMI_ENABLE_ = 1' is enable if you use SMI project
+
+### Step 4: (For SMI library)
+	In $PRJ_ROOT/prj/app/demo/combo/sabbat_dual/bc_sec/Makefile
+		- Ensure 'SMI = 1' is enable if you use SMI library
+
+### Step 5: (sync code from sabbat_dual and pre compile)
+	1. cd  $PRJ_ROOT/prj/app/demo/combo/aui_demo
+	2. make path aui_sync_3505 config_3505 
+
+### Step 6: (HDCP Key replace)
+	cp $PRJ_ROOT/prj/app/demo/combo/sabbat_dual/empty_hdcp.key $PRJ_ROOT/prj/app/demo/combo/aui_demo
+	(or contact project PIC to get the proper key) 
+
+### Step 7: (DD/DD+ plugin enable)
+	if DD/DD+ enabled, please remove the suffix 'bak' from plugin_eac3_3505.o.bak under $PRJ_ROOT/ddk/plugin/t2/,
+	        		
+### Step 8: (compile and sign image)
+	1. cd $PRJ_ROOT/prj/app/demo/combo/aui_demo
+	2. make bc aui product_7z && ./build_flash_vmx_sign_enc.sh
+

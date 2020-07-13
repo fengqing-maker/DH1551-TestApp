@@ -1,0 +1,22 @@
+#ifndef AV_CONFIG_H_
+#define AV_CONFIG_H_
+
+#include "adi_tuner.h"
+
+class AVConfig
+{
+public:
+	void SetDefaultConfig(void);
+	
+public:
+	ADITunerSRCDeliver_U m_stAVDelivery;
+	ADITunerSRCDeliver_U m_stAVDelivery2;
+	int m_nTunerCount;
+	int m_nVideoPid;
+	int m_nAudioPid;
+	int m_nVideoPid_1kAT;
+	int m_nAudioPid_1KAT;
+	int m_nDeliveryCount;
+};
+
+#endif/*AV_CONFIG_H_*/

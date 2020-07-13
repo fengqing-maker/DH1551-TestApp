@@ -1,0 +1,427 @@
+### Config Compiler Environment ###
+#_LINUX_COMPILER_ENVIRONMENT_ = 1  
+
+ifdef _LINUX_COMPILER_ENVIRONMENT_
+#CC_DIR = $(dir $(shell which sde-gcc.exe))..
+CC_VER = 4.3
+CC_DIR = /opt/mips-4.3.221
+CCBIN_DIR = ${CC_DIR}/bin
+CCTOOL = mips-sde-elf-
+else
+### Directory where gcc existed.
+CC_DIR = $(dir $(shell which sde-gcc.exe))..
+CC_VER = 3.4.4
+#CC_DIR = $(dir $(shell which mips-t2-elf-gcc.exe))..
+#CC_VER = 3.0.4
+CCBIN_DIR = ${CC_DIR}/bin
+endif
+
+### Compiler option that change by QT / RD or Customer
+
+######################################
+##_RD_DEBUG_  to swith some share pin and SDBBP ###
+######################################
+#_RD_DEBUG_ = 1
+
+### only enable one board, disable other!!!!
+#_BOARD_DB_M3281_01V01_ = 1
+_BOARD_DEMO_M3281_01V01_ = 1
+#_BOARD_SB_M3281_01V01_ = 1
+
+#_ENABLE_BL_ENCRYPTED_ = 1
+
+#_SIP_ENABLE_ = 1
+#LOGISCOPE_CMD_LINE = 1
+####################
+#_BUILD_OTA_E_=1
+#_BUILD_USB_LOADER_=1         #### must define BUILD_OTA_E with BUILD_USB_LOADER
+#_VERSION_CONTROL_ = 1
+
+_SHOW_ALI_DEMO_ON_SCREEN = 1
+#_SFU_TEST_SUPPORT=1
+#_CAS9_CA_ENABLE_ = 1
+#_CAS9_VSC_ENABLE_ = 1
+#_CAS9_VSC_RAP_ENABLE_ = 1
+#_CAS9_SC_UPG_ = 1
+#_BC_CA_STD_ENABLE_ = 1	
+#_BC_CA_ENABLE_ = 1	#BC AS
+#_BC_CERTIFICATION_ = 1	
+#_BC_DEBUG_MODE_CERTIFICATION_=1
+_ENABLE_4M_FLASH_ = 1
+
+_AUI_=1
+_AUI_TEST_ = 1
+
+
+_USE_32M_MEM_ = 1
+
+#################################################################
+##_EROM_UPG_HOST_ENABLE_  to compile Erom upgrade host firmware
+##_EROM_UPG_HOST_ENABLE_ = 1:	for STB->STB
+##_EROM_UPG_HOST_ENABLE_ = 2:	for PC->STB
+################################################
+#_EROM_UPG_HOST_ENABLE_ = 1
+#_EROM_UPG_HOST_THREE_LADDER_ENC_SW_UK = 1
+
+
+#_DVBS_ENABLE_=1
+_DVBC_ENABLE_=1
+
+_AS_PRJ_ = 1
+
+_FTA_ONLY_ = 1
+
+AUI_INC = 
+ifdef _AUI_
+DEFS += -D_AUI_
+AUI_INC = ${BASE_DIR}/aui/inc
+endif
+
+ifdef _AUI_TEST_
+DEFS += -D_AUI_TEST_
+AUI_INC = ${BASE_DIR}/aui/inc
+endif
+
+#_H264_SUPPORT_ = 1
+
+#_M3281_SOLUTION3_SUPPORT_ = 1
+### Warning: Do NOT modify blew code, unless you know what you are doing.
+
+#APPRELEASE = 12.0a.0
+APPLABEL = SDK4.0bf.12.0a_SEC_SC_20140530
+LIBCORERELEASE = 12.0a.0
+LIBCORELABEL = SDK4.0bf.12.0a_20140530
+LIBPLUSRELEASE	= 12.0a.0
+LIBPLUSLABEL = ${APPLABEL}
+
+# Global switchs for program
+# _DEBUG_PRINTF_: enable PRINTF function, else nothing will do.
+# _DEBUG_VERSION_: disable SDRAM init and copy code from FLASH to SDRAM. <boot.s>
+
+# _M36F_SINGLE_CPU only test for Ali internal
+#export _M36F_SINGLE_CPU=1
+
+export _MPEG4_SUPPORT=1
+
+ifdef _M36F_SINGLE_CPU
+#BOOT_NAME_EXT=boot_v40b_single
+LIBCORE_NAME_EXT=libcore_v40b_single
+LIBPLUG_NAME_EXT=libplus_v40b_single
+else
+#BOOT_NAME_EXT=boot_v40b
+LIBCORE_NAME_EXT=libcore_v40b_m32
+LIBPLUG_NAME_EXT=libplus_v40b_m32
+endif
+
+DEFS = -D_DEBUG_VERSION_
+
+_MIPS2_ENABLE_ =1
+
+export _S3281_=1
+DEFS += -D_S3281_
+
+ifdef _MIPS2_ENABLE_
+DEFS += -D_MIPS2_ENABLE_
+endif
+
+ifdef _H264_SUPPORT_
+DEFS += -D_H264_SUPPORT_
+endif
+
+ifdef _M3281_SOLUTION3_SUPPORT_
+DEFS += -D_M3281_SOLUTION3_SUPPORT_
+endif
+
+ifdef _BOARD_DB_M3281_01V01_
+DEFS += -D_BOARD_DB_M3281_01V01_
+endif
+
+ifdef _BOARD_DEMO_M3281_01V01_
+DEFS += -D_BOARD_DEMO_M3281_01V01_
+endif
+
+ifdef _BOARD_SB_M3281_01V01_
+DEFS += -D_BOARD_SB_M3281_01V01_
+endif
+
+ifdef _ENABLE_BL_ENCRYPTED_
+DEFS += -D_ENABLE_BL_ENCRYPTED_
+endif
+
+ifdef _SIP_ENABLE_
+DEFS += -D_SIP_ENABLE_
+endif
+
+ifdef _RD_DEBUG_
+DEFS += -D_RD_DEBUG_
+endif
+
+ifdef _BUILD_OTA_E_
+DEFS += -D_BUILD_OTA_E_
+endif
+
+ifdef _BUILD_USB_LOADER_
+DEFS += -D_BUILD_USB_LOADER_
+endif
+
+ifdef _VERSION_CONTROL_
+DEFS += -D_VERSION_CONTROL_
+endif
+
+ifdef _SHOW_ALI_DEMO_ON_SCREEN
+DEFS += -D_SHOW_ALI_DEMO_ON_SCREEN
+endif
+
+ifdef _SFU_TEST_SUPPORT
+DEFS += -D_SFU_TEST_SUPPORT
+endif
+
+ifdef _MPEG4_SUPPORT
+DEFS += -D_MPEG4_SUPPORT
+endif
+
+ifdef _M36F_SINGLE_CPU
+DEFS += -D_M36F_SINGLE_CPU
+endif
+
+ifdef _CAS9_CA_ENABLE_
+DEFS += -D_CAS9_CA_ENABLE_
+endif
+
+ifdef _CAS9_VSC_ENABLE_
+DEFS += -D_CAS9_VSC_ENABLE_
+#DEFS += -D_NEW_EMM_HANDLE_
+endif
+
+ifdef _CAS9_VSC_RAP_ENABLE_
+DEFS += -DCAS9_VSC_RAP_ENABLE
+endif
+
+ifdef _CAS9_SC_UPG_
+DEFS += -D_CAS9_SC_UPG_
+endif
+
+ifdef _BC_CA_STD_ENABLE_
+DEFS += -D_BC_CA_STD_ENABLE_
+endif
+
+ifdef _BC_CA_ENABLE_
+DEFS += -D_BC_CA_ENABLE_
+endif
+
+ifdef _BC_CERTIFICATION_
+DEFS += -D_BC_CERTIFICATION_
+endif
+
+ifdef _BC_DEBUG_MODE_CERTIFICATION_
+DEFS += -D_BC_DEBUG_MODE_CERTIFICATION_
+endif
+
+ifdef _ENABLE_4M_FLASH_
+DEFS += -D_ENABLE_4M_FLASH_
+endif
+
+ifdef _USE_32M_MEM_
+DEFS += -D_USE_32M_MEM_
+_32M_PVR_ = 1
+DEFS += -D_32M_PVR_
+endif
+
+ifdef _EROM_UPG_HOST_ENABLE_
+DEFS += -D_EROM_UPG_HOST_ENABLE_
+endif
+
+ifdef _EROM_UPG_HOST_THREE_LADDER_ENC_SW_UK
+DEFS += -D_EROM_UPG_HOST_THREE_LADDER_ENC_SW_UK
+endif
+
+ifdef _DVBS_ENABLE_
+DEFS += -D_DVBS_ENABLE_
+endif
+
+ifdef _DVBT_ENABLE_
+DEFS += -D_DVBT_ENABLE_
+endif
+
+ifdef _DVBC_ENABLE_
+DEFS += -D_DVBC_ENABLE_
+endif
+
+ifdef _ISDBT_ENABLE_
+DEFS += -D_ISDBT_ENABLE_
+endif
+
+ifdef _AS_PRJ_
+DEFS += -D_AS_PRJ_
+endif
+
+ifdef _FTA_ONLY_
+DEFS += -D_FTA_ONLY_
+endif
+
+ifdef LOGISCOPE_CMD_LINE
+DEFS += -DLOG_CHECK
+endif
+ifdef _LINUX_COMPILER_ENVIRONMENT_
+LIB = -L${CC_DIR}/lib/gcc/mips-sde-elf/4.3.3/el/sof \
+      -L${CC_DIR}/mips-sde-elf/lib/el/sof
+      
+AS = ${CCBIN_DIR}/${CCTOOL}gcc
+CC = ${CCBIN_DIR}/${CCTOOL}gcc    
+LD = ${CCBIN_DIR}/${CCTOOL}ld
+NM = ${CCBIN_DIR}/${CCTOOL}nm
+OBJDUMP = ${CCBIN_DIR}/${CCTOOL}objdump
+OBJCOPY = ${CCBIN_DIR}/${CCTOOL}objcopy
+AR = ${CCBIN_DIR}/${CCTOOL}ar
+STRIP = ${CCBIN_DIR}/${CCTOOL}strip
+
+else
+
+LIB = -L${CC_DIR}/lib/gcc/sde/3.4.4/el/sof \
+      -L${CC_DIR}/sde/lib/el/sof
+
+AS = ${CCBIN_DIR}/sde-gcc
+ifdef LOGISCOPE_CMD_LINE
+CC = ${BASE_DIR}/prj/tools/logiscope/logiscope_cc.sh
+else
+CC = ${CCBIN_DIR}/sde-gcc
+endif
+LD = ${CCBIN_DIR}/sde-ld
+NM = ${CCBIN_DIR}/sde-nm
+OBJDUMP = ${CCBIN_DIR}/sde-objdump
+OBJCOPY = ${CCBIN_DIR}/sde-objcopy
+AR = ${CCBIN_DIR}/sde-ar
+STRIP = ${CCBIN_DIR}/sde-strip
+
+endif
+
+#LIB = -L${CC_DIR}/lib/gcc-lib/mips-t2-elf/${CC_VER}/soft-float/el \
+#      -L${CC_DIR}/mips-t2-elf/lib/soft-float/el
+  
+#LD = ${CCBIN_DIR}/sde-ld
+#OBJDUMP = ${CCBIN_DIR}/sde-objdump
+#OBJCOPY = ${CCBIN_DIR}/sde-objcopy
+#AR = ${CCBIN_DIR}/sde-ar
+#STRIP = ${CCBIN_DIR}/sde-strip
+
+#AS = ${CCBIN_DIR}/mips-t2-elf-gcc
+#CC = ${CCBIN_DIR}/mips-t2-elf-gcc
+#LD = ${CCBIN_DIR}/mips-t2-elf-ld
+#OBJDUMP = ${CCBIN_DIR}/mips-t2-elf-objdump
+#OBJCOPY = ${CCBIN_DIR}/mips-t2-elf-objcopy
+#AR = ${CCBIN_DIR}/mips-t2-elf-ar
+#STRIP = ${CCBIN_DIR}/mips-t2-elf-strip
+
+DEFS += -D_STRIP_PLUGIN_OUTPUT
+_STRIP_PLUGIN_OUTPUT = 1
+
+INC_DIBCOM_DIR = ${BASE_DIR}/src/lld/nim/isdbt/dibcom/driver/include
+INC_DIBCOM_DIR_2 = ${BASE_DIR}/src/lld/nim/isdbt/dibcom/include
+
+ifdef _LINUX_COMPILER_ENVIRONMENT_
+
+CFLAGS = -g -EL -mips2 -O1 -msoft-float -fsigned-char -W ${DEFS} -I${INC_DIR} -I$(MHEG_INC_DIR) \
+      -I${CC_DIR}/lib/gcc/mips-sde-elf/4.3.3/include \
+      -I${CC_DIR}/mips-sde-elf/include \
+      -I${INC_DIR}/freetype2  \
+      -I${INC_DIR}/freetype2/freetype2 \
+      -I${INC_DIBCOM_DIR} \
+      -I${INC_DIBCOM_DIR_2} \
+
+C32FLAGS = -g -EL -mips2 -O1 -msoft-float -fsigned-char -W ${DEFS} -I${INC_DIR} -I$(MHEG_INC_DIR) \
+      -I${CC_DIR}/lib/gcc/mips-sde-elf/4.3.3/include \
+      -I${CC_DIR}/mips-sde-elf/include \
+
+ASFLAGS = -gstabs -EL -c -mips2 -O1 -W ${DEFS} -I${INC_DIR} -I$(MHEG_INC_DIR)
+
+else
+
+SECURE_FLAGS = -Wall -Wformat=2 -D_FORTIFY_SOURCE=2
+
+CFLAGS = -g -EL -mips2 -O1 -msoft-float -fsigned-char ${SECURE_FLAGS} ${DEFS} -I${INC_DIR} -I$(MHEG_INC_DIR) \
+      -I${CC_DIR}/lib/gcc/sde/3.4.4/include \
+      -I${CC_DIR}/sde/include \
+      -I${INC_DIR}/freetype2  \
+      -I${INC_DIR}/freetype2/freetype2 \
+      -I${INC_DIBCOM_DIR} \
+      -I${INC_DIBCOM_DIR_2} \
+
+C32FLAGS = -g -EL -mips2 -O1 -msoft-float -fsigned-char ${SECURE_FLAGS} ${DEFS} -I${INC_DIR} -I$(MHEG_INC_DIR) \
+      -I${CC_DIR}/lib/gcc/sde/3.4.4/include \
+      -I${CC_DIR}/sde/include
+
+ASFLAGS = -gstabs -EL -c -mips2 -O1 ${SECURE_FLAGS} ${DEFS} -I${INC_DIR} -I$(MHEG_INC_DIR)
+
+endif
+
+ifdef _AUI_
+CFLAGS += -DAUI
+C32FLAGS += -DAUI
+CFLAGS += -I${AUI_INC}
+CFLAGS += -DAUI_TDS
+C32FLAGS += -DAUI_TDS
+endif
+
+ifdef _AUI_TEST_
+CFLAGS += -DAUI_TEST
+C32FLAGS += -DAUI_TEST
+CFLAGS += -DAUI_3281
+C32FLAGS += -DAUI_3281
+endif
+
+
+#CFLAGS = -g -G 8 -EL -mips2 -fno-delayed-branch -O1 -msoft-float -W ${DEFS} -I${INC_DIR} -I$(MHEG_INC_DIR) \
+#      -I${CC_DIR}/lib/gcc-lib/mips-t2-elf/${CC_VER}/include \
+#      -I${INC_DIR}/freetype2  \
+#      -I${INC_DIR}/freetype2/freetype2 \
+
+#C32FLAGS = -g -EL -mips2 -O1 -msoft-float -W ${DEFS} -I${INC_DIR} -I$(MHEG_INC_DIR) \
+#      -I${CC_DIR}/lib/gcc-lib/mips-t2-elf/${CC_VER}/include \
+#      -I${CC_DIR}/mips-t2-elf/include
+
+#ASFLAGS = -g -EL -c -mips2 -O1 -W ${DEFS} -I${INC_DIR} -I$(MHEG_INC_DIR)
+
+# Global switchs for linker
+#   __BOOT_FROM_FLASH: Current application boot from FLASH by itself.
+#        =0: Boot from SDRAM;  =1: Boot from FLASH by itself.
+#   __BOOT_LOADER: Current application use boot loader boot from FLASH.
+#        =0: Without boot loader;  =1: With boot loader;
+LDFLAGS = -g -EL -O1 -defsym __BOOT_FROM_FLASH=0 -defsym __BOOT_LOADER=0
+ifndef _M36F_SINGLE_CPU
+
+HLD_DECA_REMOTE = 1
+HLD_SND_REMOTE = 1
+HLD_VP_REMOTE = 1
+#LIB_SUBT_REMOTE = 1
+LIB_CLOSE_CAPTION_REMOTE = 1
+#LIB_TTX_REMOTE = 1
+#HLD_SDEC_REMOTE = 1
+LLD_ISDBTCC_REMOTE = 1
+LIB_ISDBTCC_REMOTE = 1
+#HLD_VBI_REMOTE = 1
+LLD_DECA_M36F_REMOTE = 1
+LLD_DECA_M33_REMOTE = 1
+LLD_SND_M36F_REMOTE = 1
+LLD_SND_M33_REMOTE = 1
+LLD_VP_M36F_REMOTE = 1
+LLD_VP_M33_REMOTE = 1
+#LLD_SDEC_SW_REMOTE = 1
+LLD_VBI_M33_REMOTE = 1
+LLD_DMX_M36F_REMOTE = 1
+LLD_DSC_M36F_REMOTE = 1
+LLD_CRYPTO_M36F_REMOTE = 1
+LLD_TRNG_M36F_REMOTE = 1
+HLD_DSC_REMOTE = 1
+HLD_CRYPTO_REMOTE = 1
+HLD_DECV_REMOTE = 1
+LLD_DECV_M36_REMOTE = 1
+LLD_DECV_AVC_REMOTE = 1
+LIB_PE_ADV_VIDEO_ENGINE_REMOTE = 1
+LIB_PE_MUSIC_ENGINE_REMOTE = 1
+LIB_PE_IMAGE_ENGINE_REMOTE = 1
+HLD_PVR_REMOTE = 1
+DUAL_ENABLE = 1
+MAIN_CPU = 1
+DEFS += -DDUAL_ENABLE -DMAIN_CPU
+
+endif

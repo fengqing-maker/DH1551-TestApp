@@ -1,0 +1,38 @@
+Compiler in the Linux environment--gcc 4.7.3 or Cygwin with gcc3.4.4
+
+******************* M3510A aui_demo compile *****************************
+
+step1. compiler libsee libcore
+
+	$cd see\src\see\m36f
+	$make path config_3503 new all
+	
+step2. modify compiler_3503.def (Path: prj\app\demo\combo\aui_demo\compiler_3503.def)
+
+	enable macro:
+			_BOARD_M3315_01V01_ = 1	
+			_RD_DEBUG_ = 1
+			_ENABLE_BL_ENCRYPTED_ = 1
+			_CAS9_CA_ENABLE_ = 1
+			_AUI_NEED_ALI_LIB_ = 1
+			
+Step3. compile the aui library(libaui.a) and aui sample test library(libaui_test.a)
+
+	$cd prj\app\demo\combo\aui_demo
+	$make path config_3503
+	$cd aui
+	$./build.sh tds aui
+	$./build.sh tds aui_test
+	
+Step4. compile aui-demo
+1> full source code
+  $cd prj\app\demo\combo\aui_demo
+  $make sdk_clean sdk new all
+  $cd prj\app\demo\combo\sabbat_dual
+  $make path ddkbin
+
+ 2> release package (QT and CSTM)
+   $cd prj\app\demo\combo\aui_demo
+  $make new all
+  $cd prj\app\demo\combo\sabbat_dual
+  $make path ddkbin  

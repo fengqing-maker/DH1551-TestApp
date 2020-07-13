@@ -1,0 +1,5 @@
+﻿  stdafx.cpp
+  crc.cpp
+e:\test\crc\crc.cpp(102): warning C4101: “outbuf1”: 未引用的局部变量
+e:\test\crc\crc.cpp(128): warning C4101: “pFile3”: 未引用的局部变量
+  crc.vcxproj -> E:\Test\Debug\crc.exe

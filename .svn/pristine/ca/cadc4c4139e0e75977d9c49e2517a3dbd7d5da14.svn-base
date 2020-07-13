@@ -1,0 +1,20 @@
+/*
+ * UpgradeDataType.h
+ *
+ *  Created on: 2015-8-17
+ *      Author: linc
+ */
+
+#ifndef UPGRADEDATATYPE_H_
+#define UPGRADEDATATYPE_H_
+
+typedef enum
+{
+	E_UPGRADE_DATATYPE_SN = 0x10,
+	E_UPGRADE_DATATYPE_HDCP,
+	E_UPGRADE_DATATYPE_MAC,
+	E_UPGRADE_DATATYPE_CHIP_ID,
+	E_UPGRADE_DATATYPE_MAX,
+}UPGRADE_DATATYPE;
+
+#endif /* UPGRADEDATATYPE_H_ */

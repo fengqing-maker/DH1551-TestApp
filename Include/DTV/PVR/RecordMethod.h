@@ -1,0 +1,18 @@
+/*
+ * RecordMethod.h
+ *
+ */
+
+#ifndef RECORDMETHOD_H_
+#define RECORDMETHOD_H_
+
+typedef enum {
+	E_RECORDMETHOD_MANUAL = 0,
+    E_RECORDMETHOD_MANUAL_EVENTID,
+    E_RECORDMETHOD_TIMER,
+    E_RECORDMETHOD_TIMER_EVENTID,
+	E_RECORDMETHOD_MAX
+}RecordMethod;
+
+
+#endif /* RECORDMETHOD_H_ */

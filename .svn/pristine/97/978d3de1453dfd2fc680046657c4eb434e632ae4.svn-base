@@ -1,0 +1,238 @@
+# Directory where gcc existed.
+#GCC = sde-gcc
+CC_DIR =$(dir $(shell which sde-gcc.exe))..
+#CC_DIR = /cygdrive/c/Ali_SDK/compilers/mips-sde
+#CC_DIR =/mips-sde
+
+## 3503 main cpu
+
+CC_VER = 3.4.4
+
+CCBIN_DIR = ${CC_DIR}/bin
+
+# Global switchs for program
+#   _DEBUG_PRINTF_: enable PRINTF function, else nothing will do.
+#       <api/libc/printf.h>
+#   _DEBUG_VERSION_:  disable SDRAM init and copy code from FLASH
+#       to SDRAM. <boot.s>
+DEFS =
+#-D_DEBUG_VERSION_
+
+#_ENABLE_BL_ENCRYPTED_ = 1
+_M3515_SECURE_BOOT_ENABLE_=1
+_HW_SECURITY_ENABLE_ = 1
+#_STANDBY_ENCBL_ENABLE = 1
+_BL_ENABLE_ = 1
+DUAL_CPU = 1
+BOOT_OS = 1
+#_LINUX_BOOTLOADER_ = 1
+#_NAND_BOOT_E_ = 1
+#_BOOT_LOGO_=1
+#_C0300A_CA_ENABLE_=1
+#_C0300A_CA_STD_ENABLE_=1
+#_CAS9_VSC_ENABLE_ = 1
+
+### only enable one board, disable other######
+#_BOARD_SB_M3511_01V01_ = 1
+#_BOARD_SB_M3512_01V01_ = 1
+#_BOARD_SB_M3515_01V01_ = 1
+#_BOARD_SB_M3516_01V01_ = 1
+_BOARD_DB_M3511_01V01_ = 1
+#_BOARD_DB_M3511_01V02_ = 1
+#_BOARD_DB_M3512_01V01_ = 1
+#_BOARD_DB_M3515_01V01_ = 1
+#_BOARD_DB_M3516_01V01_ = 1
+
+ifdef _BOARD_SB_M3511_01V01_
+DEFS += -D_BOARD_SB_M3511_01V01_
+endif
+
+ifdef _BOARD_SB_M3512_01V01_
+DEFS += -D_BOARD_SB_M3512_01V01_
+endif
+
+ifdef _BOARD_SB_M3515_01V01_
+DEFS += -D_BOARD_SB_M3515_01V01_
+endif
+
+ifdef _BOARD_SB_M3516_01V01_
+DEFS += -D_BOARD_SB_M3516_01V01_
+endif
+
+ifdef _BOARD_DB_M3511_01V01_
+DEFS += -D_BOARD_DB_M3511_01V01_
+endif
+
+ifdef _BOARD_DB_M3511_01V02_
+DEFS += -D_BOARD_DB_M3511_01V02_
+endif
+
+ifdef _BOARD_DB_M3512_01V01_
+DEFS += -D_BOARD_DB_M3512_01V01_
+endif
+
+ifdef _BOARD_DB_M3515_01V01_
+DEFS += -D_BOARD_DB_M3515_01V01_
+endif
+
+ifdef _BOARD_DB_M3516_01V01_
+DEFS += -D_BOARD_DB_M3516_01V01_
+endif
+
+##barry wu add for share the library with BL and system software
+ifdef _BL_ENABLE_
+DEFS += -D_BL_ENABLE_
+endif
+
+ifdef DUAL_CPU
+DEFS += -DDUAL_CPU
+endif
+
+ifdef BOOT_OS
+#Enable OS
+#DEFS += -D_BOOT_OS_E_
+export _BOOT_OS_=_BOOT_OS_E_
+else
+#Dislabe OS
+#DEFS += -D_BOOT_OS_D_
+export _BOOT_OS_=_BOOT_OS_D_
+endif
+
+ifdef _STANDBY_ENCBL_ENABLE
+DEFS += -D_STANDBY_ENCBL_ENABLE
+endif
+
+ifdef _ENABLE_BL_ENCRYPTED_
+DEFS += -D_ENABLE_BL_ENCRYPTED_
+endif
+
+ifdef _M3515_SECURE_BOOT_ENABLE_
+DEFS += -D_M3515_SECURE_BOOT_ENABLE_
+endif
+
+ifdef _HW_SECURITY_ENABLE_
+DEFS += -D_HW_SECURITY_ENABLE_
+endif
+
+ifdef _NAND_BOOT_E_
+	DEFS += -D_NAND_BOOT_E_
+endif
+
+ifdef _LINUX_BOOTLOADER_
+	DEFS += -D_LINUX_BOOTLOADER_
+endif	
+
+ifdef _C0300A_CA_ENABLE_
+	DEFS += -D_C0300A_CA_ENABLE_
+endif
+
+ifdef _C0300A_CA_STD_ENABLE_
+	DEFS += -D_C0300A_CA_STD_ENABLE_
+endif
+
+ifdef _CAS9_VSC_ENABLE_
+	DEFS += -D_CAS9_VSC_ENABLE_
+endif
+#Enable erom
+#export _EROM=_EROM_E_
+#Disable erom
+export _EROM=_EROM_D_
+
+ifdef _BOOT_LOGO_
+DEFS += -D_BOOT_LOGO_
+endif
+
+#Enable multi section(DLL, overlay, reuse)
+#export _MULTI_SECTION=_MULTI_SECTION_E
+#Disable multi section(DLL, overlay, reuse)
+export _MULTI_SECTION=_MULTI_SECTION_D
+
+#Enable OTA
+export _OTA=_OTA_E_
+#Dislabe OTA
+#export _OTA=_OTA_D_
+
+#Enable Firmware Config
+export _FIRMWARE_CONFIG=SUPPORT_FIRMWARE_CONFIG
+#Disable Firmware Config
+#export _FIRMWARE_CONFIG=DONT_SUPPORT_FIRMWARE_CONFIG
+
+#Enable 36
+export _ENABLE_36_=_ENABLE_36_E_
+#Disable 36
+#export _ENABLE_36_=_ENABLE_36_D_
+
+## Release version
+#export _ENABLE_4M_SDRAM=_ENABLE_4M_SDRAM_E_
+## Non-release version
+export _ENABLE_4M_SDRAM=_ENABLE_4M_SDRAM_D_
+
+DEFS += -D$(_EROM) -D$(_MULTI_SECTION) -D$(_OTA) -D$(_ENABLE_4M_SDRAM) -D$(_FIRMWARE_CONFIG) -D$(_BOOT_OS_) -D$(_ENABLE_36_)
+
+LIB = -L${CC_DIR}/lib/gcc/sde/3.4.4/el/mips32r2/sof \
+      -L${CC_DIR}/sde/lib/el/mips32r2/sof
+
+AS = 		${CCBIN_DIR}/sde-gcc
+CC = 		${CCBIN_DIR}/sde-gcc
+LD = 		${CCBIN_DIR}/sde-ld
+OBJDUMP = 	${CCBIN_DIR}/sde-objdump
+OBJCOPY = 	${CCBIN_DIR}/sde-objcopy
+AR = 		${CCBIN_DIR}/sde-ar
+
+ifdef _MIPS2_ENABLE_  ## M3281 main cpu complier gcc
+		CFLAGS = -c -g -EL -mips2 -O1 -msoft-float -fsigned-char -W ${DEFS} -I${INC_DIR} \
+		      -I${CC_DIR}/lib/gcc/sde/3.4.4/include \
+		      -I${CC_DIR}/sde/include
+		
+		C32FLAGS = -g -EL -mips2 -O1 -msoft-float -fsigned-char -W ${DEFS} -I${INC_DIR} \
+		      -I${CC_DIR}/lib/gcc/sde/3.4.4/include \
+		      -I${CC_DIR}/sde/include
+
+		ASFLAGS = -g -EL -c -mips2 -O1 -W ${DEFS} -I${INC_DIR}
+		
+		ifdef _ENABLE_BL_ENCRYPTED_
+		      LDFLAGS = -g -EL -O1 --allow-multiple-definition -defsym __BOOT_FROM_FLASH=0 -defsym __BOOT_LOADER=0
+		else
+		      ifdef _NAND_BOOT_E_
+				LDFLAGS = -g -EL -O1 --allow-multiple-definition -defsym __BOOT_FROM_FLASH=0 -defsym __BOOT_LOADER=0
+		      else
+				LDFLAGS = -g -EL -O1 --allow-multiple-definition -defsym __BOOT_FROM_FLASH=1 -defsym __BOOT_LOADER=0
+		      endif
+		endif
+
+else   ## M3701C main cpu complier gcc
+
+		CFLAGS = -g -EL -mips32r2 -O1 -msoft-float -fsigned-char -W ${DEFS} -I${INC_DIR} \
+		      -I${CC_DIR}/lib/gcc/sde/3.4.4/include \
+		      -I${CC_DIR}/sde/include
+		
+		C32FLAGS = -g -EL -mips32r2 -O1 -msoft-float -fsigned-char -W ${DEFS} -I${INC_DIR} \
+		      -I${CC_DIR}/lib/gcc/sde/3.4.4/include \
+		      -I${CC_DIR}/sde/include
+		
+		ASFLAGS = -g -EL -c -mips32r2 -O1 -W ${DEFS} -I${INC_DIR}
+		ifdef _ENABLE_BL_ENCRYPTED_
+		      LDFLAGS = -g -EL -O1 --allow-multiple-definition -defsym __BOOT_FROM_FLASH=0 -defsym __BOOT_LOADER=0
+		else
+		      ifdef _NAND_BOOT_E_
+				LDFLAGS = -g -EL -O1 --allow-multiple-definition -defsym __BOOT_FROM_FLASH=0 -defsym __BOOT_LOADER=0
+		      else
+				LDFLAGS = -g -EL -O1 --allow-multiple-definition -defsym __BOOT_FROM_FLASH=1 -defsym __BOOT_LOADER=0
+		      endif
+		endif
+		ifdef _LINUX_BOOTLOADER_
+			  LDFLAGS +=-defsym __LINUX_LOADER=1
+		else
+				LDFLAGS +=-defsym __LINUX_LOADER=0
+		endif 			
+endif
+
+LLD_TRNG_M36F_REMOTE = 1
+LLD_DSC_M36F_REMOTE = 1
+LLD_CRYPTO_M36F_REMOTE = 1
+HLD_DSC_REMOTE = 1
+HLD_CRYPTO_REMOTE = 1
+SEE_APP_REMOTE = 1
+DEFS += -DDUAL_ENABLE -DMAIN_CPU
+DUAL_ENABLE = 1
+MAIN_CPU = 1

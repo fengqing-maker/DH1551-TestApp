@@ -1,0 +1,21 @@
+/*
+ * FactoryTestInit.h
+ *
+ *  Created on: 2015-8-14
+ *      Author: timothy.liao
+ */
+
+#ifndef FACTORYTESTINIT_H_
+#define FACTORYTESTINIT_H_
+
+#include "FactoryTestInterface.h"
+#include "adi_smc.h"
+#include "UpgradeNotify.h"
+
+unsigned int FactoryTestInit1(ADISMCProtocol_E eProtocol, char *pFileName, int nNameLen);
+
+unsigned int FactoryTestInit(ADISMCProtocol_E eProtocol, unsigned int unFLASHAddress, unsigned int unSize);
+
+FactoryTestInterface * GetFactoryTestInterface();
+
+#endif /* FACTORYTESTINIT_H_ */

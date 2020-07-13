@@ -1,0 +1,90 @@
+# M3712S AUI GEN CA project compile guide
+------------------------------------------------------------------------------------
+
+Include `ALI RD` & `Customer/ALI QT` compile introduce.
+
+## Compiler version
+	1. Linux environment: gcc 4.7.3
+	2. Cygwin : gcc3.4.4
+
+------------------------------------------------------------------------------------
+
+## For Customer/ALI QT ##
+
+Compile with ALI Release package.
+
+Note: Only need compile the project in $PRJ_ROOT/prj/app/demo/combo/aui_demo, no need switch to sabbat_dual
+
+### Step 1: (merge code)
+	1. These packages need merge to -> ddk_release_combo_3702
+		plugin_combo_M3702
+		ACS_release_combo
+
+	2. cd  $PRJ_ROOT/prj/app/demo/combo/aui_demo
+	3. make path aui_sync_3702
+
+	4. Need to put keys into
+		$PRJ_ROOT/prj/app/demo/combo/aui_demo/gen_ap
+		Customer should have themself keys, ALI QT should use ALI internal GENCA keys(The same with sabbat_dual).
+	5. Enable the corresponding plugin files in ddk directory.
+	6. Copy your HDCP key file to $PRJ_ROOT/prj/app/demo/combo/aui_demo, and rename to empty_hdcp.key
+    7. Select one abs from folder "see_abs", rename to "signed_app_see.ubo", then copy 
+        to  "aui_demo/gen_ap".
+ 
+### Step 2: (config)
+	1. cd  $PRJ_ROOT/prj/app/demo/combo/aui_demo
+	2. Edit compiler_3702.def, 
+		- Enable ->		_BOARD_M3721L_01V01_ = 1
+		- Disable->		other board flag like: #_BOARD_M3712L_01V01_ = 1
+		- Ensure  _GEN_CA_ENABLE_ = 1 is enable, and disable other CA MACRO(_CAS9_CA_ENABLE_, _BC_CA_ENABLE_, ...)
+		- Ensure _DD_SUPPORT = 1 is enable if you need DD/DD+ support
+		- Enable _BOOT_LOGO_ENABLE_  if you need
+		- Ensure _ENABLE_BL_ENCRYPTED_ = 1 is enable if your board's OPT had set bootloader encrypt.
+        - Disable _DVBT2_ENABLE_
+        - Enable _USE_SIGNED_BL_SEE = 1 # for customer
+    3.Edit sys_config_3702.h
+        - Enable SUPPORT_TWO_TUNER
+
+### Step 3: (pre compile)
+	1. cd  $PRJ_ROOT/prj/app/demo/combo/aui_demo
+	2. make path config_3702 
+
+### Step 4: (compile)
+	1. cd  $PRJ_ROOT/prj/app/demo/combo/aui_demo
+	2. make new ddk aui product_7z
+
+
+
+
+------------------------------------------------------------------------------------
+
+## For ALI internal RD ##
+
+Compile with full sdk source code.
+
+### Step 1: (compile SEE)
+	1. cd $PRJ_ROOT/src/see/m36f
+	2. make path config_3702 new all 
+
+### Step 2: (sync config from sabbat_dual)
+	1. cd  $PRJ_ROOT/prj/app/demo/combo/aui_demo
+	2. make path aui_sync_3702
+
+### Step 3: (config)
+	1. cd  $PRJ_ROOT/prj/app/demo/combo/aui_demo
+	2. Edit compiler_3702.def, 
+		- Enable ->		_BOARD_M3712L_01V01_ = 1
+		- Disable->	   other board's flag like:	#_BOARD_M3527_01V01_ = 1
+		- Ensure  _GEN_CA_ENABLE_ = 1 is enabled, and disable other CA MACRO(_CAS9_CA_ENABLE_, _BC_CA_ENABLE_, ...)
+		- Ensure _DD_SUPPORT = 1 is enable if you need DD/DD+ support
+		- Enable _BOOT_LOGO_ENABLE_  if you need
+		- Disable _ENABLE_BL_ENCRYPTED_ = 1
+
+### Step 4: (pre compile)
+	1. cd  $PRJ_ROOT/prj/app/demo/combo/aui_demo
+	2. make path config_3702 
+
+### Step 5: (compile)
+	1. cd $PRJ_ROOT/prj/app/demo/combo/aui_demo
+	2. make new sdk_clean sdk aui product_7z
+

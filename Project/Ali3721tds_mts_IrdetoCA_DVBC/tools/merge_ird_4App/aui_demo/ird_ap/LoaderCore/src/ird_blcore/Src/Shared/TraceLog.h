@@ -1,0 +1,141 @@
+
+/*TITLE Trace Log */
+
+
+#ifndef TRACE_LOG_H__INCLUDED__
+#define TRACE_LOG_H__INCLUDED__
+
+#include "LoaderCoreSPI_Stdlib.h"
+#include "LoaderCoreSPI.h" 
+
+/** 
+ *  Enumerator: Trace levels
+ *
+ */
+enum
+{
+    /** Trace those only purpose is for debugging the program, and which do not produce meaningful information otherwise. */
+    TRACE_DEBUG         = 0,
+
+    /** Information trace about the program execution. Should enable the user to see the execution flow. */
+    TRACE_INFO          = 1,
+
+    /** Indicates a minor error has happened. In most cases it can be discarded safely; it may even be expected. */
+    TRACE_WARNING       = 2,
+
+    /** Indicates an error which may not stop the program execution. */
+    TRACE_ERROR         = 3,
+
+    /** Indicates a major error which prevents the program from going any further. */
+    TRACE_FATAL         = 4
+};
+
+/** 
+ *  Constant: Trace level
+ *
+ *  Minimum level of traces that are output. 
+ *  By default, all traces are output; change the value of this symbol during compilation for a more restrictive behavior.
+ */
+#if 1
+#if !defined(TRACE_LEVEL)
+    #define TRACE_LEVEL     (TRACE_FATAL)
+#endif
+#else
+#if !defined(TRACE_LEVEL)
+    #define TRACE_LEVEL     (TRACE_DEBUG)
+#endif
+#define INC_DEBUG_PRINT
+#endif
+/** 
+ *  Macro: TRACE_LOGx
+ *
+ *  Output a formatted string using "printf" if the log level is high enough. 
+ *  "x" refers to the number of additional parameters, now we support 0~4 parameters.
+ *  Can be disabled by undefining the INC_DEBUG_PRINT symbol during complilation.
+ *
+ *  Parameters:
+ *      level - Trace level (see <Trace levels>)
+ *      fmt - Formatted string to output.
+ *      arg1 ~ arg4 - Additional parameters, depending on the formatted string.
+ */
+#ifdef INC_DEBUG_PRINT
+    #define TRACE_LOG0(level, fmt) { \
+        if (level >= TRACE_LEVEL) { \
+            LoaderCoreSPI_Stdlib_printf(fmt); \
+        } \
+        if (level >= TRACE_ERROR) { \
+            LoaderCoreSPI_Update_UI_Message(fmt); \
+        } \
+    }
+
+    #define TRACE_LOG1(level, fmt, arg1) { \
+        if (level >= TRACE_LEVEL) { \
+            LoaderCoreSPI_Stdlib_printf(fmt, arg1); \
+        } \
+        if (level >= TRACE_ERROR) { \
+            LoaderCoreSPI_Update_UI_Message(fmt, arg1); \
+        } \
+    }
+
+    #define TRACE_LOG2(level, fmt, arg1, arg2) { \
+        if (level >= TRACE_LEVEL) { \
+            LoaderCoreSPI_Stdlib_printf(fmt, arg1, arg2); \
+        } \
+        if (level >= TRACE_ERROR) { \
+            LoaderCoreSPI_Update_UI_Message(fmt, arg1, arg2); \
+        } \
+    }
+
+    #define TRACE_LOG3(level, fmt, arg1, arg2, arg3) { \
+        if (level >= TRACE_LEVEL) { \
+            LoaderCoreSPI_Stdlib_printf(fmt, arg1, arg2, arg3); \
+        } \
+        if (level >= TRACE_ERROR) { \
+            LoaderCoreSPI_Update_UI_Message(fmt, arg1, arg2, arg3); \
+        } \
+    }
+
+    #define TRACE_LOG4(level, fmt, arg1, arg2, arg3, arg4) { \
+        if (level >= TRACE_LEVEL) { \
+            LoaderCoreSPI_Stdlib_printf(fmt, arg1, arg2, arg3, arg4); \
+        } \
+        if (level >= TRACE_ERROR) { \
+            LoaderCoreSPI_Update_UI_Message(fmt, arg1, arg2, arg3, arg4); \
+        } \
+    }
+#else
+
+    #define TRACE_LOG0(level, fmt) {\
+        if (level >= TRACE_ERROR) { \
+                LoaderCoreSPI_Update_UI_Message(fmt); \
+            } \
+    }
+
+    #define TRACE_LOG1(level, fmt, arg1) { \
+        if (level >= TRACE_ERROR) { \
+            LoaderCoreSPI_Update_UI_Message(fmt, arg1); \
+        } \
+    }
+
+    #define TRACE_LOG2(level, fmt, arg1, arg2) { \
+        if (level >= TRACE_ERROR) { \
+            LoaderCoreSPI_Update_UI_Message(fmt, arg1, arg2); \
+        } \
+    }
+
+    #define TRACE_LOG3(level, fmt, arg1, arg2, arg3)  { \
+        if (level >= TRACE_ERROR) { \
+            LoaderCoreSPI_Update_UI_Message(fmt, arg1, arg2, arg3); \
+        } \
+    }
+
+    #define TRACE_LOG4(level, fmt, arg1, arg2, arg3, arg4) { \
+        if (level >= TRACE_ERROR) { \
+            LoaderCoreSPI_Update_UI_Message(fmt, arg1, arg2, arg3, arg4); \
+        } \
+    }
+#endif
+
+
+#endif   /* TRACE_LOG_H__INCLUDED__ */
+

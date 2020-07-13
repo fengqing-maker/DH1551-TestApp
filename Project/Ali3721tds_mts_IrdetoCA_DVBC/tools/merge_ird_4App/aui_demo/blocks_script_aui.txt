@@ -1,0 +1,55 @@
+//
+// This file is specified to generate
+// mass production binary.
+//
+// name: block name
+// size: block size
+// file: block data file. 
+//       if file_size<block_size, padding with 0xff; 
+//       if no file input "file=", padding 0xff for whole block.
+//
+
+output=product_sabbat_dual.abs
+
+[Block]
+name=SCS_Total_Area
+size=0x40000
+file=c0200a_bloader_s.bin
+
+[Block]
+name=DA2
+size=0x10000
+file=DA2.bin
+
+[Block]
+name=DA2_Redundant
+size=0x10000
+file=DA2.bin
+
+[Block]
+name=Main_SW
+size=0x210000
+file=app_s.bin
+
+[Block]
+name=See_SW
+size=0xE0000
+file=app_see_s.bin
+
+[Block]
+name=Logo
+size=0x10000
+file=logo_enriching_s.bin
+
+[Block]
+name=Upg_Main_SW
+size=0xB0000
+file=upg_app_s.bin
+
+[Block]
+name=Upg_See_SW
+size=0x80000
+file=upg_app_see_s.bin
+
+
+

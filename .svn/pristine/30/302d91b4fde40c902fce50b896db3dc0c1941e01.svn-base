@@ -1,0 +1,35 @@
+#ifndef _STRING_ID_
+#define _STRING_ID_
+
+#define RS_DVT_TEST_AP       1
+#define RS_LOADER_STATUS     2
+#define RS_MEM_MANI          3
+#define RS_MODULE_CHECK      4
+#define RS_LOADER_NV_PARA    5
+#define RS_UPG_SW            6
+#define RS_SECURE_STATUS     7
+#define RS_COMMON_NO         8
+#define RS_COMMON_YES        9
+#define RS_SELECT_KEY_INFO   10
+#define RS_OK_KEY_INFO       11
+#define RS_ERASE_ALL         12
+#define RS_ERASE_IRD_PART    13
+#define RS_ERASE_LOADER_PART 14
+#define RS_ERASE_CA_PART     15
+#define RS_RESET_TO_DEFAULT  16
+#define RS_MODULE_TEST       17
+#define RS_WRITE_PATTERNTO_MD 18
+#define RS_ERASE_MODULE      19
+#define RS_MODIFY_MD_LAST_BIT 20
+#define RS_LOADER_PARAM      21
+#define RS_FREQ              22
+#define RS_DISEQC            23
+#define RS_22K               24
+#define RS_TUN_FREQ          25
+#define RS_POLAR             26
+#define RS_SYM_RATE          27
+#define RS_FEC               28
+#define RS_DL_PID            29
+#define RS_BLOW              30
+
+#endif//_STRING_ID_

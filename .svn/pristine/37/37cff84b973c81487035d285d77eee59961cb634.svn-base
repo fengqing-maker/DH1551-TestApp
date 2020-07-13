@@ -1,0 +1,9 @@
+[INPUT]
+TOTAL_SIZE=0x3fff46
+BLOCK_NUM=1
+
+FILE_1=ali_encrypted_app.bin
+START_ADDR_1=0
+
+[OUTPUT]
+FILE_OUT=dvtapp.bin

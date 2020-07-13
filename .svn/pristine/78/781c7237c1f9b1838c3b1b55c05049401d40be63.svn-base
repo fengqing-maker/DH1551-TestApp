@@ -1,0 +1,178 @@
+****************************************************
+M3503 customer compiler method (sdk package)
+****************************************************
+
+1. dual cpu
+------------------
+	1) build bootloader
+		$ make path config_3503 new all
+
+	2) the output file is bloader3_3503_dual.abs
+
+2. single cpu
+------------------
+	1) build bootloader
+		$ make path config_3503_single new all
+
+	2) the output file is bloader3_3503_single.abs
+
+3. dual cpu with logo
+------------------
+	1) build bootloader
+		$ make path config_3503_logo new all
+
+	2) the output file is bloader3_3503_dual_logo.abs
+
+****************************************************
+M3515 customer compiler method (sdk package)
+****************************************************
+
+1. dual cpu
+------------------
+	1) for Encrypt flow, enable bellow Macro in compiler_security.def
+			_ENABLE_BL_ENCRYPTED_ = 1
+		otherwisi, disable it.	
+	
+	2) build bootloader
+		$ make path config_m3515 new all
+
+	3) the output file is bloader3_m3515_dual_encbl.abs for encrypt bootloader flow 
+										and bloader3_m3515_dual.abs for clear bootloader flow
+
+****************************************************
+M3821 customer compiler method (sdk package)
+****************************************************
+
+1. dual cpu
+------------------
+	1) build bootloader
+		$ make path config_3821 new all
+
+	2) the output file is bloader3_3821_dual.abs
+
+2. single cpu
+------------------
+	1) build bootloader
+		$ make path config_3821_single new all
+
+	2) the output file is bloader3_3821_single.abs
+
+3. dual cpu with logo
+------------------
+	1) build bootloader
+		$ make path config_3821_logo new all
+
+	2) the output file is bloader3_3821_dual_logo.abs
+
+*******************************************************
+M3503 Ali internal compiler method (Src label)
+*******************************************************
+
+1. dual cpu
+------------------
+	1) build bootloader
+		$ make path rebuild_3503
+
+	2) the output file is bloader3_3503_dual.abs
+	
+2. single cpu
+------------------
+	1) build bootloader
+		$ make path rebuild_3503_single
+
+	2) the output file is bloader3_3503_single.abs
+
+3. dual cpu with logo
+------------------
+	1) build bootloader
+		$ make path rebuild_3503_logo
+
+	2) the output file is bloader3_3503_dual_logo.abs
+
+*******************************************************
+M3821 Ali internal compiler method (Src label)
+*******************************************************
+
+1. dual cpu
+------------------
+	1) build bootloader
+		$ make path rebuild_3821
+
+	2) the output file is bloader3_3821_dual.abs
+	
+2. single cpu
+------------------
+	1) build bootloader
+		$ make path rebuild_3821_single
+
+	2) the output file is bloader3_3821_single.abs
+
+3. dual cpu with logo
+------------------
+	1) build bootloader
+		$ make path rebuild_3821_logo
+
+	2) the output file is bloader3_3821_dual_logo.abs
+
+***************************************************
+M3503 Ali internal compiler method (Src label)
+This will generate bootload whose standby code is 
+implement with c instead asm
+***************************************************
+1. dual cpu
+------------------
+	1) build bootloader
+		$ make path rebuild_3503_stby_c
+
+	3) the output file is bloader3_3503_dual_stby_c.abs
+
+*******************************************************
+M3503 customer compiler method (sdk package)
+This will generate bootload whose standby code is 
+implement with c instead asm
+*******************************************************
+
+1. dual cpu
+------------------
+	1) build bootloader
+		$ make path config_3503_stby_c new all
+
+	2) the output file is bloader3_3503_dual_stby_c.abs
+	
+*******************************************************
+M3515 Ali internal compiler method (Src label)
+This will generate security bootloader for M3515 TDS
+*******************************************************
+	1) for Encrypt flow, enable bellow Macro in compiler_security.def
+			_ENABLE_BL_ENCRYPTED_ = 1
+		otherwisi, disable it.	
+		
+	2) build bootloader
+		$ make path rebuild_m3515
+
+	3) the output file is :
+                 encrypt bootloader ---->bloader3_m3515_dual_encbl.abs and see_bloader3_encbl_s.abs
+                 clear bootloader   ---->bloader3_m3515_dual.abs and see_bloader3_s.abs
+	
+*******************************************************
+M3715 Ali internal compiler method (Src label)
+This will generate security bootloader for M3715 Linux Nor booting
+*******************************************************
+	1) for Encrypt flow, enable bellow Macro in compiler_security.def
+		_ENABLE_BL_ENCRYPTED_ = 1
+	otherwisi, disable it.	
+
+	2) build bootloader
+		$ make path rebuild_m3715
+
+	3) the output file is bloader3_m3715_dual_encbl.abs for encrypt bootloader flow 
+										and bloader3_m3715_dual.abs for clear bootloader flow
+										
+*******************************************************
+M3516 Ali internal compiler method (Src label)
+This will generate bootloader for M3516 Linux nand booting
+*******************************************************
+	1) build bootloader
+		$ make path rebuild_m3516
+
+	2) the output file is bloader3_m3516_dual.abs

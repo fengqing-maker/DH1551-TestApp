@@ -1,0 +1,17 @@
+[Project]
+RunMode=0
+InitMode=0
+RunAddr=0xA1000200
+FileNum=2
+[File0]
+File=product_sabbat_dual.abs
+Type=1
+Addr=0xA1100000
+[File1]
+File=flashwr_c3702.abs
+Type=1
+Addr=0xA1000200
+[AutoRun]
+AutoRun0=wm 0x810001F0 0x00800000
+AutoRun1=wm 0x810001F4 0x00000000
+AutoRun2=wm 0x810001F8 0x81100000

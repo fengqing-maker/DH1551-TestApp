@@ -1,0 +1,52 @@
+Compiler in the Linux environment--gcc 4.7.3
+
+Step1. compiler bootloader
+
+	$cd ddk_release_aliboot_3503b_as_n_dbg or ddk_release_aliboot_3503b_as_n_rel
+	$make defcfg_c3503b_as_n
+	$make app
+
+Step2. copy \ddk_release_aliboot_3503b_as_n_dbg\img\bloader3_3503b_security.abs
+        to  \Elephant\prj\app\demo\combo\aui_demo
+
+
+Step3.  
+      Put customer's root_key_pair.der, ext_key_pair.der and decrypt_key.bin in ALi SDK.
+      The root_key_pair.der and ext_key_pair.der is just for compilling, the method of generate DER format key is below: 
+	a. Generate PEM private key & public key. Key length is 2048 bits.
+		$openssl genrsa -out ext_key_pair.pem 2048
+	b. Get DER public key from key pair.
+		$openssl rsa -pubout -inform PEM -in ext_key_pair.pem -outform D -out public.key
+	c. Get DER key pair from PEM key pair.
+		$openssl rsa -inform PEM -in ext_key_pair.pem -outform D -out ext_key_pair.der
+
+	$cd /prj/app/demo/combo/aui_demo/bl_tool
+	
+	$ openssl genrsa -out root_key_pair.pem 2048
+	$ openssl rsa -pubout -inform PEM -in root_key_pair.pem -outform D -out public.key
+	$ openssl rsa -inform PEM -in root_key_pair.pem -outform D -out root_key_pair.der
+
+	$ openssl genrsa -out ext_key_pair.pem 2048
+	$ openssl rsa -pubout -inform PEM -in ext_key_pair.pem -outform D -out public.key
+	$ openssl rsa -inform PEM -in ext_key_pair.pem -outform D -out ext_key_pair.der
+
+
+Step4. compiler fw
+
+
+	$cd \prj\app\demo\combo\aui_demo
+
+	edit [compiler_3503.def] 
+	  #_BOARD_M3515_01V01_ = 1 
+	   _BOARD_M3515B_01V01 = 1
+	  RD_DEBUG = 1 //if you want to debug with wingdb 
+
+	$make path config_3503B new ddk_clean ddk
+
+	$cd \aui
+	$./build.sh tds aui
+	$./build.sh tds aui_test
+
+	$cd \prj\app\demo\combo\aui_demo
+	$make product_7z
+ 

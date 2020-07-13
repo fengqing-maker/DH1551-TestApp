@@ -1,0 +1,27 @@
+#ifndef SN_CONFIG_H_
+#define SN_CONFIG_H_
+
+typedef enum
+{
+	E_UART_CONN,
+	E_NET_CONN
+};
+
+class SNConfig
+{
+public:
+	void SetDefaultConfig(void);
+	
+public:
+	unsigned int m_unConnType;
+	char m_acIP[32];
+	unsigned short m_usPort;
+	int m_nSN;
+	int m_nHDCP;
+	int m_nMAC;
+	int m_nPEF;
+	int m_nCxPerson;
+	int m_nIFCP;
+};
+
+#endif/*SN_CONFIG_H_*/

@@ -1,0 +1,1617 @@
+make -f MakefileCommon all
+make[1]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo”
+make -f makefile35 release
+make[2]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo”
+make -f Makefile35.cmd release
+make[3]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo”
+rm -f /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk
+rm -f /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+cd ../../../../../src; \
+  make BUS_I2C_SCB BUS_I2C_GPIO BUS_SCI_UART  BUS_IDE_M36_HD HLD_BASE LIB_C  HLD_PAN   HLD_SCART   HLD_STO   HLD_VP  HLD_OSD  HLD_DECV  HLD_VENC  HLD_VBI  HLD_DMX  HLD_SND  HLD_DECA  HLD_SDEC  HLD_CIC   HLD_RFM   HLD_NIM    HLD_SCART  HLD_NET  HLD_SEC_BOOT  LLD_IRC_M63  LLD_SCART_AK4707  LLD_SCART_MX9671  LLD_PAN_CH455  LLD_STO_FLASH_SQI  LIB_SUBT LLD_SDEC_SW  LIB_TTX LLD_VBI_M33  LLD_RFM_MCBS373 LIB_ALI_HLS  LIB_NIM LIB_CIPLUS  LIB_TSI3_CON_PSI LIB_TSI3_DESCRIPTOR LIB_TSI3_PARSER LIB_TSI3_PLUGIN_EIT  LIB_TSI3_ENGINE  LIB_TSI3_PLUGIN_SEARCH LIB_TSI3_PLUGIN_MONITOR LIB_TSI3_PLUGIN_TDT LIB_TSI3_UTILITY  LIB_EPG LIB_CLOSE_CAPTION LIB_CHUNK LIB_DB4 LIB_UPG3 LIB_LIB7ZIP  LIB_CHAR LIB_OSDO  LIB_DBC LIB_OTA HLD_SMC LLD_SMARTCARD  LIB_USBUPG LIB_VFS2  LIB_PVR3_MGR LIB_TSG LIB_PVR3_API36  LLD_NET_ENC28J60 LLD_NET_SMSC9220 LIB_CURL_S LIB_NETUPG LIB_XML2  HLD_DSC HLD_CRYPTO  LIB_LISTS  LIB_PUB_ALL LIB_PUB_AS_ENGINE  VERSION_INFO_APP LIB_PE  LIB_CEC  HLD_WIFI  LIB_PE_MUSIC_ENGINE_INPUT_OGG LIB_PE_SUBTITLE LIB_GE_OSD  LLD_NIM_S2_TUNER LLD_NIM_S2_3501 LIB_PUB_AS_S LIB_DISEQC DUAL_MODULES
+make[4]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src”
+cd bus/i2c/scb; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/bus/i2c/scb”
+make -f BUS_I2C_SCB.mk  i2c_scb.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/bus/i2c/scb”
+make[6]: “i2c_scb.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/bus/i2c/scb”
+cp -f  i2c_scb.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  i2c_scb.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/BUS_I2C_SCB.lst
+echo BUS_I2C_SCB.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo BUS_I2C_SCB.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/bus/i2c/scb”
+cd bus/i2c/gpio; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/bus/i2c/gpio”
+make -f BUS_I2C_GPIO.mk  i2c_gpio.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/bus/i2c/gpio”
+make[6]: “i2c_gpio.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/bus/i2c/gpio”
+cp -f  i2c_gpio.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  i2c_gpio.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/BUS_I2C_GPIO.lst
+echo BUS_I2C_GPIO.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo BUS_I2C_GPIO.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/bus/i2c/gpio”
+cd bus/sci/uart; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/bus/sci/uart”
+make -f BUS_SCI_UART.mk  sci_16550uart.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/bus/sci/uart”
+make[6]: “sci_16550uart.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/bus/sci/uart”
+cp -f  sci_16550uart.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  sci_16550uart.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/BUS_SCI_UART.lst
+echo BUS_SCI_UART.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo BUS_SCI_UART.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/bus/sci/uart”
+cd bus/ide/m36/m36_hd; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/bus/ide/m36/m36_hd”
+make -f BUS_IDE_M36_HD.mk  ide_probe.o ide_iops.o ide-disk.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/bus/ide/m36/m36_hd”
+make[6]: “ide_probe.o”是最新的。
+make[6]: “ide_iops.o”是最新的。
+make[6]: “ide-disk.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/bus/ide/m36/m36_hd”
+cp -f  ide_probe.o ide_iops.o ide-disk.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  ide_probe.o ide_iops.o ide-disk.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/BUS_IDE_M36_HD.lst
+echo BUS_IDE_M36_HD.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo BUS_IDE_M36_HD.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.ddk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/bus/ide/m36/m36_hd”
+cd hld; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld”
+make -f HLD_BASE.mk  hld_dev.o hld_dev_remote.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld”
+make[6]: “hld_dev.o”是最新的。
+make[6]: “hld_dev_remote.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld”
+cp -f  hld_dev.o hld_dev_remote.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  hld_dev.o hld_dev_remote.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/HLD_BASE.lst
+echo HLD_BASE.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo HLD_BASE.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld”
+cd lib/libcommon/libc; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommon/libc”
+make -f LIB_C.mk  alloc.o printf.o string.o fastCRC.o time.o scanf.o __alloc.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommon/libc”
+make[6]: “alloc.o”是最新的。
+make[6]: “printf.o”是最新的。
+make[6]: “string.o”是最新的。
+make[6]: “fastCRC.o”是最新的。
+make[6]: “time.o”是最新的。
+make[6]: “scanf.o”是最新的。
+make[6]: “__alloc.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommon/libc”
+cp -f  alloc.o printf.o string.o fastCRC.o time.o scanf.o __alloc.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  alloc.o printf.o string.o fastCRC.o time.o scanf.o __alloc.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_C.lst
+echo LIB_C.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_C.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommon/libc”
+cd hld/pan; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/pan”
+make -f HLD_PAN.mk  pan.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/pan”
+make[6]: “pan.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/pan”
+cp -f  pan.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  pan.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/HLD_PAN.lst
+echo HLD_PAN.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo HLD_PAN.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/pan”
+cd hld/scart; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/scart”
+make -f HLD_SCART.mk  scart.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/scart”
+make[6]: “scart.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/scart”
+cp -f  scart.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  scart.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/HLD_SCART.lst
+echo HLD_SCART.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo HLD_SCART.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/scart”
+cd hld/sto; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/sto”
+make -f HLD_STO.mk  sto.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/sto”
+make[6]: “sto.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/sto”
+cp -f  sto.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  sto.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/HLD_STO.lst
+echo HLD_STO.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo HLD_STO.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/sto”
+cd hld/dis; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/dis”
+make -f HLD_VP.mk  vpo_remote.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/dis”
+make[6]: “vpo_remote.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/dis”
+cp -f  vpo_remote.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  vpo_remote.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/HLD_VP.lst
+echo HLD_VP.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo HLD_VP.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/dis”
+cd hld/osd; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/osd”
+make -f HLD_OSD.mk  osddrv.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/osd”
+make[6]: “osddrv.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/osd”
+cp -f  osddrv.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  osddrv.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/HLD_OSD.lst
+echo HLD_OSD.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo HLD_OSD.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/osd”
+cd hld/decv; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/decv”
+make -f HLD_DECV.mk  decv_remote.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/decv”
+make[6]: “decv_remote.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/decv”
+cp -f  decv_remote.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  decv_remote.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/HLD_DECV.lst
+echo HLD_DECV.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo HLD_DECV.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/decv”
+cd hld/venc; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/venc”
+make -f HLD_VENC.mk  venc.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/venc”
+make[6]: “venc.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/venc”
+cp -f  venc.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  venc.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/HLD_VENC.lst
+echo HLD_VENC.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo HLD_VENC.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/venc”
+cd hld/vbi; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/vbi”
+make -f HLD_VBI.mk  vbi_remote.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/vbi”
+make[6]: “vbi_remote.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/vbi”
+cp -f  vbi_remote.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  vbi_remote.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/HLD_VBI.lst
+echo HLD_VBI.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo HLD_VBI.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/vbi”
+cd hld/dmx; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/dmx”
+make -f HLD_DMX.mk  dmx.o dmx_adv.o dmx_adv_slot.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/dmx”
+make[6]: “dmx.o”是最新的。
+make[6]: “dmx_adv.o”是最新的。
+make[6]: “dmx_adv_slot.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/dmx”
+cp -f  dmx.o dmx_adv.o dmx_adv_slot.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  dmx.o dmx_adv.o dmx_adv_slot.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/HLD_DMX.lst
+echo HLD_DMX.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo HLD_DMX.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/dmx”
+cd hld/snd; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/snd”
+make -f HLD_SND.mk  snd_remote.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/snd”
+make[6]: “snd_remote.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/snd”
+cp -f  snd_remote.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  snd_remote.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/HLD_SND.lst
+echo HLD_SND.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo HLD_SND.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/snd”
+cd hld/deca; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/deca”
+make -f HLD_DECA.mk  deca_remote.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/deca”
+make[6]: “deca_remote.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/deca”
+cp -f  deca_remote.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  deca_remote.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/HLD_DECA.lst
+echo HLD_DECA.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo HLD_DECA.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/deca”
+cd hld/sdec; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/sdec”
+make -f HLD_SDEC.mk  sdec_remote.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/sdec”
+make[6]: “sdec_remote.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/sdec”
+cp -f  sdec_remote.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  sdec_remote.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/HLD_SDEC.lst
+echo HLD_SDEC.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo HLD_SDEC.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/sdec”
+cd hld/cic; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/cic”
+make -f HLD_CIC.mk  cic.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/cic”
+make[6]: “cic.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/cic”
+cp -f  cic.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  cic.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/HLD_CIC.lst
+echo HLD_CIC.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo HLD_CIC.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/cic”
+cd hld/rfm; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/rfm”
+make -f HLD_RFM.mk  rfm.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/rfm”
+make[6]: “rfm.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/rfm”
+cp -f  rfm.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  rfm.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/HLD_RFM.lst
+echo HLD_RFM.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo HLD_RFM.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/rfm”
+cd hld/nim; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/nim”
+make -f HLD_NIM.mk  nim.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/nim”
+make[6]: “nim.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/nim”
+cp -f  nim.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  nim.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/HLD_NIM.lst
+echo HLD_NIM.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo HLD_NIM.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/nim”
+make[4]: “HLD_SCART”是最新的。
+cd hld/net; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/net”
+make -f HLD_NET.mk  net.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/net”
+make[6]: “net.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/net”
+cp -f  net.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  net.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/HLD_NET.lst
+echo HLD_NET.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo HLD_NET.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.ddk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/net”
+cd hld/sec_boot/;\
+	make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/sec_boot”
+make -f HLD_SEC_BOOT.mk  sec_boot_api.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/sec_boot”
+make[6]: “sec_boot_api.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/sec_boot”
+cp -f  sec_boot_api.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  sec_boot_api.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/HLD_SEC_BOOT.lst
+echo HLD_SEC_BOOT.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo HLD_SEC_BOOT.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/sec_boot”
+cd lld/pan/irc/m63; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/pan/irc/m63”
+make -f LLD_IRC_M63.mk  irc_6303.o LLD_IRC_NECSTD
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/pan/irc/m63”
+make[6]: “irc_6303.o”是最新的。
+cd ..; \
+  make -f Make_necstd
+make[7]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/pan/irc”
+make -f LLD_IRC_NECSTD.mk  irc_nec_std.o irc_lab_std.o irc_std.o 
+make[8]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/pan/irc”
+make[8]: “irc_nec_std.o”是最新的。
+make[8]: “irc_lab_std.o”是最新的。
+make[8]: “irc_std.o”是最新的。
+make[8]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/pan/irc”
+cp -f  irc_nec_std.o irc_lab_std.o irc_std.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  irc_nec_std.o irc_lab_std.o irc_std.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LLD_IRC_NECSTD.lst
+echo LLD_IRC_NECSTD.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LLD_IRC_NECSTD.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk
+make[7]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/pan/irc”
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/pan/irc/m63”
+cp -f  irc_6303.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  irc_6303.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LLD_IRC_M63.lst
+echo LLD_IRC_M63.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LLD_IRC_M63.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/pan/irc/m63”
+cd lld/scart/ak4707; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/scart/ak4707”
+make -f LLD_SCART_AK4707.mk  scart_ak4707.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/scart/ak4707”
+make[6]: “scart_ak4707.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/scart/ak4707”
+cp -f  scart_ak4707.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  scart_ak4707.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LLD_SCART_AK4707.lst
+echo LLD_SCART_AK4707.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LLD_SCART_AK4707.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/scart/ak4707”
+cd lld/scart/mx9671; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/scart/mx9671”
+make -f LLD_SCART_MX9671.mk  scart_mx9671.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/scart/mx9671”
+make[6]: “scart_mx9671.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/scart/mx9671”
+cp -f  scart_mx9671.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  scart_mx9671.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LLD_SCART_MX9671.lst
+echo LLD_SCART_MX9671.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LLD_SCART_MX9671.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/scart/mx9671”
+cd lld/pan/ch455; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/pan/ch455”
+make -f LLD_PAN_CH455.mk  pan_ch455.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/pan/ch455”
+make[6]: “pan_ch455.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/pan/ch455”
+cp -f  pan_ch455.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  pan_ch455.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LLD_PAN_CH455.lst
+echo LLD_PAN_CH455.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LLD_PAN_CH455.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.ddk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/pan/ch455”
+cd lld/sto/flash_sqi; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/sto/flash_sqi”
+make -f LLD_STO_FLASH_SQI.mk flash_power_sense.o sto_flash.o flash_data.o flash_data_p.o flash_data_s.o flash_pl.o flash_pr.o flash_sl.o flash_sr.o flash_r.o flash_raw_pr.o flash_raw_pl_c.o flash_raw_sl_c.o flash_raw_sr.o flash_info.o flash_info_p.o flash_info_s.o flash_sst26_sl_c.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/sto/flash_sqi”
+make[6]: “flash_power_sense.o”是最新的。
+make[6]: “sto_flash.o”是最新的。
+make[6]: “flash_data.o”是最新的。
+make[6]: “flash_data_p.o”是最新的。
+make[6]: “flash_data_s.o”是最新的。
+make[6]: “flash_pl.o”是最新的。
+make[6]: “flash_pr.o”是最新的。
+make[6]: “flash_sl.o”是最新的。
+make[6]: “flash_sr.o”是最新的。
+make[6]: “flash_r.o”是最新的。
+make[6]: “flash_raw_pr.o”是最新的。
+make[6]: “flash_raw_pl_c.o”是最新的。
+make[6]: “flash_raw_sl_c.o”是最新的。
+make[6]: “flash_raw_sr.o”是最新的。
+make[6]: “flash_info.o”是最新的。
+make[6]: “flash_info_p.o”是最新的。
+make[6]: “flash_info_s.o”是最新的。
+make[6]: “flash_sst26_sl_c.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/sto/flash_sqi”
+cp -f flash_power_sense.o sto_flash.o flash_data.o flash_data_p.o flash_data_s.o flash_pl.o flash_pr.o flash_sl.o flash_sr.o flash_r.o flash_raw_pr.o flash_raw_pl_c.o flash_raw_sl_c.o flash_raw_sr.o flash_info.o flash_info_p.o flash_info_s.o flash_sst26_sl_c.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo flash_power_sense.o sto_flash.o flash_data.o flash_data_p.o flash_data_s.o flash_pl.o flash_pr.o flash_sl.o flash_sr.o flash_r.o flash_raw_pr.o flash_raw_pl_c.o flash_raw_sl_c.o flash_raw_sr.o flash_info.o flash_info_p.o flash_info_s.o flash_sst26_sl_c.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LLD_STO_FLASH_SQI.lst
+echo LLD_STO_FLASH_SQI.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LLD_STO_FLASH_SQI.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/sto/flash_sqi”
+cd lib/libdvb/libsubt; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsubt”
+make -f LIB_SUBT.mk  lib_subt.o lib_subt_remote.o lib_atsc_si.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsubt”
+make[6]: “lib_subt.o”是最新的。
+make[6]: “lib_subt_remote.o”是最新的。
+make[6]: “lib_atsc_si.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsubt”
+cp -f  lib_subt.o lib_subt_remote.o lib_atsc_si.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  lib_subt.o lib_subt_remote.o lib_atsc_si.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_SUBT.lst
+echo LIB_SUBT.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_SUBT.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsubt”
+cd lld/sdec/m33; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/sdec/m33”
+make -f LLD_SDEC_SW.mk  sdec_m36_remote.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/sdec/m33”
+make[6]: “sdec_m36_remote.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/sdec/m33”
+cp -f  sdec_m36_remote.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  sdec_m36_remote.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LLD_SDEC_SW.lst
+echo LLD_SDEC_SW.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LLD_SDEC_SW.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/sdec/m33”
+cd lib/libdvb/libttx; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libttx”
+make -f LIB_TTX.mk  lib_ttx.o lib_ttx_remote.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libttx”
+make[6]: “lib_ttx.o”是最新的。
+make[6]: “lib_ttx_remote.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libttx”
+cp -f  lib_ttx.o lib_ttx_remote.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  lib_ttx.o lib_ttx_remote.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_TTX.lst
+echo LIB_TTX.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_TTX.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libttx”
+cd lld/vbi/m33; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/vbi/m33”
+make -f LLD_VBI_M33.mk  vbi_m36_remote.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/vbi/m33”
+make[6]: “vbi_m36_remote.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/vbi/m33”
+cp -f  vbi_m36_remote.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  vbi_m36_remote.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LLD_VBI_M33.lst
+echo LLD_VBI_M33.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LLD_VBI_M33.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/vbi/m33”
+cd lld/rfm/mcbs373; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/rfm/mcbs373”
+make -f LLD_RFM_MCBS373.mk  rfm_mcbs373.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/rfm/mcbs373”
+make[6]: “rfm_mcbs373.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/rfm/mcbs373”
+cp -f  rfm_mcbs373.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  rfm_mcbs373.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LLD_RFM_MCBS373.lst
+echo LLD_RFM_MCBS373.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LLD_RFM_MCBS373.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/rfm/mcbs373”
+cd lib/libcommunicate/libtcpip/libalihls; \
+ make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommunicate/libtcpip/libalihls”
+make -f LIB_ALI_HLS.mk  ali_hls.o ali_hls_dec.o osal.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommunicate/libtcpip/libalihls”
+make[6]: “ali_hls.o”是最新的。
+make[6]: “ali_hls_dec.o”是最新的。
+make[6]: “osal.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommunicate/libtcpip/libalihls”
+cp -f  ali_hls.o ali_hls_dec.o osal.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  ali_hls.o ali_hls_dec.o osal.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_ALI_HLS.lst
+echo LIB_ALI_HLS.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_ALI_HLS.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommunicate/libtcpip/libalihls”
+cd lib/libcommunicate/libnim; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommunicate/libnim”
+make -f LIB_NIM.mk  lib_nim.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommunicate/libnim”
+make[6]: “lib_nim.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommunicate/libnim”
+cp -f  lib_nim.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  lib_nim.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_NIM.lst
+echo LIB_NIM.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_NIM.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommunicate/libnim”
+cd lib/libdvb/libci/ciplus; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libci/ciplus”
+make -f LIB_CIPLUS.mk  ci_stack.o ci_link.o ci_trans.o ci_senss.o ci_app.o ci_misc.o ci_api.o ci_crypt.o ci_uri.o ci_fake_interface.o ci_app_plus.o ci_service_shunning.o ci_srm.o ci_pvr.o ci_legacy_module.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libci/ciplus”
+make[6]: “ci_stack.o”是最新的。
+make[6]: “ci_link.o”是最新的。
+make[6]: “ci_trans.o”是最新的。
+make[6]: “ci_senss.o”是最新的。
+make[6]: “ci_app.o”是最新的。
+make[6]: “ci_misc.o”是最新的。
+make[6]: “ci_api.o”是最新的。
+make[6]: “ci_crypt.o”是最新的。
+make[6]: “ci_uri.o”是最新的。
+make[6]: “ci_fake_interface.o”是最新的。
+make[6]: “ci_app_plus.o”是最新的。
+make[6]: “ci_service_shunning.o”是最新的。
+make[6]: “ci_srm.o”是最新的。
+make[6]: “ci_pvr.o”是最新的。
+make[6]: “ci_legacy_module.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libci/ciplus”
+cp -f  ci_stack.o ci_link.o ci_trans.o ci_senss.o ci_app.o ci_misc.o ci_api.o ci_crypt.o ci_uri.o ci_fake_interface.o ci_app_plus.o ci_service_shunning.o ci_srm.o ci_pvr.o ci_legacy_module.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  ci_stack.o ci_link.o ci_trans.o ci_senss.o ci_app.o ci_misc.o ci_api.o ci_crypt.o ci_uri.o ci_fake_interface.o ci_app_plus.o ci_service_shunning.o ci_srm.o ci_pvr.o ci_legacy_module.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_CIPLUS.lst
+echo LIB_CIPLUS.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_CIPLUS.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libci/ciplus”
+cd lib/libdvb/libsi/libtsi3/control/psi; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/control/psi”
+make -f LIB_TSI3_CON_PSI.mk  psi_db.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/control/psi”
+make[6]: “psi_db.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/control/psi”
+cp  psi_db.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  psi_db.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_TSI3_CON_PSI.lst
+echo LIB_TSI3_CON_PSI.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_TSI3_CON_PSI.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/control/psi”
+cd lib/libdvb/libsi/libtsi3/descriptor; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/descriptor”
+make -f LIB_TSI3_DESCRIPTOR.mk  si_desc_cab_delivery.o si_desc_sat_delivery.o si_desc_service_list.o si_desc_ter_delivery.o t2_delivery_system_descriptor.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/descriptor”
+make[6]: “si_desc_cab_delivery.o”是最新的。
+make[6]: “si_desc_sat_delivery.o”是最新的。
+make[6]: “si_desc_service_list.o”是最新的。
+make[6]: “si_desc_ter_delivery.o”是最新的。
+make[6]: “t2_delivery_system_descriptor.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/descriptor”
+cp  si_desc_cab_delivery.o si_desc_sat_delivery.o si_desc_service_list.o si_desc_ter_delivery.o t2_delivery_system_descriptor.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  si_desc_cab_delivery.o si_desc_sat_delivery.o si_desc_service_list.o si_desc_ter_delivery.o t2_delivery_system_descriptor.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_TSI3_DESCRIPTOR.lst
+echo LIB_TSI3_DESCRIPTOR.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_TSI3_DESCRIPTOR.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/descriptor”
+cd lib/libdvb/libsi/libtsi3/parser; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/parser”
+make -f LIB_TSI3_PARSER.mk  psi_pat.o psi_pmt.o si_nit.o si_sdt.o si_bat.o desc_loop_parser.o si_sdtt.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/parser”
+make[6]: “psi_pat.o”是最新的。
+make[6]: “psi_pmt.o”是最新的。
+make[6]: “si_nit.o”是最新的。
+make[6]: “si_sdt.o”是最新的。
+make[6]: “si_bat.o”是最新的。
+make[6]: “desc_loop_parser.o”是最新的。
+make[6]: “si_sdtt.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/parser”
+cp  psi_pat.o psi_pmt.o si_nit.o si_sdt.o si_bat.o desc_loop_parser.o si_sdtt.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  psi_pat.o psi_pmt.o si_nit.o si_sdt.o si_bat.o desc_loop_parser.o si_sdtt.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_TSI3_PARSER.lst
+echo LIB_TSI3_PARSER.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_TSI3_PARSER.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/parser”
+cd lib/libdvb/libsi/libtsi3/plugin/eit; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/plugin/eit”
+make -f LIB_TSI3_PLUGIN_EIT.mk  sie_eit.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/plugin/eit”
+make[6]: “sie_eit.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/plugin/eit”
+cp  sie_eit.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  sie_eit.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_TSI3_PLUGIN_EIT.lst
+echo LIB_TSI3_PLUGIN_EIT.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_TSI3_PLUGIN_EIT.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/plugin/eit”
+cd lib/libdvb/libsi/libtsi3/engine; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/engine”
+make -f LIB_TSI3_ENGINE.mk  sie.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/engine”
+make[6]: “sie.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/engine”
+cp  sie.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  sie.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_TSI3_ENGINE.lst
+echo LIB_TSI3_ENGINE.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_TSI3_ENGINE.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/engine”
+cd lib/libdvb/libsi/libtsi3/plugin/search; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/plugin/search”
+make -f LIB_TSI3_PLUGIN_SEARCH.mk  si_search.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/plugin/search”
+make[6]: “si_search.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/plugin/search”
+cp  si_search.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  si_search.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_TSI3_PLUGIN_SEARCH.lst
+echo LIB_TSI3_PLUGIN_SEARCH.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_TSI3_PLUGIN_SEARCH.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/plugin/search”
+cd lib/libdvb/libsi/libtsi3/plugin/monitor; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/plugin/monitor”
+make -f LIB_TSI3_PLUGIN_MONITOR.mk  sie_monitor_core.o sie_monitor_query.o sie_monitor_dtg.o sie_monitor_ota.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/plugin/monitor”
+make[6]: “sie_monitor_core.o”是最新的。
+make[6]: “sie_monitor_query.o”是最新的。
+make[6]: “sie_monitor_dtg.o”是最新的。
+make[6]: “sie_monitor_ota.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/plugin/monitor”
+cp  sie_monitor_core.o sie_monitor_query.o sie_monitor_dtg.o sie_monitor_ota.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  sie_monitor_core.o sie_monitor_query.o sie_monitor_dtg.o sie_monitor_ota.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_TSI3_PLUGIN_MONITOR.lst
+echo LIB_TSI3_PLUGIN_MONITOR.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_TSI3_PLUGIN_MONITOR.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/plugin/monitor”
+cd lib/libdvb/libsi/libtsi3/plugin/tdt; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/plugin/tdt”
+make -f LIB_TSI3_PLUGIN_TDT.mk  si_tdt.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/plugin/tdt”
+make[6]: “si_tdt.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/plugin/tdt”
+cp  si_tdt.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  si_tdt.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_TSI3_PLUGIN_TDT.lst
+echo LIB_TSI3_PLUGIN_TDT.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_TSI3_PLUGIN_TDT.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/plugin/tdt”
+cd lib/libdvb/libsi/libtsi3/utility; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/utility”
+make -f LIB_TSI3_UTILITY.mk  si_utility.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/utility”
+make[6]: “si_utility.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/utility”
+cp  si_utility.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  si_utility.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_TSI3_UTILITY.lst
+echo LIB_TSI3_UTILITY.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_TSI3_UTILITY.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libsi/libtsi3/utility”
+cd lib/libdvb/libepg; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libepg”
+make -f LIB_EPG.mk  eit_parser.o epg_api.o epg_db.o epg_cache.o lib_epg.o x_alloc.o lib_multifeed.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libepg”
+make[6]: “eit_parser.o”是最新的。
+make[6]: “epg_api.o”是最新的。
+make[6]: “epg_db.o”是最新的。
+make[6]: “epg_cache.o”是最新的。
+make[6]: “lib_epg.o”是最新的。
+make[6]: “x_alloc.o”是最新的。
+make[6]: “lib_multifeed.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libepg”
+cp -f  eit_parser.o epg_api.o epg_db.o epg_cache.o lib_epg.o x_alloc.o lib_multifeed.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  eit_parser.o epg_api.o epg_db.o epg_cache.o lib_epg.o x_alloc.o lib_multifeed.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_EPG.lst
+echo LIB_EPG.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_EPG.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libepg”
+cd lib/libdvb/libclosecaption; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libclosecaption”
+make -f LIB_CLOSE_CAPTION.mk  lib_close_caption_remote.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libclosecaption”
+make[6]: “lib_close_caption_remote.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libclosecaption”
+cp -f  lib_close_caption_remote.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+#echo "SRCS=" lib_close_caption_remote.c
+echo  lib_close_caption_remote.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_CLOSE_CAPTION.lst
+echo LIB_CLOSE_CAPTION.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_CLOSE_CAPTION.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk
+#/mips-sde/bin/../bin/sde-ar -r libClosedCaption.a  lib_close_caption_remote.o
+#cp -f libClosedCaption.a /cygdrive/f/Cstm_proj/aui/Elephant/ddk
+#cp -f libClosedCaption.a /cygdrive/f/Cstm_proj/aui/Elephant/obj
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libclosecaption”
+cd lib/libstorage/libchunk; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libchunk”
+make -f LIB_CHUNK.mk  chunk.o chunk_sto.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libchunk”
+make[6]: “chunk.o”是最新的。
+make[6]: “chunk_sto.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libchunk”
+cp -f  chunk.o chunk_sto.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  chunk.o chunk_sto.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_CHUNK.lst
+echo LIB_CHUNK.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_CHUNK.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libchunk”
+cd lib/libstorage/libdb/libdb4; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libdb/libdb4”
+make -f LIB_DB4.mk   LIB_DB4_ENGINE LIB_DB4_INTERFACE LIB_DB4_PLUGIN
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libdb/libdb4”
+cd src/engine; \
+  make
+make[7]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libdb/libdb4/src/engine”
+make -f LIB_DB4_ENGINE.mk  db_basic_operation.o db_data_object.o db_node_api.o db_reclaim_ext.o 
+make[8]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libdb/libdb4/src/engine”
+make[8]: “db_basic_operation.o”是最新的。
+make[8]: “db_data_object.o”是最新的。
+make[8]: “db_node_api.o”是最新的。
+make[8]: “db_reclaim_ext.o”是最新的。
+make[8]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libdb/libdb4/src/engine”
+cp -f  db_basic_operation.o db_data_object.o db_node_api.o db_reclaim_ext.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  db_basic_operation.o db_data_object.o db_node_api.o db_reclaim_ext.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_DB4_ENGINE.lst
+echo LIB_DB4_ENGINE.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_DB4_ENGINE.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[7]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libdb/libdb4/src/engine”
+cd src/interface; \
+  make
+make[7]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libdb/libdb4/src/interface”
+make -f LIB_DB4_INTERFACE.mk  db_interface.o db_interface_ext.o tmp_info.o 
+make[8]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libdb/libdb4/src/interface”
+make[8]: “db_interface.o”是最新的。
+make[8]: “db_interface_ext.o”是最新的。
+make[8]: “tmp_info.o”是最新的。
+make[8]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libdb/libdb4/src/interface”
+cp -f  db_interface.o db_interface_ext.o tmp_info.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  db_interface.o db_interface_ext.o tmp_info.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_DB4_INTERFACE.lst
+echo LIB_DB4_INTERFACE.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_DB4_INTERFACE.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[7]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libdb/libdb4/src/interface”
+cd src/plugin; \
+  make
+make[7]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libdb/libdb4/src/plugin”
+make -f LIB_DB4_PLUGIN.mk  db_plugin_S.o 
+make[8]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libdb/libdb4/src/plugin”
+make[8]: “db_plugin_S.o”是最新的。
+make[8]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libdb/libdb4/src/plugin”
+cp -f  db_plugin_S.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  db_plugin_S.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_DB4_PLUGIN.lst
+echo LIB_DB4_PLUGIN.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_DB4_PLUGIN.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[7]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libdb/libdb4/src/plugin”
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libdb/libdb4”
+echo    \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_DB4.lst
+echo LIB_DB4.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_DB4.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libdb/libdb4”
+cd lib/libapplet/libupg3; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libupg3”
+make -f LIB_UPG3.mk  p2p_upgrade.o Packet.o UpgradeInterface.o UpgradeCommand.o UpgradeCommand_old.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libupg3”
+make[6]: “p2p_upgrade.o”是最新的。
+make[6]: “Packet.o”是最新的。
+make[6]: “UpgradeInterface.o”是最新的。
+make[6]: “UpgradeCommand.o”是最新的。
+make[6]: “UpgradeCommand_old.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libupg3”
+cp -f  p2p_upgrade.o Packet.o UpgradeInterface.o UpgradeCommand.o UpgradeCommand_old.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  p2p_upgrade.o Packet.o UpgradeInterface.o UpgradeCommand.o UpgradeCommand_old.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_UPG3.lst
+echo LIB_UPG3.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_UPG3.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libupg3”
+cd lib/libcommon/libzip/lib7zip; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommon/libzip/lib7zip”
+make -f LIB_LIB7ZIP.mk  un7zip.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommon/libzip/lib7zip”
+make[6]: “un7zip.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommon/libzip/lib7zip”
+cp -f  un7zip.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  un7zip.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_LIB7ZIP.lst
+echo LIB_LIB7ZIP.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_LIB7ZIP.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommon/libzip/lib7zip”
+cd lib/libcommon/libchar; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommon/libchar”
+make -f LIB_CHAR.mk  char_map.o iso_5937.o lib_char.o gb_2312.o arabic_convert.o Thai.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommon/libchar”
+make[6]: “char_map.o”是最新的。
+make[6]: “iso_5937.o”是最新的。
+make[6]: “lib_char.o”是最新的。
+make[6]: “gb_2312.o”是最新的。
+make[6]: “arabic_convert.o”是最新的。
+make[6]: “Thai.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommon/libchar”
+cp -f  char_map.o iso_5937.o lib_char.o gb_2312.o arabic_convert.o Thai.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  char_map.o iso_5937.o lib_char.o gb_2312.o arabic_convert.o Thai.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_CHAR.lst
+echo LIB_CHAR.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_CHAR.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommon/libchar”
+cd lib/libui/libosd; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libui/libosd”
+make -f LIB_OSDO.mk  osd_lib.o obj_textfield.o obj_bitmap.o obj_objectlist.o obj_container.o obj_scrollbar.o obj_progressbar.o obj_matrixbox.o obj_list.o obj_editfield.o obj_multisel.o obj_multitext.o osd_common_draw.o osd_draw_mode_manage.o osd_common.o obj_animation.o osd_ge_draw_ctrl.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libui/libosd”
+make[6]: “osd_lib.o”是最新的。
+make[6]: “obj_textfield.o”是最新的。
+make[6]: “obj_bitmap.o”是最新的。
+make[6]: “obj_objectlist.o”是最新的。
+make[6]: “obj_container.o”是最新的。
+make[6]: “obj_scrollbar.o”是最新的。
+make[6]: “obj_progressbar.o”是最新的。
+make[6]: “obj_matrixbox.o”是最新的。
+make[6]: “obj_list.o”是最新的。
+make[6]: “obj_editfield.o”是最新的。
+make[6]: “obj_multisel.o”是最新的。
+make[6]: “obj_multitext.o”是最新的。
+make[6]: “osd_common_draw.o”是最新的。
+make[6]: “osd_draw_mode_manage.o”是最新的。
+make[6]: “osd_common.o”是最新的。
+make[6]: “obj_animation.o”是最新的。
+make[6]: “osd_ge_draw_ctrl.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libui/libosd”
+cp -f  osd_lib.o obj_textfield.o obj_bitmap.o obj_objectlist.o obj_container.o obj_scrollbar.o obj_progressbar.o obj_matrixbox.o obj_list.o obj_editfield.o obj_multisel.o obj_multitext.o osd_common_draw.o osd_draw_mode_manage.o osd_common.o obj_animation.o osd_ge_draw_ctrl.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  osd_lib.o obj_textfield.o obj_bitmap.o obj_objectlist.o obj_container.o obj_scrollbar.o obj_progressbar.o obj_matrixbox.o obj_list.o obj_editfield.o obj_multisel.o obj_multitext.o osd_common_draw.o osd_draw_mode_manage.o osd_common.o obj_animation.o osd_ge_draw_ctrl.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_OSDO.lst
+echo LIB_OSDO.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_OSDO.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libui/libosd”
+cd lib/libdvb/libdbc; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libdbc”
+make -f LIB_DBC.mk  lib_dbc.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libdbc”
+make[6]: “lib_dbc.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libdbc”
+cp -f  lib_dbc.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  lib_dbc.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_DBC.lst
+echo LIB_DBC.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_DBC.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libdbc”
+cd lib/libdvb/libota; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libota”
+make -f LIB_OTA.mk  lib_ota.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libota”
+make[6]: “lib_ota.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libota”
+cp -f  lib_ota.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  lib_ota.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_OTA.lst
+echo LIB_OTA.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_OTA.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libota”
+cd hld/smc; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/smc”
+make -f HLD_SMC.mk  smc.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/smc”
+make[6]: “smc.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/smc”
+cp -f  smc.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  smc.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/HLD_SMC.lst
+echo HLD_SMC.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo HLD_SMC.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/smc”
+cd lld/smc/smartcard; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/smc/smartcard”
+make -f LLD_SMARTCARD.mk  smartcard.o smc_t1_buffer.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/smc/smartcard”
+make[6]: “smartcard.o”是最新的。
+make[6]: “smc_t1_buffer.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/smc/smartcard”
+cp -f  smartcard.o smc_t1_buffer.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  smartcard.o smc_t1_buffer.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LLD_SMARTCARD.lst
+echo LLD_SMARTCARD.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/smc/smartcard”
+cd lib/libapplet/libusbupg; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libusbupg”
+make -f LIB_USBUPG.mk  usb_upgrade.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libusbupg”
+make[6]: “usb_upgrade.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libusbupg”
+cp -f  usb_upgrade.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  usb_upgrade.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_USBUPG.lst
+echo LIB_USBUPG.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_USBUPG.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libusbupg”
+cd lib/libstorage/libfs2; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libfs2”
+make -f LIB_VFS2.mk  fs_main.o LIB_UTILS
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libfs2”
+make[6]: “fs_main.o”是最新的。
+cd utils;\
+  make
+make[7]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libfs2/utils”
+make -f LIB_UTILS.mk  file_control.o 
+make[8]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libfs2/utils”
+make[8]: “file_control.o”是最新的。
+make[8]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libfs2/utils”
+cp -f  file_control.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  file_control.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_UTILS.lst
+echo LIB_UTILS.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_UTILS.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk
+make[7]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libfs2/utils”
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libfs2”
+cp -f  fs_main.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  fs_main.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_VFS2.lst
+echo LIB_VFS2.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_VFS2.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libstorage/libfs2”
+cd lib/libapplet/libpvr3/mgr; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libpvr3/mgr”
+make -f LIB_PVR3_MGR.mk  pvr_mgr_api.o pvr_mgr_edit.o pvr_mgr_list.o pvr_mgr_playlist.o pvr_mgr_task.o pvr_mgr_user_data.o pvr_mgr_common.o pvr_mgr_header_data.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libpvr3/mgr”
+make[6]: “pvr_mgr_api.o”是最新的。
+make[6]: “pvr_mgr_edit.o”是最新的。
+make[6]: “pvr_mgr_list.o”是最新的。
+make[6]: “pvr_mgr_playlist.o”是最新的。
+make[6]: “pvr_mgr_task.o”是最新的。
+make[6]: “pvr_mgr_user_data.o”是最新的。
+make[6]: “pvr_mgr_common.o”是最新的。
+make[6]: “pvr_mgr_header_data.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libpvr3/mgr”
+cp -f  pvr_mgr_api.o pvr_mgr_edit.o pvr_mgr_list.o pvr_mgr_playlist.o pvr_mgr_task.o pvr_mgr_user_data.o pvr_mgr_common.o pvr_mgr_header_data.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  pvr_mgr_api.o pvr_mgr_edit.o pvr_mgr_list.o pvr_mgr_playlist.o pvr_mgr_task.o pvr_mgr_user_data.o pvr_mgr_common.o pvr_mgr_header_data.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_PVR3_MGR.lst
+echo LIB_PVR3_MGR.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_PVR3_MGR.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.ddk
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libpvr3/mgr”
+cd lib/libapplet/libtsg; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libtsg”
+make -f LIB_TSG.mk  cc_tsg_ci_slot.o cc_tsg_task.o cc_tsg_mem_recorder.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libtsg”
+make[6]: “cc_tsg_ci_slot.o”是最新的。
+make[6]: “cc_tsg_task.o”是最新的。
+make[6]: “cc_tsg_mem_recorder.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libtsg”
+cp -f  cc_tsg_ci_slot.o cc_tsg_task.o cc_tsg_mem_recorder.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  cc_tsg_ci_slot.o cc_tsg_task.o cc_tsg_mem_recorder.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_TSG.lst
+echo LIB_TSG.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_TSG.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.ddk
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libtsg”
+cd lib/libapplet/libpvr3/m36; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libpvr3/m36”
+make -f LIB_PVR3_API36.mk  pvr_api.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libpvr3/m36”
+make[6]: “pvr_api.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libpvr3/m36”
+cp -f  pvr_api.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  pvr_api.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_PVR3_API36.lst
+echo LIB_PVR3_API36.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_PVR3_API36.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.ddk
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libpvr3/m36”
+cd lld/net/enc28j60; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/net/enc28j60”
+make -f LLD_NET_ENC28J60.mk  enc28j60.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/net/enc28j60”
+make[6]: “enc28j60.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/net/enc28j60”
+cp -f  enc28j60.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  enc28j60.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LLD_NET_ENC28J60.lst
+echo LLD_NET_ENC28J60.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LLD_NET_ENC28J60.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.ddk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/net/enc28j60”
+cd lld/net/smsc9220; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/net/smsc9220”
+make -f LLD_NET_SMSC9220.mk  smsc9220.o smsc9220_bus.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/net/smsc9220”
+make[6]: “smsc9220.o”是最新的。
+make[6]: “smsc9220_bus.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/net/smsc9220”
+cp -f  smsc9220.o smsc9220_bus.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  smsc9220.o smsc9220_bus.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LLD_NET_SMSC9220.lst
+echo LLD_NET_SMSC9220.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LLD_NET_SMSC9220.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.ddk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/net/smsc9220”
+cd lib/libcommunicate/libtcpip/libcurl/libcurl_s; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommunicate/libtcpip/libcurl/libcurl_s”
+make -f LIB_CURL_S.mk  http.o uf_nscparser.o sendf.o curl_multibyte.o strtok.o security.o uf_rtp.o urlfile.o openldap.o hostip6.o nwlib.o libnet_rtsp.o pingpong.o curl_ntlm_wb.o uf_http.o llist.o uf_hls_load.o telnet.o asyn-thread.o ssh.o getinfo.o smtp.o uf_xspfparser.o amigaos.o base64.o socks.o ftp.o hash.o escape.o uf_playlist.o getenv.o non-ascii.o fileinfo.o gopher.o nss.o strequal.o mprintf.o connect.o rbuffer.o qssl.o sslgen.o http_negotiate_sspi.o rtsp.o curl_rtmp.o ssluse.o splay.o md5.o http_digest.o warnless.o uf_plsparser.o inet_ntop.o inet_pton.o swapbuf.o curl_rand.o uf_rtsp.o nwos.o ftplistparser.o speedcheck.o share.o krb5.o strtoofft.o slist.o socks_gssapi.o progress.o hmac.o ldap.o pop3.o parsedate.o curl_ntlm_core.o idn_win32.o uf_util.o if2ip.o hostsyn.o formdata.o asyn-ares.o curl_addrinfo.o strerror.o multi.o http_chunks.o uf_playlist_proc.o uf_refparser.o uf_smilparser.o curl_fnmatch.o hostasyn.o curl_mmsx.o cookie.o uf_mms.o uf_hls.o uf_asxparser.o http_negotiate.o transfer.o curl_darwinssl.o hostip.o md4.o axtls.o curl_ntlm.o strdup.o gtls.o curl_sasl.o nonblock.o curl_ntlm_msgs.o curl_sspi.o select.o timeval.o imap.o memdebug.o wildcard.o uf_hls_dec.o uf_m3uparser.o file.o hostcheck.o ipconfig.o netrc.o dict.o tftp.o content_encoding.o uf_rtmp.o polarssl.o cyassl.o krb4.o libnet.o curl_memrchr.o curl_gssapi.o easy.o socks_sspi.o url.o version.o curl_threads.o curl_gethostname.o curl_schannel.o hostip4.o http_proxy.o rawstr.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommunicate/libtcpip/libcurl/libcurl_s”
+make[6]: “http.o”是最新的。
+make[6]: “uf_nscparser.o”是最新的。
+make[6]: “sendf.o”是最新的。
+make[6]: “curl_multibyte.o”是最新的。
+make[6]: “strtok.o”是最新的。
+make[6]: “security.o”是最新的。
+make[6]: “uf_rtp.o”是最新的。
+make[6]: “urlfile.o”是最新的。
+make[6]: “openldap.o”是最新的。
+make[6]: “hostip6.o”是最新的。
+make[6]: “nwlib.o”是最新的。
+make[6]: “libnet_rtsp.o”是最新的。
+make[6]: “pingpong.o”是最新的。
+make[6]: “curl_ntlm_wb.o”是最新的。
+make[6]: “uf_http.o”是最新的。
+make[6]: “llist.o”是最新的。
+make[6]: “uf_hls_load.o”是最新的。
+make[6]: “telnet.o”是最新的。
+make[6]: “asyn-thread.o”是最新的。
+make[6]: “ssh.o”是最新的。
+make[6]: “getinfo.o”是最新的。
+make[6]: “smtp.o”是最新的。
+make[6]: “uf_xspfparser.o”是最新的。
+make[6]: “amigaos.o”是最新的。
+make[6]: “base64.o”是最新的。
+make[6]: “socks.o”是最新的。
+make[6]: “ftp.o”是最新的。
+make[6]: “hash.o”是最新的。
+make[6]: “escape.o”是最新的。
+make[6]: “uf_playlist.o”是最新的。
+make[6]: “getenv.o”是最新的。
+make[6]: “non-ascii.o”是最新的。
+make[6]: “fileinfo.o”是最新的。
+make[6]: “gopher.o”是最新的。
+make[6]: “nss.o”是最新的。
+make[6]: “strequal.o”是最新的。
+make[6]: “mprintf.o”是最新的。
+make[6]: “connect.o”是最新的。
+make[6]: “rbuffer.o”是最新的。
+make[6]: “qssl.o”是最新的。
+make[6]: “sslgen.o”是最新的。
+make[6]: “http_negotiate_sspi.o”是最新的。
+make[6]: “rtsp.o”是最新的。
+make[6]: “curl_rtmp.o”是最新的。
+make[6]: “ssluse.o”是最新的。
+make[6]: “splay.o”是最新的。
+make[6]: “md5.o”是最新的。
+make[6]: “http_digest.o”是最新的。
+make[6]: “warnless.o”是最新的。
+make[6]: “uf_plsparser.o”是最新的。
+make[6]: “inet_ntop.o”是最新的。
+make[6]: “inet_pton.o”是最新的。
+make[6]: “swapbuf.o”是最新的。
+make[6]: “curl_rand.o”是最新的。
+make[6]: “uf_rtsp.o”是最新的。
+make[6]: “nwos.o”是最新的。
+make[6]: “ftplistparser.o”是最新的。
+make[6]: “speedcheck.o”是最新的。
+make[6]: “share.o”是最新的。
+make[6]: “krb5.o”是最新的。
+make[6]: “strtoofft.o”是最新的。
+make[6]: “slist.o”是最新的。
+make[6]: “socks_gssapi.o”是最新的。
+make[6]: “progress.o”是最新的。
+make[6]: “hmac.o”是最新的。
+make[6]: “ldap.o”是最新的。
+make[6]: “pop3.o”是最新的。
+make[6]: “parsedate.o”是最新的。
+make[6]: “curl_ntlm_core.o”是最新的。
+make[6]: “idn_win32.o”是最新的。
+make[6]: “uf_util.o”是最新的。
+make[6]: “if2ip.o”是最新的。
+make[6]: “hostsyn.o”是最新的。
+make[6]: “formdata.o”是最新的。
+make[6]: “asyn-ares.o”是最新的。
+make[6]: “curl_addrinfo.o”是最新的。
+make[6]: “strerror.o”是最新的。
+make[6]: “multi.o”是最新的。
+make[6]: “http_chunks.o”是最新的。
+make[6]: “uf_playlist_proc.o”是最新的。
+make[6]: “uf_refparser.o”是最新的。
+make[6]: “uf_smilparser.o”是最新的。
+make[6]: “curl_fnmatch.o”是最新的。
+make[6]: “hostasyn.o”是最新的。
+make[6]: “curl_mmsx.o”是最新的。
+make[6]: “cookie.o”是最新的。
+make[6]: “uf_mms.o”是最新的。
+make[6]: “uf_hls.o”是最新的。
+make[6]: “uf_asxparser.o”是最新的。
+make[6]: “http_negotiate.o”是最新的。
+make[6]: “transfer.o”是最新的。
+make[6]: “curl_darwinssl.o”是最新的。
+make[6]: “hostip.o”是最新的。
+make[6]: “md4.o”是最新的。
+make[6]: “axtls.o”是最新的。
+make[6]: “curl_ntlm.o”是最新的。
+make[6]: “strdup.o”是最新的。
+make[6]: “gtls.o”是最新的。
+make[6]: “curl_sasl.o”是最新的。
+make[6]: “nonblock.o”是最新的。
+make[6]: “curl_ntlm_msgs.o”是最新的。
+make[6]: “curl_sspi.o”是最新的。
+make[6]: “select.o”是最新的。
+make[6]: “timeval.o”是最新的。
+make[6]: “imap.o”是最新的。
+make[6]: “memdebug.o”是最新的。
+make[6]: “wildcard.o”是最新的。
+make[6]: “uf_hls_dec.o”是最新的。
+make[6]: “uf_m3uparser.o”是最新的。
+make[6]: “file.o”是最新的。
+make[6]: “hostcheck.o”是最新的。
+make[6]: “ipconfig.o”是最新的。
+make[6]: “netrc.o”是最新的。
+make[6]: “dict.o”是最新的。
+make[6]: “tftp.o”是最新的。
+make[6]: “content_encoding.o”是最新的。
+make[6]: “uf_rtmp.o”是最新的。
+make[6]: “polarssl.o”是最新的。
+make[6]: “cyassl.o”是最新的。
+make[6]: “krb4.o”是最新的。
+make[6]: “libnet.o”是最新的。
+make[6]: “curl_memrchr.o”是最新的。
+make[6]: “curl_gssapi.o”是最新的。
+make[6]: “easy.o”是最新的。
+make[6]: “socks_sspi.o”是最新的。
+make[6]: “url.o”是最新的。
+make[6]: “version.o”是最新的。
+make[6]: “curl_threads.o”是最新的。
+make[6]: “curl_gethostname.o”是最新的。
+make[6]: “curl_schannel.o”是最新的。
+make[6]: “hostip4.o”是最新的。
+make[6]: “http_proxy.o”是最新的。
+make[6]: “rawstr.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommunicate/libtcpip/libcurl/libcurl_s”
+cp -f  http.o uf_nscparser.o sendf.o curl_multibyte.o strtok.o security.o uf_rtp.o urlfile.o openldap.o hostip6.o nwlib.o libnet_rtsp.o pingpong.o curl_ntlm_wb.o uf_http.o llist.o uf_hls_load.o telnet.o asyn-thread.o ssh.o getinfo.o smtp.o uf_xspfparser.o amigaos.o base64.o socks.o ftp.o hash.o escape.o uf_playlist.o getenv.o non-ascii.o fileinfo.o gopher.o nss.o strequal.o mprintf.o connect.o rbuffer.o qssl.o sslgen.o http_negotiate_sspi.o rtsp.o curl_rtmp.o ssluse.o splay.o md5.o http_digest.o warnless.o uf_plsparser.o inet_ntop.o inet_pton.o swapbuf.o curl_rand.o uf_rtsp.o nwos.o ftplistparser.o speedcheck.o share.o krb5.o strtoofft.o slist.o socks_gssapi.o progress.o hmac.o ldap.o pop3.o parsedate.o curl_ntlm_core.o idn_win32.o uf_util.o if2ip.o hostsyn.o formdata.o asyn-ares.o curl_addrinfo.o strerror.o multi.o http_chunks.o uf_playlist_proc.o uf_refparser.o uf_smilparser.o curl_fnmatch.o hostasyn.o curl_mmsx.o cookie.o uf_mms.o uf_hls.o uf_asxparser.o http_negotiate.o transfer.o curl_darwinssl.o hostip.o md4.o axtls.o curl_ntlm.o strdup.o gtls.o curl_sasl.o nonblock.o curl_ntlm_msgs.o curl_sspi.o select.o timeval.o imap.o memdebug.o wildcard.o uf_hls_dec.o uf_m3uparser.o file.o hostcheck.o ipconfig.o netrc.o dict.o tftp.o content_encoding.o uf_rtmp.o polarssl.o cyassl.o krb4.o libnet.o curl_memrchr.o curl_gssapi.o easy.o socks_sspi.o url.o version.o curl_threads.o curl_gethostname.o curl_schannel.o hostip4.o http_proxy.o rawstr.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo http.o uf_nscparser.o sendf.o curl_multibyte.o strtok.o security.o uf_rtp.o urlfile.o openldap.o hostip6.o nwlib.o libnet_rtsp.o pingpong.o curl_ntlm_wb.o uf_http.o llist.o uf_hls_load.o telnet.o asyn-thread.o ssh.o getinfo.o smtp.o uf_xspfparser.o amigaos.o base64.o socks.o ftp.o hash.o escape.o uf_playlist.o getenv.o non-ascii.o fileinfo.o gopher.o nss.o strequal.o mprintf.o connect.o rbuffer.o qssl.o sslgen.o http_negotiate_sspi.o rtsp.o curl_rtmp.o ssluse.o splay.o md5.o http_digest.o warnless.o uf_plsparser.o inet_ntop.o inet_pton.o swapbuf.o curl_rand.o uf_rtsp.o nwos.o ftplistparser.o speedcheck.o share.o krb5.o strtoofft.o slist.o socks_gssapi.o progress.o hmac.o ldap.o pop3.o parsedate.o curl_ntlm_core.o idn_win32.o uf_util.o if2ip.o hostsyn.o formdata.o asyn-ares.o curl_addrinfo.o strerror.o multi.o http_chunks.o uf_playlist_proc.o uf_refparser.o uf_smilparser.o curl_fnmatch.o hostasyn.o curl_mmsx.o cookie.o uf_mms.o uf_hls.o uf_asxparser.o http_negotiate.o transfer.o curl_darwinssl.o hostip.o md4.o axtls.o curl_ntlm.o strdup.o gtls.o curl_sasl.o nonblock.o curl_ntlm_msgs.o curl_sspi.o select.o timeval.o imap.o memdebug.o wildcard.o uf_hls_dec.o uf_m3uparser.o file.o hostcheck.o ipconfig.o netrc.o dict.o tftp.o content_encoding.o uf_rtmp.o polarssl.o cyassl.o krb4.o libnet.o curl_memrchr.o curl_gssapi.o easy.o socks_sspi.o url.o version.o curl_threads.o curl_gethostname.o curl_schannel.o hostip4.o http_proxy.o rawstr.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_CURL_S.lst
+echo LIB_CURL_S.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_CURL_S.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommunicate/libtcpip/libcurl/libcurl_s”
+cd lib/libapplet/libnetupg/;  \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libnetupg”
+make -f LIB_NETUPG.mk  net_upgrade.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libnetupg”
+make[6]: “net_upgrade.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libnetupg”
+cp -f  net_upgrade.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  net_upgrade.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_NETUPG.lst
+echo LIB_NETUPG.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_NETUPG.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libnetupg”
+cd lib/libdvb/libxml2; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libxml2”
+make -f LIB_XML2.mk  parser.o xml_hash.o c14n.o catalog.o chvalid.o debugXML.o dict.o DOCBparser.o encoding.o entities.o error.o globals.o relaxng.o SAX2.o SAX.o HTMLparser.o HTMLtree.o legacy.o list.o nanoftp.o nanohttp.o parserInternals.o pattern.o schematron.o threads.o tree.o uri.o valid.o xinclude.o xlink.o xmlIO.o xpointer.o xmlmemory.o xmlmodule.o xmlreader.o xmlregexp.o xmlsave.o xmlschemas.o xmlschemastypes.o xmlstring.o xmlunicode.o xmlwriter.o xpath.o lib_xml_api.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libxml2”
+make[6]: “parser.o”是最新的。
+make[6]: “xml_hash.o”是最新的。
+make[6]: “c14n.o”是最新的。
+make[6]: “catalog.o”是最新的。
+make[6]: “chvalid.o”是最新的。
+make[6]: “debugXML.o”是最新的。
+make[6]: “dict.o”是最新的。
+make[6]: “DOCBparser.o”是最新的。
+make[6]: “encoding.o”是最新的。
+make[6]: “entities.o”是最新的。
+make[6]: “error.o”是最新的。
+make[6]: “globals.o”是最新的。
+make[6]: “relaxng.o”是最新的。
+make[6]: “SAX2.o”是最新的。
+make[6]: “SAX.o”是最新的。
+make[6]: “HTMLparser.o”是最新的。
+make[6]: “HTMLtree.o”是最新的。
+make[6]: “legacy.o”是最新的。
+make[6]: “list.o”是最新的。
+make[6]: “nanoftp.o”是最新的。
+make[6]: “nanohttp.o”是最新的。
+make[6]: “parserInternals.o”是最新的。
+make[6]: “pattern.o”是最新的。
+make[6]: “schematron.o”是最新的。
+make[6]: “threads.o”是最新的。
+make[6]: “tree.o”是最新的。
+make[6]: “uri.o”是最新的。
+make[6]: “valid.o”是最新的。
+make[6]: “xinclude.o”是最新的。
+make[6]: “xlink.o”是最新的。
+make[6]: “xmlIO.o”是最新的。
+make[6]: “xpointer.o”是最新的。
+make[6]: “xmlmemory.o”是最新的。
+make[6]: “xmlmodule.o”是最新的。
+make[6]: “xmlreader.o”是最新的。
+make[6]: “xmlregexp.o”是最新的。
+make[6]: “xmlsave.o”是最新的。
+make[6]: “xmlschemas.o”是最新的。
+make[6]: “xmlschemastypes.o”是最新的。
+make[6]: “xmlstring.o”是最新的。
+make[6]: “xmlunicode.o”是最新的。
+make[6]: “xmlwriter.o”是最新的。
+make[6]: “xpath.o”是最新的。
+make[6]: “lib_xml_api.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libxml2”
+cp -f  parser.o xml_hash.o c14n.o catalog.o chvalid.o debugXML.o dict.o DOCBparser.o encoding.o entities.o error.o globals.o relaxng.o SAX2.o SAX.o HTMLparser.o HTMLtree.o legacy.o list.o nanoftp.o nanohttp.o parserInternals.o pattern.o schematron.o threads.o tree.o uri.o valid.o xinclude.o xlink.o xmlIO.o xpointer.o xmlmemory.o xmlmodule.o xmlreader.o xmlregexp.o xmlsave.o xmlschemas.o xmlschemastypes.o xmlstring.o xmlunicode.o xmlwriter.o xpath.o lib_xml_api.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  parser.o xml_hash.o c14n.o catalog.o chvalid.o debugXML.o dict.o DOCBparser.o encoding.o entities.o error.o globals.o relaxng.o SAX2.o SAX.o HTMLparser.o HTMLtree.o legacy.o list.o nanoftp.o nanohttp.o parserInternals.o pattern.o schematron.o threads.o tree.o uri.o valid.o xinclude.o xlink.o xmlIO.o xpointer.o xmlmemory.o xmlmodule.o xmlreader.o xmlregexp.o xmlsave.o xmlschemas.o xmlschemastypes.o xmlstring.o xmlunicode.o xmlwriter.o xpath.o lib_xml_api.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_XML2.lst
+echo LIB_XML2.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_XML2.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libdvb/libxml2”
+cd hld/dsc; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/dsc”
+make -f HLD_DSC.mk  dsc_remote.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/dsc”
+make[6]: “dsc_remote.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/dsc”
+cp -f  dsc_remote.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  dsc_remote.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/HLD_DSC.lst
+echo HLD_DSC.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo HLD_DSC.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/dsc”
+cd hld/crypto; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/crypto”
+make -f HLD_CRYPTO.mk  crypto_remote.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/crypto”
+make[6]: “crypto_remote.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/crypto”
+cp -f  crypto_remote.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  crypto_remote.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/HLD_CRYPTO.lst
+echo HLD_CRYPTO.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo HLD_CRYPTO.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/crypto”
+cd lib/libapplet/libmp/lists; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/lists”
+make -f LIB_LISTS.mk  media_player.o file_list.o play_list.o quick_sort.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/lists”
+make[6]: “media_player.o”是最新的。
+make[6]: “file_list.o”是最新的。
+make[6]: “play_list.o”是最新的。
+make[6]: “quick_sort.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/lists”
+cp -f  media_player.o file_list.o play_list.o quick_sort.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  media_player.o file_list.o play_list.o quick_sort.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_LISTS.lst
+echo LIB_LISTS.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_LISTS.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/lists”
+cd lib/libapplet/libpub/pub; \
+make 
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libpub/pub”
+make -f LIB_PUB_ALL.mk  lib_cc.o lib_hde.o lib_monitor.o lib_multiview.o lib_pub.o lib_device_manage.o lib_frontend.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libpub/pub”
+make[6]: “lib_cc.o”是最新的。
+make[6]: “lib_hde.o”是最新的。
+make[6]: “lib_monitor.o”是最新的。
+make[6]: “lib_multiview.o”是最新的。
+make[6]: “lib_pub.o”是最新的。
+make[6]: “lib_device_manage.o”是最新的。
+make[6]: “lib_frontend.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libpub/pub”
+cp -f  lib_cc.o lib_hde.o lib_monitor.o lib_multiview.o lib_pub.o lib_device_manage.o lib_frontend.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  lib_cc.o lib_hde.o lib_monitor.o lib_multiview.o lib_pub.o lib_device_manage.o lib_frontend.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_PUB_ALL.lst
+echo LIB_PUB_ALL.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_PUB_ALL.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libpub/pub”
+cd lib/libapplet/libpub/as_engine; \
+make 
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libpub/as_engine”
+make -f LIB_PUB_AS_ENGINE.mk  lib_as.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libpub/as_engine”
+make[6]: “lib_as.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libpub/as_engine”
+cp -f  lib_as.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  lib_as.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_PUB_AS_ENGINE.lst
+echo LIB_PUB_AS_ENGINE.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_PUB_AS_ENGINE.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libpub/as_engine”
+cd version/version_app/; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/version/version_app”
+rm -f .ver1 .ver
+if [ -f .name ]; then  echo -n \-`cat .name` >> .ver1; fi
+LANG=C echo ' '`date` >> .ver1
+echo \#define UTS_VERSION \"`cat .ver1 | sed -e 's/\(.\{1,64\}\).*/\1/'`\" > .ver
+LANG=C echo \#define COMPILE_TIME \"`date +%T`\" >> .ver
+echo \#define COMPILE_BY \"`whoami`\" >> .ver
+echo \#define COMPILER \"`/mips-sde/bin/../bin/sde-gcc -g -EL -mips32r2 -O1 -msoft-float -fsigned-char -W -D_DEBUG_VERSION_ -D_M3503_ -D_BOARD_DB_M3515_01V01_ -D_RD_DEBUG_ -D_MPEG4_SUPPORT -D_DVBS_ENABLE_ -D_AUI_ -D_AUI_TEST_ -D_STRIP_PLUGIN_OUTPUT -DDUAL_ENABLE -DMAIN_CPU -DAUI_TDS -I/cygdrive/f/Cstm_proj/aui/Elephant/inc -I  -I/mips-sde/bin/../lib/gcc/sde/3.4.4/include  -I/mips-sde/bin/../sde/include  -I/cygdrive/f/Cstm_proj/aui/Elephant/inc/freetype2   -I/cygdrive/f/Cstm_proj/aui/Elephant/inc/freetype2/freetype2  -I/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/nim/isdbt/dibcom/driver/include  -I/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/nim/isdbt/dibcom/include   -I/cygdrive/f/Cstm_proj/aui/Elephant/inc/dlna -I/cygdrive/f/Cstm_proj/aui/Elephant/aui/inc -v 2>&1 | tail -1`\" >> .ver
+echo \#define APP_VER \"1.0.0\" >> .ver	
+echo \#define APPLABEL \"SDK4.0fa.13.1_20140527\" >> .ver	
+echo \#define SDKLABEL \"SDK4.0ba.4.0_20101217\" >> .ver	
+mv -f .ver version.h
+rm -f .ver1
+make -f VERSION_INFO_APP.mk  version_app.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/version/version_app”
+/mips-sde/bin/../bin/sde-gcc -g -EL -mips32r2 -O1 -msoft-float -fsigned-char -W -D_DEBUG_VERSION_ -D_M3503_ -D_BOARD_DB_M3515_01V01_ -D_RD_DEBUG_ -D_MPEG4_SUPPORT -D_DVBS_ENABLE_ -D_AUI_ -D_AUI_TEST_ -D_STRIP_PLUGIN_OUTPUT -DDUAL_ENABLE -DMAIN_CPU -DAUI_TDS -I/cygdrive/f/Cstm_proj/aui/Elephant/inc -I  -I/mips-sde/bin/../lib/gcc/sde/3.4.4/include  -I/mips-sde/bin/../sde/include  -I/cygdrive/f/Cstm_proj/aui/Elephant/inc/freetype2   -I/cygdrive/f/Cstm_proj/aui/Elephant/inc/freetype2/freetype2  -I/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/nim/isdbt/dibcom/driver/include  -I/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/nim/isdbt/dibcom/include   -I/cygdrive/f/Cstm_proj/aui/Elephant/inc/dlna -I/cygdrive/f/Cstm_proj/aui/Elephant/aui/inc   -c -o version_app.o version_app.c
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/version/version_app”
+cp -f  version_app.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  version_app.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/VERSION_INFO_APP.lst
+echo VERSION_INFO_APP.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo VERSION_INFO_APP.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.ddk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/version/version_app”
+cd lib/libapplet/libmp/pe; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe”
+make -f LIB_PE.mk  pe.o pe_cache.o avp_interface.o ali_stream.o es_player_interface.o LIB_PE_MUSIC_ENGINE LIB_PE_IMAGE_ENGINE LIB_PE_ADV_VIDEO_ENGINE
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe”
+make[6]: “pe.o”是最新的。
+make[6]: “pe_cache.o”是最新的。
+make[6]: “avp_interface.o”是最新的。
+make[6]: “ali_stream.o”是最新的。
+make[6]: “es_player_interface.o”是最新的。
+cd music/; \
+  make
+make[7]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe/music”
+make -f LIB_PE_MUSIC_ENGINE.mk  music_engine_remote.o 
+make[8]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe/music”
+make[8]: “music_engine_remote.o”是最新的。
+make[8]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe/music”
+cp -f  music_engine_remote.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  music_engine_remote.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_PE_MUSIC_ENGINE.lst
+echo LIB_PE_MUSIC_ENGINE.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_PE_MUSIC_ENGINE.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[7]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe/music”
+cd image/; \
+  make
+make[7]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe/image”
+make -f LIB_PE_IMAGE_ENGINE.mk  image_engine_remote.o 
+make[8]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe/image”
+make[8]: “image_engine_remote.o”是最新的。
+make[8]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe/image”
+cp -f  image_engine_remote.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  image_engine_remote.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_PE_IMAGE_ENGINE.lst
+echo LIB_PE_IMAGE_ENGINE.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_PE_IMAGE_ENGINE.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[7]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe/image”
+cd video_advanced/; \
+  make
+make[7]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe/video_advanced”
+make -f LIB_PE_ADV_VIDEO_ENGINE.mk  video_engine_remote.o 
+make[8]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe/video_advanced”
+make[8]: “video_engine_remote.o”是最新的。
+make[8]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe/video_advanced”
+cp -f  video_engine_remote.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  video_engine_remote.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_PE_ADV_VIDEO_ENGINE.lst
+echo LIB_PE_ADV_VIDEO_ENGINE.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_PE_ADV_VIDEO_ENGINE.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[7]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe/video_advanced”
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe”
+cp -f  pe.o pe_cache.o avp_interface.o ali_stream.o es_player_interface.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  pe.o pe_cache.o avp_interface.o ali_stream.o es_player_interface.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_PE.lst
+echo LIB_PE.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_PE.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe”
+cd lib/libapplet/libcec; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libcec”
+make -f LIB_CEC.mk  cec_config.o cec_task.o cec_message.o cec_operation.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libcec”
+make[6]: “cec_config.o”是最新的。
+make[6]: “cec_task.o”是最新的。
+make[6]: “cec_message.o”是最新的。
+make[6]: “cec_operation.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libcec”
+cp -f  cec_config.o cec_task.o cec_message.o cec_operation.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  cec_config.o cec_task.o cec_message.o cec_operation.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_CEC.lst
+echo LIB_CEC.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_CEC.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.ddk
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libcec”
+cd hld/wifi; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/wifi”
+make -f HLD_WIFI.mk  wext.o iwlib.o iwlist.o iwpriv.o wifi_api.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/wifi”
+make[6]: “wext.o”是最新的。
+make[6]: “iwlib.o”是最新的。
+make[6]: “iwlist.o”是最新的。
+make[6]: “iwpriv.o”是最新的。
+make[6]: “wifi_api.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/wifi”
+cp -f  wext.o iwlib.o iwlist.o iwpriv.o wifi_api.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  wext.o iwlib.o iwlist.o iwpriv.o wifi_api.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/HLD_WIFI.lst
+echo HLD_WIFI.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo HLD_WIFI.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.ddk
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/wifi”
+cd lib/libapplet/libmp/pe/music/input/ogg; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe/music/input/ogg”
+make -f LIB_PE_MUSIC_ENGINE_INPUT_OGG.mk  bitwise.o codebook.o dsp.o floor0.o floor1.o floor_lookup.o framing.o info.o ivorbisfile_example.o mapping0.o mdct.o ogg_36.o res012.o vorbisfile.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe/music/input/ogg”
+make[6]: “bitwise.o”是最新的。
+make[6]: “codebook.o”是最新的。
+make[6]: “dsp.o”是最新的。
+make[6]: “floor0.o”是最新的。
+make[6]: “floor1.o”是最新的。
+make[6]: “floor_lookup.o”是最新的。
+make[6]: “framing.o”是最新的。
+make[6]: “info.o”是最新的。
+make[6]: “ivorbisfile_example.o”是最新的。
+make[6]: “mapping0.o”是最新的。
+make[6]: “mdct.o”是最新的。
+make[6]: “ogg_36.o”是最新的。
+make[6]: “res012.o”是最新的。
+make[6]: “vorbisfile.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe/music/input/ogg”
+cp -f  bitwise.o codebook.o dsp.o floor0.o floor1.o floor_lookup.o framing.o info.o ivorbisfile_example.o mapping0.o mdct.o ogg_36.o res012.o vorbisfile.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  bitwise.o codebook.o dsp.o floor0.o floor1.o floor_lookup.o framing.o info.o ivorbisfile_example.o mapping0.o mdct.o ogg_36.o res012.o vorbisfile.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_PE_MUSIC_ENGINE_INPUT_OGG.lst
+/mips-sde/bin/../bin/sde-ld -EL -r -o lib_ogg.o  bitwise.o codebook.o dsp.o floor0.o floor1.o floor_lookup.o framing.o info.o ivorbisfile_example.o mapping0.o mdct.o ogg_36.o res012.o vorbisfile.o
+cp -f lib_ogg.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_ogg.o
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe/music/input/ogg”
+cd lib/libapplet/libmp/pe/video_advanced/subtitle; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe/video_advanced/subtitle”
+make -f LIB_PE_SUBTITLE.mk  mp_subtitle.o mp_subtitle_ass.o mp_subtitle_smi.o mp_subtitle_srt.o mp_subtitle_vobsub.o mp_subtitle_txt.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe/video_advanced/subtitle”
+make[6]: “mp_subtitle.o”是最新的。
+make[6]: “mp_subtitle_ass.o”是最新的。
+make[6]: “mp_subtitle_smi.o”是最新的。
+make[6]: “mp_subtitle_srt.o”是最新的。
+make[6]: “mp_subtitle_vobsub.o”是最新的。
+make[6]: “mp_subtitle_txt.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe/video_advanced/subtitle”
+cp -f  mp_subtitle.o mp_subtitle_ass.o mp_subtitle_smi.o mp_subtitle_srt.o mp_subtitle_vobsub.o mp_subtitle_txt.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  mp_subtitle.o mp_subtitle_ass.o mp_subtitle_smi.o mp_subtitle_srt.o mp_subtitle_vobsub.o mp_subtitle_txt.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_PE_SUBTITLE.lst
+echo LIB_PE_SUBTITLE.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_PE_SUBTITLE.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.ddk	
+/mips-sde/bin/../bin/sde-ld -EL -r -o lib_pe_subtitle.o  mp_subtitle.o mp_subtitle_ass.o mp_subtitle_smi.o mp_subtitle_srt.o mp_subtitle_vobsub.o mp_subtitle_txt.o
+cp -f lib_pe_subtitle.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin_ext/lib_pe_subtitle.o
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libmp/pe/video_advanced/subtitle”
+cd lib/libui/lib_ge_osd; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libui/lib_ge_osd”
+make -f LIB_GE_OSD.mk  lib_ge_osd.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libui/lib_ge_osd”
+make[6]: “lib_ge_osd.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libui/lib_ge_osd”
+cp -f  lib_ge_osd.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  lib_ge_osd.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_GE_OSD.lst
+echo LIB_GE_OSD.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_GE_OSD.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libui/lib_ge_osd”
+cd lld/nim/dvbs2; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/nim/dvbs2”
+make -f LLD_NIM_S2_TUNER.mk  nim_hz6306.o nim_vz7306.o nim_stv6110.o nim_rda5812.o nim_av2011.o nim_vz7803.o nim_vz7903.o nim_sp7006.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/nim/dvbs2”
+make[6]: “nim_hz6306.o”是最新的。
+make[6]: “nim_vz7306.o”是最新的。
+make[6]: “nim_stv6110.o”是最新的。
+make[6]: “nim_rda5812.o”是最新的。
+make[6]: “nim_av2011.o”是最新的。
+make[6]: “nim_vz7803.o”是最新的。
+make[6]: “nim_vz7903.o”是最新的。
+make[6]: “nim_sp7006.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/nim/dvbs2”
+cp -f  nim_hz6306.o nim_vz7306.o nim_stv6110.o nim_rda5812.o nim_av2011.o nim_vz7803.o nim_vz7903.o nim_sp7006.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  nim_hz6306.o nim_vz7306.o nim_stv6110.o nim_rda5812.o nim_av2011.o nim_vz7803.o nim_vz7903.o nim_sp7006.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LLD_NIM_S2_TUNER.lst
+echo LLD_NIM_S2_TUNER.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LLD_NIM_S2_TUNER.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.ddk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/nim/dvbs2”
+cd lld/nim/dvbs2/m3501; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/nim/dvbs2/m3501”
+make -f LLD_NIM_S2_3501.mk  nim_S3501.o Porting.o nim_S3503_DVBS.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/nim/dvbs2/m3501”
+make[6]: “nim_S3501.o”是最新的。
+make[6]: “Porting.o”是最新的。
+make[6]: “nim_S3503_DVBS.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/nim/dvbs2/m3501”
+cp -f  nim_S3501.o Porting.o nim_S3503_DVBS.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  nim_S3501.o Porting.o nim_S3503_DVBS.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LLD_NIM_S2_3501.lst
+echo LLD_NIM_S2_3501.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LLD_NIM_S2_3501.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.nmt	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/nim/dvbs2/m3501”
+cd lib/libapplet/libpub/as_dvbs; \
+make 
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libpub/as_dvbs”
+make -f LIB_PUB_AS_S.mk  as_dvbs.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libpub/as_dvbs”
+make[6]: “as_dvbs.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libpub/as_dvbs”
+cp -f  as_dvbs.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  as_dvbs.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_PUB_AS_S.lst
+echo LIB_PUB_AS_S.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_PUB_AS_S.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libapplet/libpub/as_dvbs”
+cd lib/libcommunicate/libdiseqc; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommunicate/libdiseqc”
+make -f LIB_DISEQC.mk  lib_diseqc.o lib_usals.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommunicate/libdiseqc”
+make[6]: “lib_diseqc.o”是最新的。
+make[6]: “lib_usals.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommunicate/libdiseqc”
+cp -f  lib_diseqc.o lib_usals.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  lib_diseqc.o lib_usals.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/LIB_DISEQC.lst
+echo LIB_DISEQC.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo LIB_DISEQC.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.sdk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/lib/libcommunicate/libdiseqc”
+cd hld/mod/; \
+  make
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/mod”
+make -f DUAL_MODULES.mk  modules_cpu.o 
+make[6]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/mod”
+make[6]: “modules_cpu.o”是最新的。
+make[6]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/mod”
+cp -f  modules_cpu.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  modules_cpu.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/DUAL_MODULES.lst
+echo DUAL_MODULES.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+echo DUAL_MODULES.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.ddk	
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src/hld/mod”
+make[4]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/src”
+echo "ggggggggggggggggggggggggggggggg"
+ggggggggggggggggggggggggggggggg
+echo "gggggggggggggggggggg11111111111111"
+gggggggggggggggggggg11111111111111
+cd /cygdrive/f/Cstm_proj/aui/Elephant/obj; \
+  echo NEED = \\ > libstb.mak; \
+  echo cat \\ > cat.sh; \
+  cat list.mod >> cat.sh; \
+  echo \>\> libstb.mak >> cat.sh; \
+  sh < cat.sh; \
+  rm -f cat.sh
+echo "#" >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/libstb.mak
+echo all: >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/libstb.mak
+echo "	/mips-sde/bin/../bin/sde-ar -r libstb.a \${NEED}" >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/libstb.mak
+cd /cygdrive/f/Cstm_proj/aui/Elephant/obj; \
+  make -f libstb.mak
+make[4]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/obj”
+/mips-sde/bin/../bin/sde-ar -r libstb.a i2c_scb.o  i2c_gpio.o  sci_16550uart.o  ide_probe.o ide_iops.o ide-disk.o  hld_dev.o hld_dev_remote.o  alloc.o printf.o string.o fastCRC.o time.o scanf.o __alloc.o  pan.o  scart.o  sto.o  vpo_remote.o  osddrv.o  decv_remote.o  venc.o  vbi_remote.o  dmx.o dmx_adv.o dmx_adv_slot.o  snd_remote.o  deca_remote.o  sdec_remote.o  cic.o  rfm.o  nim.o  net.o  sec_boot_api.o  irc_nec_std.o irc_lab_std.o irc_std.o  irc_6303.o  scart_ak4707.o  scart_mx9671.o  pan_ch455.o  flash_power_sense.o sto_flash.o flash_data.o flash_data_p.o flash_data_s.o flash_pl.o flash_pr.o flash_sl.o flash_sr.o flash_r.o flash_raw_pr.o flash_raw_pl_c.o flash_raw_sl_c.o flash_raw_sr.o flash_info.o flash_info_p.o flash_info_s.o flash_sst26_sl_c.o  lib_subt.o lib_subt_remote.o lib_atsc_si.o  sdec_m36_remote.o  lib_ttx.o lib_ttx_remote.o  vbi_m36_remote.o  rfm_mcbs373.o  ali_hls.o ali_hls_dec.o osal.o  lib_nim.o  ci_stack.o ci_link.o ci_trans.o ci_senss.o ci_app.o ci_misc.o ci_api.o ci_crypt.o ci_uri.o ci_fake_interface.o ci_app_plus.o ci_service_shunning.o ci_srm.o ci_pvr.o ci_legacy_module.o  psi_db.o  si_desc_cab_delivery.o si_desc_sat_delivery.o si_desc_service_list.o si_desc_ter_delivery.o t2_delivery_system_descriptor.o  psi_pat.o psi_pmt.o si_nit.o si_sdt.o si_bat.o desc_loop_parser.o si_sdtt.o  sie_eit.o  sie.o  si_search.o  sie_monitor_core.o sie_monitor_query.o sie_monitor_dtg.o sie_monitor_ota.o  si_tdt.o  si_utility.o  eit_parser.o epg_api.o epg_db.o epg_cache.o lib_epg.o x_alloc.o lib_multifeed.o  lib_close_caption_remote.o  chunk.o chunk_sto.o  db_basic_operation.o db_data_object.o db_node_api.o db_reclaim_ext.o  db_interface.o db_interface_ext.o tmp_info.o  db_plugin_S.o   p2p_upgrade.o Packet.o UpgradeInterface.o UpgradeCommand.o UpgradeCommand_old.o  un7zip.o  char_map.o iso_5937.o lib_char.o gb_2312.o arabic_convert.o Thai.o  osd_lib.o obj_textfield.o obj_bitmap.o obj_objectlist.o obj_container.o obj_scrollbar.o obj_progressbar.o obj_matrixbox.o obj_list.o obj_editfield.o obj_multisel.o obj_multitext.o osd_common_draw.o osd_draw_mode_manage.o osd_common.o obj_animation.o osd_ge_draw_ctrl.o  lib_dbc.o  lib_ota.o  smc.o  smartcard.o smc_t1_buffer.o  usb_upgrade.o  file_control.o  fs_main.o  pvr_mgr_api.o pvr_mgr_edit.o pvr_mgr_list.o pvr_mgr_playlist.o pvr_mgr_task.o pvr_mgr_user_data.o pvr_mgr_common.o pvr_mgr_header_data.o  cc_tsg_ci_slot.o cc_tsg_task.o cc_tsg_mem_recorder.o  pvr_api.o  enc28j60.o  smsc9220.o smsc9220_bus.o  http.o uf_nscparser.o sendf.o curl_multibyte.o strtok.o security.o uf_rtp.o urlfile.o openldap.o hostip6.o nwlib.o libnet_rtsp.o pingpong.o curl_ntlm_wb.o uf_http.o llist.o uf_hls_load.o telnet.o asyn-thread.o ssh.o getinfo.o smtp.o uf_xspfparser.o amigaos.o base64.o socks.o ftp.o hash.o escape.o uf_playlist.o getenv.o non-ascii.o fileinfo.o gopher.o nss.o strequal.o mprintf.o connect.o rbuffer.o qssl.o sslgen.o http_negotiate_sspi.o rtsp.o curl_rtmp.o ssluse.o splay.o md5.o http_digest.o warnless.o uf_plsparser.o inet_ntop.o inet_pton.o swapbuf.o curl_rand.o uf_rtsp.o nwos.o ftplistparser.o speedcheck.o share.o krb5.o strtoofft.o slist.o socks_gssapi.o progress.o hmac.o ldap.o pop3.o parsedate.o curl_ntlm_core.o idn_win32.o uf_util.o if2ip.o hostsyn.o formdata.o asyn-ares.o curl_addrinfo.o strerror.o multi.o http_chunks.o uf_playlist_proc.o uf_refparser.o uf_smilparser.o curl_fnmatch.o hostasyn.o curl_mmsx.o cookie.o uf_mms.o uf_hls.o uf_asxparser.o http_negotiate.o transfer.o curl_darwinssl.o hostip.o md4.o axtls.o curl_ntlm.o strdup.o gtls.o curl_sasl.o nonblock.o curl_ntlm_msgs.o curl_sspi.o select.o timeval.o imap.o memdebug.o wildcard.o uf_hls_dec.o uf_m3uparser.o file.o hostcheck.o ipconfig.o netrc.o dict.o tftp.o content_encoding.o uf_rtmp.o polarssl.o cyassl.o krb4.o libnet.o curl_memrchr.o curl_gssapi.o easy.o socks_sspi.o url.o version.o curl_threads.o curl_gethostname.o curl_schannel.o hostip4.o http_proxy.o rawstr.o  net_upgrade.o  parser.o xml_hash.o c14n.o catalog.o chvalid.o debugXML.o dict.o DOCBparser.o encoding.o entities.o error.o globals.o relaxng.o SAX2.o SAX.o HTMLparser.o HTMLtree.o legacy.o list.o nanoftp.o nanohttp.o parserInternals.o pattern.o schematron.o threads.o tree.o uri.o valid.o xinclude.o xlink.o xmlIO.o xpointer.o xmlmemory.o xmlmodule.o xmlreader.o xmlregexp.o xmlsave.o xmlschemas.o xmlschemastypes.o xmlstring.o xmlunicode.o xmlwriter.o xpath.o lib_xml_api.o  dsc_remote.o  crypto_remote.o  media_player.o file_list.o play_list.o quick_sort.o  lib_cc.o lib_hde.o lib_monitor.o lib_multiview.o lib_pub.o lib_device_manage.o lib_frontend.o  lib_as.o  version_app.o  music_engine_remote.o  image_engine_remote.o  video_engine_remote.o  pe.o pe_cache.o avp_interface.o ali_stream.o es_player_interface.o  cec_config.o cec_task.o cec_message.o cec_operation.o  wext.o iwlib.o iwlist.o iwpriv.o wifi_api.o  mp_subtitle.o mp_subtitle_ass.o mp_subtitle_smi.o mp_subtitle_srt.o mp_subtitle_vobsub.o mp_subtitle_txt.o  lib_ge_osd.o  nim_hz6306.o nim_vz7306.o nim_stv6110.o nim_rda5812.o nim_av2011.o nim_vz7803.o nim_vz7903.o nim_sp7006.o  nim_S3501.o Porting.o nim_S3503_DVBS.o  as_dvbs.o  lib_diseqc.o lib_usals.o  modules_cpu.o  
+make[4]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/obj”
+rm -f /cygdrive/f/Cstm_proj/aui/Elephant/obj/libstb.mak
+make[3]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo”
+make[2]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo”
+make -f makefile35 all
+make[2]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo”
+#make -f Makefile35.cmd release
+make -f Makefile35.cmd all
+make[3]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo”
+echo "ffffffffffffffffffffffffffffff"
+ffffffffffffffffffffffffffffff
+cp /cygdrive/f/Cstm_proj/aui/Elephant/ddk/boot_v40b.o /cygdrive/f/Cstm_proj/aui/Elephant/obj/boot.o
+cp /cygdrive/f/Cstm_proj/aui/Elephant/ddk/lib7zip.a /cygdrive/f/Cstm_proj/aui/Elephant/obj/
+make -f SABBAT_DEMO.mk  aui_root.o hdcp_des.o
+make[4]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo”
+make[4]: “aui_root.o”是最新的。
+make[4]: “hdcp_des.o”是最新的。
+make[4]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo”
+cp -f  aui_root.o hdcp_des.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  aui_root.o hdcp_des.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/SABBAT_DEMO.lst
+rm -f /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+cd platform; \
+  make all
+make[4]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo/platform”
+make -f BOARD.mk  board.o 
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo/platform”
+make[5]: “board.o”是最新的。
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo/platform”
+cp -f  board.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  board.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/BOARD.lst
+echo BOARD.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+make[4]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo/platform”
+cd platform/chip; \
+  make all
+make[4]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo/platform/chip”
+make -f CHIP.mk  chip.o 
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo/platform/chip”
+make[5]: “chip.o”是最新的。
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo/platform/chip”
+cp -f  chip.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  chip.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/CHIP.lst
+echo CHIP.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+make[4]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo/platform/chip”
+cd platform/chip/m3503; \
+  make all
+make[4]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo/platform/chip/m3503”
+make -f CHIP_M3503.mk  chip_m3503.o 
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo/platform/chip/m3503”
+make[5]: “chip_m3503.o”是最新的。
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo/platform/chip/m3503”
+cp -f  chip_m3503.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  chip_m3503.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/CHIP_M3503.lst
+echo CHIP_M3503.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+make[4]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo/platform/chip/m3503”
+cd platform/advanced_cfg/m3503_board; \
+  make all
+make[4]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo/platform/advanced_cfg/m3503_board”
+make -f M3503_BOARD_ADV_CFG.mk  m3503_board_advance_cfg.o 
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo/platform/advanced_cfg/m3503_board”
+make[5]: “m3503_board_advance_cfg.o”是最新的。
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo/platform/advanced_cfg/m3503_board”
+cp -f  m3503_board_advance_cfg.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  m3503_board_advance_cfg.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/M3503_BOARD_ADV_CFG.lst
+echo M3503_BOARD_ADV_CFG.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+make[4]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo/platform/advanced_cfg/m3503_board”
+Entering Board: platform/board_cfg/BOARD_DB_M3515_01V01
+cd platform/board_cfg/BOARD_DB_M3515_01V01; \
+ make all	
+make[4]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo/platform/board_cfg/BOARD_DB_M3515_01V01”
+make -f BOARD_DB_M3515_01V01.mk  board_config.o 
+make[5]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo/platform/board_cfg/BOARD_DB_M3515_01V01”
+/mips-sde/bin/../bin/sde-gcc -g -EL -mips32r2 -O1 -msoft-float -fsigned-char -W -D_DEBUG_VERSION_ -D_M3503_ -D_BOARD_DB_M3515_01V01_ -D_RD_DEBUG_ -D_MPEG4_SUPPORT -D_DVBS_ENABLE_ -D_AUI_ -D_AUI_TEST_ -D_STRIP_PLUGIN_OUTPUT -DDUAL_ENABLE -DMAIN_CPU -DAUI_TDS -I/cygdrive/f/Cstm_proj/aui/Elephant/inc -I  -I/mips-sde/bin/../lib/gcc/sde/3.4.4/include  -I/mips-sde/bin/../sde/include  -I/cygdrive/f/Cstm_proj/aui/Elephant/inc/freetype2   -I/cygdrive/f/Cstm_proj/aui/Elephant/inc/freetype2/freetype2  -I/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/nim/isdbt/dibcom/driver/include  -I/cygdrive/f/Cstm_proj/aui/Elephant/src/lld/nim/isdbt/dibcom/include   -I/cygdrive/f/Cstm_proj/aui/Elephant/inc/dlna -I/cygdrive/f/Cstm_proj/aui/Elephant/aui/inc   -c -o board_config.o board_config.c
+In file included from ../../../head_file.h:16,
+                 from ../../board.h:4,
+                 from ../board_cfg.h:1,
+                 from board_config.c:2:
+/cygdrive/f/Cstm_proj/aui/Elephant/inc/hal/hal_gpio.h:465:113: warning: backslash and newline separated by space
+In file included from ../../../head_file.h:36,
+                 from ../../board.h:4,
+                 from ../board_cfg.h:1,
+                 from board_config.c:2:
+/cygdrive/f/Cstm_proj/aui/Elephant/inc/hld/dis/VPO.h:520:1: warning: "VPO_IO_BOOT_UP_DONE" redefined
+/cygdrive/f/Cstm_proj/aui/Elephant/inc/hld/dis/VPO.h:499:1: warning: this is the location of the previous definition
+In file included from ../../board.h:6,
+                 from ../board_cfg.h:1,
+                 from board_config.c:2:
+../.././advanced_cfg/advanced_cfg.h:5: warning: "enum class_selection" declared inside parameter list
+../.././advanced_cfg/advanced_cfg.h:5: warning: its scope is only this definition or declaration, which is probably not what you want
+../.././advanced_cfg/advanced_cfg.h:5: warning: parameter has incomplete type
+board_config.c:826: warning: initialization makes integer from pointer without a cast
+make[5]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo/platform/board_cfg/BOARD_DB_M3515_01V01”
+cp -f  board_config.o  /cygdrive/f/Cstm_proj/aui/Elephant/obj
+echo  board_config.o  \\ > /cygdrive/f/Cstm_proj/aui/Elephant/obj/BOARD_DB_M3515_01V01.lst
+echo BOARD_DB_M3515_01V01.lst \\ >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/list.mod
+make[4]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo/platform/board_cfg/BOARD_DB_M3515_01V01”
+echo "ffffffffffffffffffffffffffffff"
+ffffffffffffffffffffffffffffff
+cp -f ldscript.ld /cygdrive/f/Cstm_proj/aui/Elephant/obj/lscript.ld
+cd /cygdrive/f/Cstm_proj/aui/Elephant/obj; \
+  echo include ../src/path.def > SABBAT_DEMO.lk; \
+  echo include ../src/compiler.def >> SABBAT_DEMO.lk; \
+  echo NEED = \\ >> SABBAT_DEMO.lk; \
+    echo cat \\ > cat.sh; \
+    cat list.mod >> cat.sh; \
+    echo SABBAT_DEMO.lst \\ >> cat.sh; \
+    echo \>\> SABBAT_DEMO.lk >> cat.sh; \
+    sh < cat.sh; \
+    rm -f cat.sh
+cat Makefile35 >> /cygdrive/f/Cstm_proj/aui/Elephant/obj/SABBAT_DEMO.lk
+cd /cygdrive/f/Cstm_proj/aui/Elephant/obj; \
+  make -f SABBAT_DEMO.lk link;
+make[4]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/obj”
+/mips-sde/bin/../bin/sde-ld -g -EL -O1 -defsym __BOOT_FROM_FLASH=0 -defsym __BOOT_LOADER=0 board.o  chip.o  chip_m3503.o  m3503_board_advance_cfg.o  board_config.o  aui_root.o hdcp_des.o   /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin_ext/lib_ntfs.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin_ext/lib_pe_subtitle.o -o Sabbat_s35x.out -Map Sabbat_s35x.map \
+  -T lscript.ld -L/mips-sde/bin/../lib/gcc/sde/3.4.4/el/mips32r2/sof  -L/mips-sde/bin/../sde/lib/el/mips32r2/sof -L/cygdrive/f/Cstm_proj/aui/Elephant/ddk -lplus_v40b -lHDMI -lstb -L/cygdrive/f/Cstm_proj/aui/Elephant/ddk -laui_test -laui   \
+   --start-group  --end-group \
+   libstb.a libplus_v40b.a libcore_v40e_m35.a liblog.a  libnim_s2.a \
+    \
+   --start-group  --end-group \
+   -lstb -l7zip -lm -lgcc -lc -le
+/mips-sde/bin/../bin/sde-objcopy -O binary Sabbat_s35x.out Sabbat_s35x.abs
+make[4]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/obj”
+cp -f see_ldscript.ld /cygdrive/f/Cstm_proj/aui/Elephant/obj
+cd /cygdrive/f/Cstm_proj/aui/Elephant/obj; \
+  	  make -f SABBAT_DEMO.lk see_link
+make[4]: 进入目录“/cygdrive/f/Cstm_proj/aui/Elephant/obj”
+/mips-sde/bin/../bin/sde-ld -g -EL -O1 -defsym __BOOT_FROM_FLASH=0 -defsym __BOOT_LOADER=0 /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_aac.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_ac3.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_avi.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_avi_subt.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_con_aac.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_con_ac3.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_con_adpcm.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_con_common.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_con_es.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_con_h264.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_con_mjpg.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_con_mp3.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_con_mpeg2.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_con_mpeg4.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_con_ogg.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_con_pcm.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_con_subtitle.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_con_vc1.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_con_vorbis.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_con_vp8.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_flac.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_lpcm.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_mjpgdec.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_mkv.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_mp3.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_mp4.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_mp4dec.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_mpg.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_ogg.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_ts.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_vc1dec.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_vp8dec.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/lib_wav.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/libflacdec.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/libmp3dec.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/plugin_aacv2.o /cygdrive/f/Cstm_proj/aui/Elephant/ddk/plugin/plugin_csa3.o -o see_sabbat_s35x.out -Map see_sabbat_s35x.map \
+  -T see_ldscript.ld -L/mips-sde/bin/../lib/gcc/sde/3.4.4/el/mips32r2/sof  -L/mips-sde/bin/../sde/lib/el/mips32r2/sof /cygdrive/f/Cstm_proj/aui/Elephant/ddk/libHDMI.a /cygdrive/f/Cstm_proj/aui/Elephant/ddk/libsee_m35.a \
+    /cygdrive/f/Cstm_proj/aui/Elephant/ddk/libmpg2c.a liblog.a\
+    -lm -lgcc -lc -le
+/mips-sde/bin/../bin/sde-objcopy -O binary see_sabbat_s35x.out see_sabbat_s35x.abs
+make[4]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/obj”
+make[3]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo”
+make[2]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo”
+make[1]: 离开目录“/cygdrive/f/Cstm_proj/aui/Elephant/prj/app/demo/combo/aui_demo”

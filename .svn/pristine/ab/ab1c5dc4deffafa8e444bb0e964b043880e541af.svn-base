@@ -1,0 +1,24 @@
+#include "AVConfig.h"
+#include "string.h"
+
+void AVConfig::SetDefaultConfig(void)
+{	
+	m_nTunerCount = 1;
+	m_nVideoPid = 201;
+	m_nAudioPid = 202;
+	m_nVideoPid_1kAT = 501;
+	m_nAudioPid_1KAT = 502;
+
+	memset(&m_stAVDelivery, 0, sizeof(ADITunerSRCDeliver_U));
+	m_stAVDelivery.m_sSourceSatelliteDeliver.m_sLNB.m_uHighFrequency = 5150000 ;
+	m_stAVDelivery.m_sSourceSatelliteDeliver.m_sLNB.m_uLowFrequency = 5150000 ;
+	m_stAVDelivery.m_sSourceSatelliteDeliver.m_sLNB.m_uLnbType = EM_ADITUNER_SINGLE ;
+	m_stAVDelivery.m_sSourceSatelliteDeliver.m_sLNB.m_uLnbPower = EM_ADITUNER_SWITCH_ON ;
+	m_stAVDelivery.m_sSourceSatelliteDeliver.m_sAntennaPar.m_uSwitch22k = EM_ADITUNER_SWITCH_ON;
+	m_stAVDelivery.m_sSourceSatelliteDeliver.m_sSatelliteDeliver.m_uFrequency = 4200000;
+	m_stAVDelivery.m_sSourceSatelliteDeliver.m_sSatelliteDeliver.m_uSymbolRate_24 = 27500;
+	m_stAVDelivery.m_sSourceSatelliteDeliver.m_sSatelliteDeliver.m_uPolar_4 = EM_ADITUNER_POLARISATION_V ;
+	m_stAVDelivery.m_sSourceSatelliteDeliver.m_sSatelliteDeliver.m_uStandards_2 = EM_ADITUNER_DVBS_STANDARD ;
+
+	m_nDeliveryCount = 1;
+}

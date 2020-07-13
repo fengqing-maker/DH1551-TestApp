@@ -1,0 +1,564 @@
+/*
+ * OTASupport.cpp
+ *
+ *  Created on: 2015-8-20
+ *      Author: Timothy
+ */
+
+#include <string.h>
+#include "OTASupport.h"
+#include "adi_flash.h"
+#include "adi_toolset.h"
+#include "adi_secure.h"
+#include "adi_os.h"
+#include "adi_castpal_bl.h"
+#include "adi_irdeto_bl_v5.h"
+#include "adi_irdeto_bl.h"
+#include "FactoryTestInit.h"
+#include "stdio.h"
+#include "adi_tuner.h"
+#include "GetOTASupport.h"
+
+#define MAX_READ_OR_WRITE_FLASH_COUNT 3
+#define CRC_FLAG 0xEDB88320
+#define DATA_HEAD (16)
+#define DATA_LEN_FLAG (4)
+#define DATA_CRC_LEN (4)
+#define MAX_CORE_FILED_SIZE (0x55000)
+#define MAX_CORE_ONESEG_SIZE	( 0x60000 )
+
+OTASupport::OTASupport() : APSafeThread(7*17 + 1, 64*1024, "OTA", strlen("OTA"))
+{
+	memset(&m_OTAConfig, 0, sizeof(OTAConfig));
+}
+ 
+OTASupport::~OTASupport()
+{
+	Exit();
+}
+
+void OTASupport::Init(OTAConfig csOTAConfig)
+{
+	memcpy(&m_OTAConfig, &csOTAConfig, sizeof(OTAConfig));
+
+	StartRun();
+}
+
+void OTASupport::OnceProcess()
+{
+	FactoryTestInterface *pFactoryTestInterface = GetFactoryTestInterface();
+	
+	if(pFactoryTestInterface->IsReadyToOTA() > 0)
+	{
+		if(pFactoryTestInterface->CheckChipID() > 0)
+		{
+			StartOTA();
+		}
+	}
+	
+	ADIOSThreadSleep(1000);
+}
+
+void OTASupport::StartOTA( )
+{
+	do
+	{
+		if(CheckOTATransponder(&m_OTAConfig.m_stOTADelivery) == 0)
+		{
+			break;
+		}
+
+		if(GetFactoryTestInterface()->IsReadyToOTA() == 0)
+		{
+			break;
+		}
+
+		if(SetOptAndMarketID() == 0)
+		{
+			break;
+		}
+
+		if(WriteCoreAndCfg() == 0)
+		{
+			break;
+		}
+
+		if(HLSecureFuse() == 0)
+		{
+			break;
+		}
+		
+		FlashEraseCABlock();
+		
+		TriggerOTA();
+		
+	}while(0);
+}
+unsigned int OTASupport::WriteCoreAndCfg(void)
+{
+	unsigned int unRet = 0;
+	ADICHIPID_S sChip = { 0 };
+	unsigned int unChipID = 0;
+	unsigned int unCoreAndCfgFlag = 0;
+
+	do
+	{
+		if(m_OTAConfig.m_CoreFlag == 0)
+		{
+			unRet = 1;
+			break;
+		}
+
+		unCoreAndCfgFlag = GetOTACurSteps();
+		if(unCoreAndCfgFlag == -1)
+		{
+			break;
+		}
+
+		if((unCoreAndCfgFlag & CORE_WRITED) != CORE_WRITED)
+		{
+			if (ADIGetChipID(&sChip) != ADI_SUCCESS)
+			{
+				break;
+			}
+			unChipID = (unsigned int)(sChip.m_szChipID[4] << 24) | (sChip.m_szChipID[5] << 16) | (sChip.m_szChipID[6] << 8) | (sChip.m_szChipID[7]);
+			if(FlashCCACoreFile(unChipID) == 0)
+			{
+				break;
+			}
+		}
+
+		if((unCoreAndCfgFlag & CFG_WRITED) != CFG_WRITED)
+		{
+			if(FlashCFGFile() == 0)
+			{
+				break;
+			}
+		}
+
+		unRet = 1;
+		
+	}while(0);
+	printf("---[%s][%d]--unRet=%d--\n", __FUNCTION__, __LINE__, unRet);
+
+	return unRet;
+}
+
+unsigned int OTASupport::FlashCCACoreFile ( unsigned int unChipID )
+{
+    unsigned int unRet = 0;
+
+	CoreDataInfo & inputCoreDataInfo( m_OTAConfig.m_CoreDataInfo [ ( unChipID + 1 ) % 10 ] );
+	
+	unsigned int unDataBufLen = GetBlockDataLen( inputCoreDataInfo );
+
+	if ( unDataBufLen > 0 && unDataBufLen == inputCoreDataInfo.unDataSize )
+	{
+		unsigned char * pucDataBuf = ( unsigned char * ) ADIOSMalloc ( unDataBufLen );				
+		
+		if ( pucDataBuf != NULL )
+		{
+			unsigned int unDataLen = GetBlockData( inputCoreDataInfo, pucDataBuf, unDataBufLen );
+			
+			if ( unDataLen > 0 )
+			{
+				unsigned int unWriteDataOff = 0;
+				unsigned int unWriteAddrOff = 0;
+				unsigned int unWriteLen = 0;
+				int ii;
+
+				while( unWriteDataOff < unDataLen )
+				{
+					unWriteLen = (( unDataLen - unWriteDataOff ) > MAX_CORE_FILED_SIZE ? MAX_CORE_FILED_SIZE : ( unDataLen - unWriteDataOff ));
+														
+					for ( ii = 0; ii < MAX_READ_OR_WRITE_FLASH_COUNT; ii++ )
+					{
+						if ( WriteFlash ( m_OTAConfig.m_unCoreFileAddr + unWriteAddrOff, pucDataBuf + unWriteDataOff, unWriteLen ) == 1 )
+						{
+							break;
+						}
+					}
+
+					if ( ii < MAX_READ_OR_WRITE_FLASH_COUNT )
+					{
+						unWriteDataOff += unWriteLen;
+						unWriteAddrOff += m_OTAConfig.m_unCoreFileSize;
+					}
+					else
+					{
+						break;
+					}
+				}
+
+				if( unWriteDataOff == unDataLen )
+				{
+					unRet = 1;
+					SetOTACurSteps(CORE_WRITED);
+				}
+			}
+
+			ADIOSFree ( pucDataBuf );
+		}		
+	}
+	printf("---[%s][%d]--unRet=%d--\n", __FUNCTION__, __LINE__, unRet);
+		
+    return unRet;	
+}
+
+unsigned int OTASupport::FlashCFGFile ( )
+{
+	unsigned int unRet = 0;
+
+	unRet = ReadAndWriteBlockData( m_OTAConfig.m_CoreDataInfo [ 10 ], m_OTAConfig.m_unCFGFileAddr, m_OTAConfig.m_unCFGFileSize );
+	if(unRet == 1)
+	{
+		SetOTACurSteps(CFG_WRITED);
+	}
+	printf("---[%s][%d]--unRet=%d--\n", __FUNCTION__, __LINE__, unRet);
+	
+	return unRet;
+}
+
+unsigned int OTASupport::ReadAndWriteBlockData( CoreDataInfo & inputCoreDataInfo, unsigned int unWriteAddre, unsigned int unFlashSize )
+{
+    unsigned int unRet = 0;
+
+	unsigned int unDataBufLen = GetBlockDataLen( inputCoreDataInfo );
+
+	if ( unDataBufLen > 0 && unDataBufLen == inputCoreDataInfo.unDataSize && unDataBufLen <= unFlashSize )
+	{
+		unsigned char * pucDataBuf = ( unsigned char * ) ADIOSMalloc ( unFlashSize );
+		memset(pucDataBuf, 0xff, unFlashSize);
+
+		if ( pucDataBuf != NULL )
+		{
+			unsigned int unDataLen = GetBlockData( inputCoreDataInfo, pucDataBuf, unFlashSize );
+
+			if ( unDataLen > 0 )
+			{
+				int ii;
+				for ( ii = 0; ii < MAX_READ_OR_WRITE_FLASH_COUNT; ii++ )
+				{
+					if ( WriteFlash ( unWriteAddre, pucDataBuf, unFlashSize ) == 1 )
+					{
+						unRet = 1;
+
+						break;
+					}
+				}
+			}
+
+			ADIOSFree ( pucDataBuf );
+		}		
+	}
+	
+    return unRet;
+
+}
+
+unsigned int OTASupport::GetBlockDataLen( CoreDataInfo & inputCoreDataInfo )
+{
+    unsigned int unRet = 0;
+
+    int ii;
+
+    for ( ii = 0; ii < inputCoreDataInfo.unSegCount; ii++ )
+    {
+        unRet += inputCoreDataInfo.saSegInfo [ ii ].unSegSize;
+    }
+
+	return unRet;
+}
+
+unsigned int OTASupport::GetBlockData( CoreDataInfo & inputCoreDataInfo, unsigned char * pucDataBuf, unsigned int unDataBufLen )
+{
+	unsigned int unRet = 0;
+
+	if ( pucDataBuf != NULL && unDataBufLen > 0 )
+	{		
+		unsigned char * pucData = ( unsigned char * ) ADIOSMalloc ( inputCoreDataInfo.unDataSize );
+
+		if ( pucData != NULL )
+		{	
+			unsigned int unOffset = 0;
+			int ii;
+
+			for ( ii = 0; ii < inputCoreDataInfo.unSegCount; ii++ )
+			{
+				if ( ADIFlashRead ( inputCoreDataInfo.saSegInfo [ ii ].unSegAddr, pucData + unOffset, inputCoreDataInfo.saSegInfo [ ii ].unSegSize ) != ADI_SUCCESS )
+				{
+					break;
+				}
+		
+				unOffset += inputCoreDataInfo.saSegInfo [ ii ].unSegSize;
+			}
+
+			if ( unOffset == inputCoreDataInfo.unDataSize )
+			{		
+				unsigned int unDataLen = ( ( ( ( unsigned int ) pucData[ 0 ] ) << 24 ) | ( ( ( unsigned int ) pucData[ 1 ] ) << 16 ) | ( ( ( unsigned int ) pucData[ 2 ] ) << 8 ) | pucData[ 3 ] );
+				
+				if ( unDataLen <= ( unOffset - DATA_HEAD - DATA_CRC_LEN ) )
+				{
+					if ( CheckSTBInfo( pucData + DATA_LEN_FLAG, unOffset ) > 0 && CheckCRC32( pucData + DATA_LEN_FLAG, unDataLen + DATA_HEAD + DATA_CRC_LEN - DATA_LEN_FLAG ) > 0 )
+					{
+						if ( unDataBufLen >= unDataLen )
+						{
+							memcpy( pucDataBuf, pucData + DATA_HEAD, unDataLen );
+
+							unRet = unDataLen;
+						}
+					}
+				}
+			}
+
+			ADIOSFree ( pucData );
+		}
+	}
+
+	return unRet;
+}
+
+unsigned int OTASupport::HLSecureFuse()
+{
+	unsigned int unRet = 0;
+	
+	if (m_OTAConfig.m_unHLType == 0)
+	{
+		unRet = 1;
+	}
+	else if (m_OTAConfig.m_unHLType == 1)
+	{
+		if (OpenHLType(m_OTAConfig.m_nBoot, m_OTAConfig.m_nCW, m_OTAConfig.m_nJTag) == 1)
+		{
+			unRet = 1;
+		}
+	}
+	printf("---[%s][%d]--unRet=%d--\n", __FUNCTION__, __LINE__, unRet);
+
+	return unRet;
+}
+
+unsigned int OTASupport::TriggerOTA()
+{
+	//OTAPid: load5.0(0x7D3), load3.2(0x402), castpal(undefined)
+	//TableId: load3.2(0x80)
+	ADIBLOtaLoaderPt_S stOtaLoaderPt;
+	
+	stOtaLoaderPt.ucOTATableId = m_OTAConfig.m_ucOTATableId;
+	stOtaLoaderPt.usOTAPid = m_OTAConfig.m_usOTAPid;
+	stOtaLoaderPt.eDLType = E_ADIBL_OTA_DL_DVB;
+
+	memcpy(&stOtaLoaderPt.unionDeliver, &m_OTAConfig.m_stOTADelivery, sizeof(ADITunerSRCDeliver_U));
+
+	ADIBLSaveOTALoaderPt(&stOtaLoaderPt, 1, 0);
+
+	ADISYSReboot();
+
+	return 1;
+}
+
+unsigned int OTASupport::CheckOTATransponder(ADITunerSRCDeliver_U* pDelivery)
+{
+	unsigned int unRet = 0;
+
+	if (pDelivery != NULL)
+	{
+		ADITunerSRCDeliver_U tempADITunerSRCDeliver_U;
+
+		memset(&tempADITunerSRCDeliver_U, 0, sizeof(ADITunerSRCDeliver_U));
+		
+		memcpy(&tempADITunerSRCDeliver_U, pDelivery, sizeof(ADITunerSRCDeliver_U));
+		ADI_Error_Code errorCode = ADITunerConnect(0, &tempADITunerSRCDeliver_U);
+		if (errorCode == ADI_SUCCESS)
+		{
+			int nStatus = 0;
+			do
+			{
+				ADIOSThreadSleep(500);
+				
+				if (ADI_SUCCESS == ADITunerGetLockStatus(0, &nStatus))
+				{
+					if(nStatus == 0)
+					{
+						unRet = 1;
+						break;
+					}
+				}
+			} while (1);
+		}
+	}
+	printf("--[%s][%d]---unRet:%d--\n", __FUNCTION__, __LINE__, unRet);
+
+	return unRet;
+}
+
+void OTASupport::FlashEraseCABlock()
+{
+	if(m_OTAConfig.m_unCASize > 0)
+	{
+		ADIFlashEraseSpace(m_OTAConfig.m_unCAAddr , m_OTAConfig.m_unCASize);
+	}
+}
+
+unsigned int OTASupport::WriteFlash(unsigned int unStartAddress, unsigned char * pucBuf, unsigned int uDataLength)
+{
+	unsigned int unRet = 0;
+
+	if ( pucBuf != NULL && uDataLength > 0 )
+	{
+		if (ADIFlashWrite(unStartAddress, pucBuf, uDataLength) == ADI_SUCCESS)
+		{
+			unsigned int unOffset = 0;
+			unsigned int unReadLength = 0;
+			unsigned int unMaxReadLen = 128 * 1024;
+			unsigned char * pucTmpBuf = (unsigned char *)ADIOSMalloc( unMaxReadLen );
+
+			if ( pucTmpBuf != NULL )
+			{	
+				while (unOffset < uDataLength)
+				{
+					unReadLength = ( uDataLength - unOffset ) > unMaxReadLen ? unMaxReadLen : ( uDataLength - unOffset );
+					if ( ADIFlashRead( unStartAddress + unOffset, pucTmpBuf, unReadLength ) == ADI_SUCCESS)
+					{
+						if ( memcmp( pucBuf + unOffset, pucTmpBuf, unReadLength ) != 0)
+						{
+							break;
+						}
+						
+						unOffset += unReadLength;
+					}
+					else
+					{
+						break;
+					}
+				}
+
+				if ( unOffset == uDataLength )
+				{
+					unRet = 1;
+				}
+
+				ADIOSFree(pucTmpBuf);
+			}
+		}
+	}
+	
+	return unRet;
+}
+
+DWORD OTASupport::CalculateCRC32(unsigned char	* pbData, unsigned int unLength)
+{
+	unsigned int ii = 0;
+	unsigned int jj = 0;
+	DWORD dwCRC = 0;
+	DWORD dwCrc32 = 0xffffffff;
+
+	for (ii = 0; ii<unLength; ii++)
+	{
+		for (jj = 0; jj<8; jj++)
+		{
+			if (((pbData[ii] >> (7 - jj)) & 0x01))
+				dwCrc32 ^= 1;
+
+			if (dwCrc32 & 1)
+				dwCrc32 = ((dwCrc32 >> 1) ^ CRC_FLAG);
+			else
+				dwCrc32 >>= 1;
+		}
+	}
+
+	for (ii = 0; ii<32; ii++)
+	{
+		if ((dwCrc32 >> ii) & 1)
+		{
+			dwCRC <<= 1;
+			dwCRC |= 1;
+		}
+		else
+		{
+			dwCRC <<= 1;
+		}
+	}
+
+	return dwCRC;
+}
+
+unsigned int OTASupport::CheckCRC32(unsigned char  *pbData, unsigned int unLength)
+{
+	unsigned int unRet = 0;
+
+	if (unLength >= 4)
+	{
+		unsigned int unDataIndex = unLength-4;
+		DWORD dwCRC32 = ((DWORD)pbData[unDataIndex] << 24) | ((DWORD)pbData[unDataIndex + 1] << 16) | ((DWORD)pbData[unDataIndex + 2] << 8) | ((DWORD)pbData[unDataIndex + 3]);
+		DWORD dwOrgCRC32 = CalculateCRC32(pbData, unLength - 4);
+		
+		if (dwOrgCRC32 == dwCRC32)
+		{
+			unRet = 1;
+		}
+	}
+
+	return unRet;
+}
+
+unsigned int OTASupport::CheckSTBInfo(unsigned char *pBuffer, unsigned int unLen)
+{
+	unsigned int unRet = 0;
+
+	if(unLen >= 12)
+	{
+		unsigned int unIndex = 0;
+		unsigned int unManuF = (pBuffer[unIndex] << 24) | (pBuffer[unIndex + 1] << 16) | (pBuffer[unIndex + 2] << 8) | pBuffer[unIndex + 3];
+		unsigned int unHW = (pBuffer[unIndex + 4] << 24) | (pBuffer[unIndex + 5] << 16) | (pBuffer[unIndex + 6] << 8) | pBuffer[unIndex + 7];
+		unsigned int unVT = (pBuffer[unIndex + 8] << 24) | (pBuffer[unIndex + 9] << 16) | (pBuffer[unIndex + 10] << 8) | pBuffer[unIndex + 11];
+		
+		if ((unManuF == m_OTAConfig.m_unManuF) && (unHW == m_OTAConfig.m_unHW) && (unVT == m_OTAConfig.m_unVT))
+		{
+			unRet = 1;
+		}
+	}
+
+	return unRet;
+}
+
+unsigned int OTASupport::SetOptAndMarketID(void)
+{
+	return TS_SetOptAndMarketID( m_OTAConfig.m_unMarkIDFlag );
+}
+
+unsigned int OTASupport::GetHLType(void)
+{
+	return m_OTAConfig.m_unHLType;
+}
+
+void OTASupport::SetOTACurSteps(int nStatus)
+{	
+	FactoryTestInterface *pFactoryTestInterface = GetFactoryTestInterface();
+
+	if(pFactoryTestInterface != NULL)
+	{
+		pFactoryTestInterface->SetOTAStatus(nStatus);
+	}
+}
+
+unsigned int OTASupport::GetOTACurSteps(void)
+{
+	unsigned int unRet = -1;
+	int nCount = 2;
+	TestResult_S stTestResult = {0};
+	FactoryTestInterface *pFactoryTestInterface = GetFactoryTestInterface();
+	
+	if(pFactoryTestInterface != NULL)
+	{
+		pFactoryTestInterface->GetTestResult(&stTestResult);
+		unRet = stTestResult.nOTAResult;
+	}
+	else
+	{
+		printf("[%s][%d] pFactoryTestInterface == NULL", __FUNCTION__, __LINE__);
+	}
+
+	return unRet;
+}
+

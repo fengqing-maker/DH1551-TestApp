@@ -1,0 +1,66 @@
+/* OTASupport.h
+ *
+ *  Created on: 2015-7-15
+ *      Author: gongjinjun
+ */
+ 
+#ifndef OTASUPPORT_H_
+#define OTASUPPORT_H_
+#include "adi_tuner.h"
+#include "APSafeThread.h"
+#include "OTANotify.h"
+#include "OTAConfig.h"
+
+typedef unsigned int     DWORD;
+
+typedef enum
+{
+	CORE_WRITED = 0x2,
+	CFG_WRITED = 0x4,
+	OTP_STEP1 = 0x8,
+	OTP_STEP2 = 0x10
+};
+
+class OTASupport : public APSafeThread
+{
+
+public:	
+	OTASupport( );
+	~OTASupport( );
+
+public:
+	void Init(OTAConfig csOTAConfig);
+	unsigned int SetOptAndMarketID(void);
+	unsigned int GetHLType(void);
+
+	void SetOTACurSteps(int nStatus);
+	unsigned int GetOTACurSteps(void);
+	DWORD CalculateCRC32(unsigned char	* pbData, unsigned int unLength);
+	unsigned int CheckCRC32(unsigned char  *pbData, unsigned int unLength);
+	
+	virtual unsigned int OpenHLType(int nBoot, int nCW, int nJtag) = 0;
+
+private:
+	void OnceProcess();
+	
+	void StartOTA();
+	unsigned int WriteCoreAndCfg(void);
+	unsigned int FlashCCACoreFile(unsigned int unChipID);
+	unsigned int FlashCFGFile();
+	unsigned int HLSecureFuse();
+	unsigned int TriggerOTA();
+	unsigned int CheckOTATransponder(ADITunerSRCDeliver_U* pDelivery);
+	void FlashEraseCABlock();
+	unsigned int WriteFlash(unsigned int unStartAddress, unsigned char * pucBuf, unsigned int uDataLength);
+	unsigned int CheckSTBInfo(unsigned char *pBuffer, unsigned int unLen);
+
+	unsigned int ReadAndWriteBlockData( CoreDataInfo & inputCoreDataInfo, unsigned int unWriteAddre, unsigned int unFlashSize );
+	unsigned int GetBlockDataLen( CoreDataInfo & inputCoreDataInfo );
+	unsigned int GetBlockData( CoreDataInfo & inputCoreDataInfo, unsigned char * pucDataBuf, unsigned int unDataBufLen );
+	
+private:
+	OTAConfig m_OTAConfig;
+};
+
+#endif //OTASUPPORT_H_
+

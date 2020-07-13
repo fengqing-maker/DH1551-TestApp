@@ -1,0 +1,167 @@
+#
+# AUI project need maintain these sync file list.
+#
+
+SRC_DIR=../sabbat_dual
+DST_DIR=.
+
+sync_public:
+	cp ${SRC_DIR}/hdcp_des.c ${DST_DIR}/
+	cp ${SRC_DIR}/hdcp_des.h ${DST_DIR}/
+	cp ${SRC_DIR}/head_file.h ${DST_DIR}/
+	cp ${SRC_DIR}/key.h ${DST_DIR}/
+	cp ${SRC_DIR}/empty_hdcp.key ${DST_DIR}/
+	cp ${SRC_DIR}/MakefileCommon ${DST_DIR}/
+	cp -rf ${SRC_DIR}/DDR-Setting ${DST_DIR}/
+	# sync header files 
+	rm -rf ${DST_DIR}/copper_common
+	mkdir -p ${DST_DIR}/copper_common
+	cp ${SRC_DIR}/copper_common/system_type.h ${DST_DIR}/copper_common/
+
+	# sync platform
+	rm -rf ${DST_DIR}/platform
+	mkdir -p ${DST_DIR}/platform/advanced_cfg/
+	mkdir -p ${DST_DIR}/platform/board_cfg/
+	mkdir -p ${DST_DIR}/platform/chip/
+	cp ${SRC_DIR}/platform/*.c ${DST_DIR}/platform/
+	cp ${SRC_DIR}/platform/*.h ${DST_DIR}/platform/
+	cp ${SRC_DIR}/platform/Makefile ${DST_DIR}/platform/
+	cp ${SRC_DIR}/platform/chip/*.c ${DST_DIR}/platform/chip/
+	cp ${SRC_DIR}/platform/chip/*.h ${DST_DIR}/platform/chip/
+	cp ${SRC_DIR}/platform/chip/Makefile ${DST_DIR}/platform/chip/
+	cp ${SRC_DIR}/platform/advanced_cfg/advanced_cfg.h ${DST_DIR}/platform/advanced_cfg/
+	cp ${SRC_DIR}/platform/board_cfg/board_cfg.h ${DST_DIR}/platform/board_cfg/
+	rm -rf ${DST_DIR}/bloader_cmd/
+	mkdir -p ${DST_DIR}/bloader_cmd/
+	cp ${SRC_DIR}/*.m2v ${DST_DIR}/
+	cp ${SRC_DIR}/post-rename*.sh ${DST_DIR}/
+	cp ${SRC_DIR}/plugin*.sh ${DST_DIR}/
+	cp ${SRC_DIR}/*.ddf ${DST_DIR}/
+	
+	# For CA
+	rm -rf ${DST_DIR}/conax_ap
+	rm -rf ${DST_DIR}/bc_ap
+	rm -rf ${DST_DIR}/bc_sec
+	rm -rf ${DST_DIR}/bl_tool
+	rm -rf ${DST_DIR}/c0200a_ap
+	rm -rf ${DST_DIR}/conax7_ap
+	rm -rf ${DST_DIR}/gen_ap
+	rm -rf ${DST_DIR}/fta_ap
+	rm -rf ${DST_DIR}/smi_ap
+	rm -rf ${DST_DIR}/vsc_rap
+	rm -rf ${DST_DIR}/ird_ap
+
+	@if [ -d ${SRC_DIR}/conax_ap ];  then    cp -Rf ${SRC_DIR}/conax_ap ${DST_DIR}/ ; fi
+	@if [ -d ${SRC_DIR}/bc_ap ];  then    cp -Rf ${SRC_DIR}/bc_ap ${DST_DIR}/ ; fi
+	@if [ -d ${SRC_DIR}/bc_sec ];  then    cp -Rf ${SRC_DIR}/bc_sec ${DST_DIR}/ ; fi
+	@if [ -d ${SRC_DIR}/bl_tool ];  then    cp -Rf ${SRC_DIR}/bl_tool ${DST_DIR}/ ; fi
+	@if [ -d ${SRC_DIR}/c0200a_ap ];  then    cp -Rf ${SRC_DIR}/c0200a_ap ${DST_DIR}/ ; fi
+	@if [ -d ${SRC_DIR}/conax7_ap ];  then    cp -Rf ${SRC_DIR}/conax7_ap ${DST_DIR}/ ; fi
+	@if [ -d ${SRC_DIR}/gen_ap ];  then    cp -Rf ${SRC_DIR}/gen_ap ${DST_DIR}/ ; fi
+	@if [ -d ${SRC_DIR}/fta_ap ];  then    cp -Rf ${SRC_DIR}/fta_ap ${DST_DIR}/ ; fi
+	@if [ -d ${SRC_DIR}/smi_ap ];  then    cp -Rf ${SRC_DIR}/smi_ap ${DST_DIR}/ ; fi
+	@if [ -d ${SRC_DIR}/vsc_rap ];  then    cp -Rf ${SRC_DIR}/vsc_rap ${DST_DIR}/ ; fi
+	@if [ -d ${SRC_DIR}/ird_ap ];  then    cp -Rf ${SRC_DIR}/ird_ap ${DST_DIR}/ ; fi
+
+	#chmod +x .sh
+	@if [ -d ${DST_DIR}/gen_ap ];  then  chmod +x ${DST_DIR}/gen_ap/*.sh; fi
+	@if [ -d ${DST_DIR}/gen_ap/generate_boot_total_abs ];  then  chmod +x ${DST_DIR}/gen_ap/generate_boot_total_abs/*.sh; fi
+	@if [ -d ${DST_DIR}/gen_ap/generate_boot_total_abs/tool ];  then  chmod +x ${DST_DIR}/gen_ap/generate_boot_total_abs/tool/*; fi
+	@if [ -d ${DST_DIR}/gen_ap/generate_boot_total_abs/teeaux ];  then  chmod +x ${DST_DIR}/gen_ap/generate_boot_total_abs/teeaux/*; fi
+	@if [ -d ${DST_DIR}/gen_ap/generate_boot_total_abs/to_be_sign ];  then  chmod +x ${DST_DIR}/gen_ap/generate_boot_total_abs/to_be_sign/*; fi
+	@if [ -d ${DST_DIR}/gen_ap/generate_boot_total_abs/common ];  then  chmod +x ${DST_DIR}/gen_ap/generate_boot_total_abs/common/*; fi
+	@if [ -d ${DST_DIR}/gen_ap/generate_boot_total_abs/tool_linux/ ];  then  chmod +x ${DST_DIR}/gen_ap/generate_boot_total_abs/tool_linux/*; fi
+	@if [ -d ${DST_DIR}/../../../../tools/tools_linux/ALiCrypto ];  then  chmod +x ${DST_DIR}/../../../../tools/tools_linux/ALiCrypto; fi
+	#end chmod
+
+	#chmod +x .sh
+	@if [ -d ${DST_DIR}/ird_ap ];  then  chmod +x ${DST_DIR}/ird_ap/*.sh; fi
+	@if [ -d ${DST_DIR}/ird_ap/generate_boot_total_abs ];  then  chmod +x ${DST_DIR}/ird_ap/generate_boot_total_abs/*.sh; fi
+	@if [ -d ${DST_DIR}/ird_ap/generate_boot_total_abs/tool ];  then  chmod +x ${DST_DIR}/ird_ap/generate_boot_total_abs/tool/*; fi
+	@if [ -d ${DST_DIR}/ird_ap/generate_boot_total_abs/teeaux ];  then  chmod +x ${DST_DIR}/ird_ap/generate_boot_total_abs/teeaux/*; fi
+	@if [ -d ${DST_DIR}/ird_ap/generate_boot_total_abs/to_be_sign ];  then  chmod +x ${DST_DIR}/ird_ap/generate_boot_total_abs/to_be_sign/*; fi
+	@if [ -d ${DST_DIR}/ird_ap/generate_boot_total_abs/common ];  then  chmod +x ${DST_DIR}/ird_ap/generate_boot_total_abs/common/*; fi
+	@if [ -d ${DST_DIR}/ird_ap/generate_boot_total_abs/tool_linux/ ];  then  chmod +x ${DST_DIR}/ird_ap/generate_boot_total_abs/tool_linux/*; fi
+	@if [ -d ${DST_DIR}/../../../../tools/tools_linux/ALiCrypto ];  then  chmod +x ${DST_DIR}/../../../../tools/tools_linux/ALiCrypto; fi
+	#end chmod
+
+aui_sync_3505: sync_public
+	cp -rf ${SRC_DIR}/platform/chip/m3505 ${DST_DIR}/platform/chip/
+	cp -rf ${SRC_DIR}/platform/advanced_cfg/m3505_board ${DST_DIR}/platform/advanced_cfg/	
+	# Copy all demo board configs 
+	cp -rf ${SRC_DIR}/platform/board_cfg/BOARD_DB_M3516_* ${DST_DIR}/platform/board_cfg/
+	cp -rf ${SRC_DIR}/platform/board_cfg/BOARD_DB_M3521_* ${DST_DIR}/platform/board_cfg/
+	cp -rf ${SRC_DIR}/platform/board_cfg/BOARD_DB_M3526_* ${DST_DIR}/platform/board_cfg/
+	cp -rf ${SRC_DIR}/platform/board_cfg/BOARD_DB_M3527_* ${DST_DIR}/platform/board_cfg/
+	cp -rf ${SRC_DIR}/platform/board_cfg/BOARD_DB_M3528_* ${DST_DIR}/platform/board_cfg/
+	cp -rf ${SRC_DIR}/platform/board_cfg/BOARD_DB_M3529_* ${DST_DIR}/platform/board_cfg/
+	cp -rf ${SRC_DIR}/platform/board_cfg/BOARD_DB_M3626_* ${DST_DIR}/platform/board_cfg/
+	cp -rf ${SRC_DIR}/platform/board_cfg/BOARD_DB_M3627_* ${DST_DIR}/platform/board_cfg/
+	cp -rf ${SRC_DIR}/platform/board_cfg/BOARD_DB_M3727_* ${DST_DIR}/platform/board_cfg/
+	cp -rf ${SRC_DIR}/platform/board_cfg/BOARD_DB_M3727_* ${DST_DIR}/platform/board_cfg/
+	cp -rf ${SRC_DIR}/platform/board_cfg/BOARD_DB_M3712_* ${DST_DIR}/platform/board_cfg/
+	cp -rf ${SRC_DIR}/platform/board_cfg/BOARD_DB_M3712L_* ${DST_DIR}/platform/board_cfg/
+	cp -rf ${SRC_DIR}/platform/board_cfg/BOARD_DB_M3716L_* ${DST_DIR}/platform/board_cfg/
+	cp -rf ${SRC_DIR}/platform/board_cfg/BOARD_DB_M3728_* ${DST_DIR}/platform/board_cfg/
+	cp -rf ${SRC_DIR}/bloader_cmd/c3505 ${DST_DIR}/bloader_cmd/
+
+	# Copy files in aui_demo
+	cp ${SRC_DIR}/compiler_3505.def ${DST_DIR}/
+	sed -i 's/#_AUI_ = 1/_AUI_ = 1/' ${DST_DIR}/compiler_3505.def
+	sed -i 's/#_AUI_TEST_ = 1/_AUI_TEST_ = 1/' ${DST_DIR}/compiler_3505.def
+	# AUI project need enable nand flash support
+	sed -i 's/#_NAND_ENABLE_=1/_NAND_ENABLE_=1/' ${DST_DIR}/compiler_3505.def
+	cp ${SRC_DIR}/ldscript_3505*.ld ${DST_DIR}/
+	cp ${SRC_DIR}/see_ldscript_M3505*.ld ${DST_DIR}/
+	cp ${SRC_DIR}/Makefile3505 ${DST_DIR}/
+	cp ${SRC_DIR}/Makefile3505.cmd ${DST_DIR}/
+	sed -i 's/FSC_APP_DIR = fsc_ap/#FSC_APP_DIR = fsc_ap/' ${DST_DIR}/Makefile3505.cmd
+	
+	cp ${SRC_DIR}/bloader3_3505_*.abs ${DST_DIR}/
+	cp ${SRC_DIR}/bloader3_3527_*.abs ${DST_DIR}/
+	cp ${SRC_DIR}/bloader3_3529_*.abs ${DST_DIR}/
+	
+	cp ${SRC_DIR}/*_ouc_loader.bin ${DST_DIR}/
+	
+	cp ${SRC_DIR}/sys_config_3505.h ${DST_DIR}/
+	cp ${SRC_DIR}/sys_memmap_3505.h ${DST_DIR}/
+	cp ${SRC_DIR}/sys_memmap_3505_for_retailer.h ${DST_DIR}/
+	cp ${SRC_DIR}/3505_ret_bl_gen.sh ${DST_DIR}/
+	cp ${SRC_DIR}/universal_key_encrypt_M3527.sh ${DST_DIR}/
+	cp ${SRC_DIR}/reserve.bin ${DST_DIR}/
+	cp ${SRC_DIR}/3527_ouc_loader.bin ${DST_DIR}/
+	cp ${SRC_DIR}/3528_ouc_loader.bin ${DST_DIR}/
+
+aui_sync_3702: sync_public
+	cp -rf ${SRC_DIR}/platform/chip/m3702 ${DST_DIR}/platform/chip/
+	cp -rf ${SRC_DIR}/platform/chip/m3505 ${DST_DIR}/platform/chip/
+	cp -rf ${SRC_DIR}/platform/advanced_cfg/m3702_board ${DST_DIR}/platform/advanced_cfg/	
+	# Copy all demo board configs 
+	cp -rf ${SRC_DIR}/platform/board_cfg/BOARD_DB_M3721* ${DST_DIR}/platform/board_cfg/
+	cp -rf ${SRC_DIR}/platform/board_cfg/BOARD_DB_M3712L_* ${DST_DIR}/platform/board_cfg/
+	cp -rf ${SRC_DIR}/bloader_cmd/c3702 ${DST_DIR}/bloader_cmd/
+
+	# Copy files in aui_demo
+	cp ${SRC_DIR}/compiler_3702.def ${DST_DIR}/
+	sed -i 's/#_AUI_ = 1/_AUI_ = 1/' ${DST_DIR}/compiler_3702.def
+	sed -i 's/#_AUI_TEST_ = 1/_AUI_TEST_ = 1/' ${DST_DIR}/compiler_3702.def
+	# AUI project need enable nand flash support
+	sed -i 's/#_NAND_ENABLE_=1/_NAND_ENABLE_=1/' ${DST_DIR}/compiler_3702.def
+	cp ${SRC_DIR}/ldscript_3702*.ld ${DST_DIR}/
+	cp ${SRC_DIR}/see_ldscript_M3702*.ld ${DST_DIR}/
+	cp ${SRC_DIR}/Makefile3702 ${DST_DIR}/
+	cp ${SRC_DIR}/Makefile3702.cmd ${DST_DIR}/
+	sed -i 's/FSC_APP_DIR = fsc_ap/#FSC_APP_DIR = fsc_ap/' ${DST_DIR}/Makefile3702.cmd
+	
+	cp ${SRC_DIR}/bloader3_3702_*.abs ${DST_DIR}/
+	
+	cp ${SRC_DIR}/*_ouc_loader.bin ${DST_DIR}/
+	
+	cp ${SRC_DIR}/sys_config_3702.h ${DST_DIR}/
+	cp ${SRC_DIR}/sys_memmap_3702*.h ${DST_DIR}/
+	cp ${SRC_DIR}/3702_ret_bl_gen.sh ${DST_DIR}/	
+	cp ${SRC_DIR}/reserve.bin ${DST_DIR}/
+	cp ${SRC_DIR}/3702_ouc_loader.bin ${DST_DIR}/
+	cp ${SRC_DIR}/blocks_script_7z_sabbat_M3702_dual*.txt ${DST_DIR}/
+	cp ${SRC_DIR}/universal_key_encrypt_C3702.sh ${DST_DIR}/
+

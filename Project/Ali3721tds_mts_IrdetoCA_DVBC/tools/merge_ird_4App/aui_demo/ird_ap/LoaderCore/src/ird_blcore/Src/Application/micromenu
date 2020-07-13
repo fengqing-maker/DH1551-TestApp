@@ -1,0 +1,18 @@
+### Soure code directories.
+SDIR  $ROOT_DIR/LoaderCore/Src/Application
+
+
+### Header files directories.
+IDIR  $ROOT_DIR/LoaderCore/Src/Application
+
+IDIR  $ROOT_DIR/LoaderCore/Src/Shared
+
+IDIR  $ROOT_DIR/LoaderCore/Include
+IDIR  $ROOT_DIR/LoaderCore/Include/ExportAPI
+IDIR  $ROOT_DIR/LoaderCore/Include/ImportSPI
+
+
+### Source code files.
+SRC  CommonApi.c
+SRC  Psi.c
+SRC  IrdEmm.c

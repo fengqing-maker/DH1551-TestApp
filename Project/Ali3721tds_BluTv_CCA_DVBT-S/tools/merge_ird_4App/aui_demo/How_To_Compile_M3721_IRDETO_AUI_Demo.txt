@@ -1,0 +1,140 @@
+# M3721 AUI IRDETO project compile guide
+------------------------------------------------------------------------------------
+
+Include `ALI RD` & `Customer/ALI QT` compile introduce.
+
+## Compiler version
+	1. Linux environment: gcc 4.7.3
+	2. Cygwin : gcc3.4.4
+
+------------------------------------------------------------------------------------
+
+Part 1：注意事项
+	1.编译出的aui sample只是个升级文件，需要使用IRD_Loadercore和U盘升级进去才能起来
+	2.如果测试人员已经有IRD_Loadercore，测试aui sample时，无须再次编译，可直接使用
+	3.由于平台硬件特殊性，aui sample可编译出双tuner和单tuner+SMC这2种功能组合的软件
+	4.编译AUI sample，测试人员可以基于Release package使用脚本编译，使用方法在Part 2中说明
+	5.RD人员或不使用脚本的编译方法在Part 3中说明
+
+
+Part 2：AUI sample编译和启动方法
+	### Step 1：编译IRD_Loadercore（如果已经有IRD_Loadercore，无须此步骤）：
+		1、Need to put keys into
+			$PRJ_ROOT/prj/app/demo/combo/sabbat_dual/ird_ap  (为什么放在sabbat_dual下的ird_ap呢，因为aui_build_M3721_02v01_Irdeto_loadercore.sh会去同步sabbat_dual下的代码到aui_demo下)
+			Customer should have themself keys, ALI QT should use ALI internal GENCA keys(The same with sabbat_dual).
+		2、cd  $PRJ_ROOT/prj/app/demo/combo/aui_demo
+			运行脚本编译loadercore，编译命令如下：
+			./qt_build_3702_ird_loadercore.sh
+
+				
+		如果不使用脚本编译loadercore，编译方法请参考//depot/IC_Support/secure_coding/Elephant/prj/app/demo/combo/aui_demo/How_To_Compile_3721_Ird_Loadercore.txt
+	
+	### Step 2：编译AUI sample
+		1、Need to put keys into
+			$PRJ_ROOT/prj/app/demo/combo/sabbat_dual/ird_ap  (为什么放在sabbat_dual下的ird_ap呢，因为aui_build_M3721_02v01_Irdeto_loadercore.sh会去同步sabbat_dual下的代码到aui_demo下)
+			Customer should have themself keys, ALI QT should use ALI internal GENCA keys(The same with sabbat_dual).
+		2、cd  $PRJ_ROOT/prj/app/demo/combo/aui_demo
+			运行脚本编译双tuner sample code，编译命令如下：
+			./aui_build_M3721_02v01_Irdeto.sh
+	   	运行脚本编译单tuner+SMC sample code，编译命令如下：
+	   	./aui_build_M3721_02v01_Irdeto_smc.sh
+	
+	### Step 3：制作AUI sample升级文件
+		1.copy //depot/IC_Support/secure_coding/Elephant/prj/app/demo/combo/sabbat_dual/ird_ap/DVB_SUIT/ to linux 
+		2.将Step 2中编译出的aui sample软件里的aui_demo\app.bin、aui_demo\see.ubo拷贝进DVB_SUIT\boot_temp\dvtsuit\bin
+		3.Linux环境下，cd dvtsuit
+		4.运行./TestDataGen.py /a
+		5.在\dvtsuit\DVT_FILES里将产生升级文件，WORK005.CD5为正式的升级的文件
+	
+	### Step 4: (burn IRD_Loadercore)
+	   使用Wingdb将IRD_Loadercore的product_sabbat_dual.abs镜像烧写进平台
+	
+	### Step 5: (upgrade AUI sample)
+	  使用TEMU.exe工具升级Key和aui sample，需要断开secureCRT（等其他串口工具）对平台串口的连接，因为TEMU.exe工具cmd需要平台串口。
+	  1.拷贝//depot/IC_Support/secure_coding/Elephant/prj/app/demo/combo/sabbat_dual/ird_ap/TEMU/到本地，cmd进入这个目录，例如：E:\TEMU>
+	  2.启动平台，看到IRD_Loadercore升级界面
+	  3.cmd运行E:\TEMU>TEMU.exe MANKEY.CD5，等待 error info:0x00，说明升级成功 （需要在平台起来后尽快运行命令TEMU.exe MANKEY.CD5）
+	  4.cmd运行E:\TEMU>TEMU.exe DEVKEY.KD5，等待error info:0x00，说明升级成功   （同上）
+	  5.cmd运行E:\TEMU>TEMU.exe VAR_UPD.VD5，等待error info:0x00，说明升级成功   （同上）
+	  6.将Step 3中生成的升级文件WORK005.CD5重新命名为ALi_update.cd5拷贝到U盘的根目录下，然后平台接上U盘，平台上电后会自动升级，等待error info:0x00，说明升级成功
+	  7.重启平台，aui sample启动
+
+
+Part 3：不使用脚本编译AUI sample的步骤：
+	## For Customer/ALI QT ##
+	Compile with ALI Release package.
+	
+	Note: Only need compile the project in $PRJ_ROOT/prj/app/demo/combo/aui_demo, no need switch to sabbat_dual
+	
+	### Step 1: (merge code)
+		1. These packages need merge to -> ddk_release_combo_3702
+			plugin_combo_M3702
+			C1800A_ca_release_combo
+	
+		2. cd  $PRJ_ROOT/prj/app/demo/combo/aui_demo
+	
+		3. Need to put keys into
+			$PRJ_ROOT/prj/app/demo/combo/aui_demo/ird_ap
+			Customer should have themself keys, ALI QT should use ALI internal GENCA keys(The same with sabbat_dual).
+		4. Enable the corresponding plugin files in ddk directory.
+		5. Copy your HDCP key file to $PRJ_ROOT/prj/app/demo/combo/aui_demo, and rename to empty_hdcp.key
+	  6. Select one abs from folder "see_abs", rename to "signed_app_see.ubo", then copy to  "aui_demo/ird_ap".
+	 
+	### Step 2: (config)
+		1. cd  $PRJ_ROOT/prj/app/demo/combo/aui_demo
+		2. Edit compiler_3702.def, 
+			- Enable ->		_BOARD_M3721_02V01_ = 1
+			- Disable->		other board flag like: #_BOARD_M3712L_01V01_ = 1
+			- Ensure  _C1800A_CA_ENABLE_ = 1 is enable, and disable other CA MACRO(_GEN_CA_ENABLE_, _CAS9_CA_ENABLE_, _BC_CA_ENABLE_, ...)
+			- Disable _BOOT_LOGO_ENABLE_  
+			- Disable _C1800A_LOADERCORE_ENABLE_
+			- Disable _C1800A_DVT_TEST_ 
+			- Ensure _DD_SUPPORT = 1 is enable if you need DD/DD+ support
+	    - Disable _DVBT2_ENABLE_
+	    - Enable _USE_SIGNED_BL_SEE = 1 # for customer
+	    - Enable _ENABLE_BL_ENCRYPTED_ = 1 is enable if your board's OPT had set bootloader encrypt.
+	  3. Edit sys_config_3702.h
+	    -  Enable -> #define SUPPORT_TWO_TUNER, and Disable -> #define SMC1_SUPPORT, for two tuner solution
+	    -  Disable -> #define SUPPORT_TWO_TUNER, and Enable -> #define SMC1_SUPPORT, for one tuner + SMC solution
+	    
+	
+	### Step 3: (pre compile)
+		1. cd  $PRJ_ROOT/prj/app/demo/combo/aui_demo
+		2. make path config_3702 
+	
+	### Step 4: (compile)
+		1. cd  $PRJ_ROOT/prj/app/demo/combo/aui_demo
+		2. make new ddk aui product_7z
+
+	------------------------------------------------------------------------------------
+	
+	## For ALI internal RD ##
+	
+	Compile with full sdk source code.
+	
+	### Step 1: (compile SEE)
+		1. cd $PRJ_ROOT/src/see/m36f
+		2. make path config_3702 new all 
+	
+	### Step 2: (sync config from sabbat_dual)
+		1. cd  $PRJ_ROOT/prj/app/demo/combo/aui_demo
+		2. make path aui_sync_3702
+	
+	### Step 3: (config)
+		1. cd  $PRJ_ROOT/prj/app/demo/combo/aui_demo
+		2. Edit compiler_3702.def, 
+			- Enable ->		_BOARD_M3721_02V01_ = 1
+			- Disable->	   other board's flag like:	#_BOARD_M3527_01V01_ = 1
+			- Ensure  _C1800A_CA_ENABLE_ = 1 is enabled, and disable other CA MACRO(_GEN_CA_ENABLE_, _CAS9_CA_ENABLE_, _BC_CA_ENABLE_, ...)
+			- Ensure _DD_SUPPORT = 1 is enable if you need DD/DD+ support
+			- Enable _BOOT_LOGO_ENABLE_  if you need
+			- Disable _ENABLE_BL_ENCRYPTED_ = 1
+	
+	### Step 4: (pre compile)
+		1. cd  $PRJ_ROOT/prj/app/demo/combo/aui_demo
+		2. make path config_3702 
+	
+	### Step 5: (compile)
+		1. cd $PRJ_ROOT/prj/app/demo/combo/aui_demo
+		2. make new sdk_clean sdk aui product_7z
+

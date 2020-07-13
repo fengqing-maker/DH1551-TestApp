@@ -1,0 +1,39 @@
+******************* M3510e aui_demo compile *****************************
+
+step1. setup compile on linux
+
+   modify prj/app/demo/combo/sabbat_dual/compiler_3503.def
+          src/see/m36f/compiler_3503.def
+
+   _LINUX_COMPILER_ENVIRONMENT_ = 1
+
+   ifdef _LINUX_COMPILER_ENVIRONMENT_
+   #CC_DIR = /opt/mips-sde-elf-4.7.3
+   CC_DIR = /opt/mips-4.3
+   ......
+   else
+   .......
+   endif
+
+step2. compiler libsee libcore
+
+	$cd see\src\see\m36f
+	$make path config_3503 new all
+	
+step3. modify compiler_3503.def (Path: prj\app\demo\combo\aui_demo\compiler_3503.def)
+
+	enable macro:
+   _BOARD_M3511_01V02_ = 1
+   #_BOARD_M3515_01V01_ = 1
+   		
+Step4. compile the aui library(libaui.a) and aui sample test library(libaui_test.a)
+
+	$cd prj\app\demo\combo\aui_demo
+	$make path config_3503
+	$cd aui
+	$./build.sh tds aui
+	$./build.sh tds aui_test
+	
+Step5. compile aui-demo
+  $cd prj\app\demo\combo\aui_demo
+  $make new sdk_clean sdk all bin

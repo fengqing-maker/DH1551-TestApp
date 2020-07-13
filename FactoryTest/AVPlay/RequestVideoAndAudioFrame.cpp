@@ -1,0 +1,365 @@
+#include "RequestVideoAndAudioFrame.h"
+#include "adi_error.h"
+#include "adi_audio.h"
+#include "adi_video.h"
+#include "string.h"
+#include "AuraWindows.h"
+#include "adi_os.h"
+#include "adi_tuner.h"
+#include "adi_player.h"
+#include "APAssert.h"
+
+#define PLAY_SERVICE_TIMEOUT (10*1000)
+
+static void PlayerCallback(ADI_HANDLE hPlayer, ADIPlayerEventType_E eEvent, void * pvUserData);
+static void ADITunerCallBack ( ADITunerType_E eType, ADITunerCallbackMessage_S * psMessage );
+
+RequestVideoAndAudioFrame::RequestVideoAndAudioFrame(unsigned int unTunerID, RequestTableNotify *pRequestTableNotify):
+APSafeThread( 5 * 17, 16 * 1024, "RequestVideoAndAudioFrame", strlen("RequestVideoAndAudioFrame")),
+m_pRequestTableNotify(pRequestTableNotify), m_unTunerID(unTunerID)
+{
+	m_unLockStatus = 0;
+    m_unPlayerStatus = 0;
+    memset(&m_curLockDelivery, 0, sizeof(m_curLockDelivery));
+	ADIPLAYEROpen(EM_ADIPLAYER_LIVE, &m_hDecoder);	
+	ADIVIDEOSetStopMode(0, EM_ADIVIDEO_STOPMODE_BLACK);		
+	APAssert(m_hDecoder != NULL);		
+	ADIPLAYERAddPlayerCallback(m_hDecoder, (ADIPLAYERCallback_F)PlayerCallback, EM_ADIPLAYER_VIDEO_FRAME_COMING, this);
+	//ADIPLAYERAddPlayerCallback(m_hDecoder, (ADIPLAYERCallback_F)PlayerCallback, EM_ADIPLAYER_AUDIO_FRAME_COMING, this);
+    //ADITunerAddCallback ( m_unTunerID, ADITunerCallBack, this );
+	StartRun();
+}
+
+RequestVideoAndAudioFrame::~RequestVideoAndAudioFrame()
+{	
+	Exit();	
+	APAssert(m_hDecoder != NULL);
+	if(m_AVConfig.m_nTunerCount > 0)
+	{
+		ADIPLAYERDelPlayerCallback(m_hDecoder, (ADIPLAYERCallback_F)PlayerCallback, EM_ADIPLAYER_VIDEO_FRAME_COMING, this);
+		//ADIPLAYERDelPlayerCallback(m_hDecoder, (ADIPLAYERCallback_F)PlayerCallback, EM_ADIPLAYER_AUDIO_FRAME_COMING, this);
+	}
+	ADIPLAYERClose(m_hDecoder);
+}
+
+void RequestVideoAndAudioFrame::SetAVConfig(AVConfig *pAVConfig)
+{
+	if ( pAVConfig != NULL )
+	{
+		memcpy(&m_AVConfig, pAVConfig, sizeof(AVConfig));
+	}
+}
+
+void RequestVideoAndAudioFrame::OnceProcess()
+{
+	m_APLock.Lock();
+	
+	if(m_unLockStatus > 0)
+	{
+		if(ADIOSGetTickCount() > m_unTickCount + PLAY_SERVICE_TIMEOUT)
+		{
+			m_unTickCount = ADIOSGetTickCount();
+			
+			m_pRequestTableNotify->RequestTableTimeoutNotify(m_unTunerID);
+		}
+	}
+
+	m_APLock.UnLock();
+
+	ADIOSThreadSleep(1000);
+}
+
+unsigned int RequestVideoAndAudioFrame::StartLock(ADITunerSRCDeliver_U* pDelivery)
+{
+	m_APLock.Lock();
+	
+	unsigned int unRe = 0;
+
+	if(memcmp(&m_curLockDelivery, pDelivery, sizeof(m_curLockDelivery)) != 0)
+	{
+		m_unLockStatus = 0;		
+		if (ADITunerConnect( m_unTunerID, pDelivery ) == ADI_SUCCESS)
+		{
+			memcpy(&m_curLockDelivery, pDelivery, sizeof(m_curLockDelivery));
+			unRe = 1;
+		}
+	}
+	else
+	{
+		unRe = 1;
+	}
+
+	m_APLock.UnLock();
+
+	return unRe;
+}
+
+unsigned int RequestVideoAndAudioFrame::StartPlayer(int nVideoPid, int nAudioPid)
+{
+	m_APLock.Lock();
+	
+	APAssert(m_hDecoder != NULL);
+
+	if(m_unPlayerStatus == 1)
+	{
+		ADIPLAYERClear(m_hDecoder);
+		ADIPLAYERStop(m_hDecoder);
+		m_unPlayerStatus = 0;
+	}
+	
+	m_unTickCount = ADIOSGetTickCount();
+	
+	m_unLockStatus = 1;
+
+	unsigned int unRe = 1;
+
+	ADIStreamInfo_S tempADIStreamInfo_S[3];
+
+	tempADIStreamInfo_S[0].m_nPid = nVideoPid;
+	tempADIStreamInfo_S[0].m_eContentType = EM_ADI_CONTENT_VIDEO;
+	tempADIStreamInfo_S[0].m_uStreamType.m_eVideoType = EM_ADI_VID_STREAM_MPEG2;
+	tempADIStreamInfo_S[0].m_nDemux = m_unTunerID;
+
+	tempADIStreamInfo_S[1].m_nPid = nAudioPid;
+	tempADIStreamInfo_S[1].m_eContentType = EM_ADI_CONTENT_AUDIO;
+	tempADIStreamInfo_S[1].m_uStreamType.m_eAudioType = EM_ADI_AUD_STREAM_MPEG2;
+	tempADIStreamInfo_S[1].m_nDemux = m_unTunerID;
+
+	tempADIStreamInfo_S[2].m_nPid = nVideoPid;
+	tempADIStreamInfo_S[2].m_eContentType = EM_ADI_CONTENT_PCR;
+	tempADIStreamInfo_S[2].m_nDemux = m_unTunerID;
+
+	ADI_Error_Code eCode = ADIPLAYERSetStream(m_hDecoder, tempADIStreamInfo_S, 3, NULL);
+	if (eCode != ADI_SUCCESS)
+	{
+		unRe = 0;
+	}
+
+	eCode = ADIPLAYERStart(m_hDecoder);
+	if (eCode != ADI_SUCCESS)
+	{
+		unRe = 0;
+	}
+	else
+	{
+		m_unPlayerStatus = 1;
+	}
+	
+	ADIVIDEOShow(0,1);
+	ADIAUDIOUnmute(0);
+
+	m_unDecoderStatus = 0;
+
+	m_APLock.UnLock();
+	
+	return unRe;
+}
+
+ADIVIDStreamType_E RequestVideoAndAudioFrame::MapVideoType(int nVideoType)
+{
+	ADIVIDStreamType_E eADIVIDStreamType;
+	switch (nVideoType)
+	{
+	case VID_STREAM_MPEG1:
+		eADIVIDStreamType = EM_ADI_VID_STREAM_MPEG1;
+		break;
+	case VID_STREAM_MPEG2:
+		eADIVIDStreamType = EM_ADI_VID_STREAM_MPEG2;
+		break;
+	case VID_STREAM_H264:
+		eADIVIDStreamType = EM_ADI_VID_STREAM_H264;
+		break;
+	case VID_STREAM_VC1:
+		eADIVIDStreamType = EM_ADI_VID_STREAM_VC1;
+		break;
+	default:
+		break;
+	}
+
+	return eADIVIDStreamType;
+}
+
+ADIAUDStreamType_E RequestVideoAndAudioFrame::MapAudioType(int nAudioType)
+{
+	ADIAUDStreamType_E eADIAUDStreamType;
+
+	switch (nAudioType)
+	{
+	case AUD_STREAM_MPEG1:
+		eADIAUDStreamType = EM_ADI_AUD_STREAM_MPEG1;
+		break;
+	case AUD_STREAM_MPEG2:
+		eADIAUDStreamType = EM_ADI_AUD_STREAM_MPEG2;
+		break;
+	case AUD_STREAM_MPEG_AAC:
+		eADIAUDStreamType = EM_ADI_AUD_STREAM_MPEG_AAC;
+		break;
+	case AUD_STREAM_LPCM:
+		eADIAUDStreamType = EM_ADI_AUD_STREAM_LPCM;
+		break;
+	case AUD_STREAM_AC3:
+	case AUD_STREAM_AC3_2:
+		eADIAUDStreamType = EM_ADI_AUD_STREAM_AC3;
+		break;
+	case AUD_STREAM_DTS:
+		eADIAUDStreamType = EM_ADI_AUD_STREAM_DTS;
+		break;
+	case AUD_STREAM_AC3_PLUS:
+		eADIAUDStreamType = EM_ADI_AUD_STREAM_AC3_PLUS;
+		break;
+	case AUD_STREAM_DTS_HD:
+		eADIAUDStreamType = EM_ADI_AUD_STREAM_DTS_HD;
+		break;
+	default:
+		break;
+	}
+
+	return eADIAUDStreamType;
+}
+
+unsigned int RequestVideoAndAudioFrame::StartPlayer(ServiceInfo_S * pServiceList)
+{
+	m_APLock.Lock();
+
+	APAssert(m_hDecoder != NULL);
+
+	if (m_unPlayerStatus == 1)
+	{
+		ADIPLAYERClear(m_hDecoder);
+		ADIPLAYERStop(m_hDecoder);
+		m_unPlayerStatus = 0;
+	}
+
+	m_unTickCount = ADIOSGetTickCount();
+
+	m_unLockStatus = 1;
+
+	unsigned int unRe = 1;
+
+	ADIStreamInfo_S tempADIStreamInfo_S[3];
+
+	tempADIStreamInfo_S[0].m_nPid = pServiceList->m_nVideoPid;
+	tempADIStreamInfo_S[0].m_eContentType = EM_ADI_CONTENT_VIDEO;
+	tempADIStreamInfo_S[0].m_uStreamType.m_eVideoType = (ADIVIDStreamType_E)MapVideoType(pServiceList->m_nVideoType);//EM_ADI_VID_STREAM_MPEG2;
+	tempADIStreamInfo_S[0].m_nDemux = m_unTunerID;
+
+	tempADIStreamInfo_S[1].m_nPid = pServiceList->m_nAudioPid;
+	tempADIStreamInfo_S[1].m_eContentType = EM_ADI_CONTENT_AUDIO;
+	tempADIStreamInfo_S[1].m_uStreamType.m_eAudioType = (ADIAUDStreamType_E)MapAudioType(pServiceList->m_nAudioType);//EM_ADI_AUD_STREAM_MPEG2;
+	tempADIStreamInfo_S[1].m_nDemux = m_unTunerID;
+
+	tempADIStreamInfo_S[2].m_nPid = pServiceList->m_nPCRPid;
+	tempADIStreamInfo_S[2].m_eContentType = EM_ADI_CONTENT_PCR;
+	tempADIStreamInfo_S[2].m_nDemux = m_unTunerID;
+
+	ADI_Error_Code eCode = ADIPLAYERSetStream(m_hDecoder, tempADIStreamInfo_S, 3, NULL);
+	if (eCode != ADI_SUCCESS)
+	{
+		unRe = 0;
+	}
+
+	eCode = ADIPLAYERStart(m_hDecoder);
+	if (eCode != ADI_SUCCESS)
+	{
+		unRe = 0;
+	}
+	else
+	{
+		m_unPlayerStatus = 1;
+	}
+
+	ADIVIDEOShow(0, 1);
+	ADIAUDIOUnmute(0);
+
+	m_unDecoderStatus = 0;
+
+	m_APLock.UnLock();
+
+	return unRe;
+}
+unsigned int RequestVideoAndAudioFrame::Stop()
+{
+	m_APLock.Lock();
+	
+	APAssert(m_hDecoder != NULL);
+
+	unsigned int unRe = 0;
+
+	if(m_unPlayerStatus == 1)
+	{
+		ADI_Error_Code eCode = ADIPLAYERStop(m_hDecoder);
+
+		if (eCode == ADI_SUCCESS)
+		{
+			ADIPLAYERClear(m_hDecoder);
+
+			m_unPlayerStatus = 0;
+			
+			unRe = 1;
+		}
+	}
+	else
+	{
+		unRe = 0;
+	}
+
+	m_APLock.UnLock();
+
+	return unRe;
+}
+
+void RequestVideoAndAudioFrame::VideoFrameComingNotify()
+{
+	m_unDecoderStatus |= 1;
+	
+	if ((m_unDecoderStatus & 0x7) == 0x1)
+	{
+		m_pRequestTableNotify->RequestTableSuccessNotify(m_unTunerID);
+
+		m_unLockStatus = 0;
+		
+		m_unDecoderStatus |= 4;
+	}
+}
+
+void RequestVideoAndAudioFrame::AudioFrameComingNotify()
+{
+}
+
+static void PlayerCallback(ADI_HANDLE hPlayer, ADIPlayerEventType_E eEvent, void * pvUserData)
+{
+	RequestVideoAndAudioFrame* pPlayer = (RequestVideoAndAudioFrame*)pvUserData;
+
+	if (EM_ADIPLAYER_VIDEO_FRAME_COMING == eEvent)
+	{
+		pPlayer->VideoFrameComingNotify();
+	}
+	else if (EM_ADIPLAYER_AUDIO_FRAME_COMING == eEvent)
+	{
+		pPlayer->AudioFrameComingNotify();
+	}
+}
+
+static void ADITunerCallBack ( ADITunerType_E eType, ADITunerCallbackMessage_S * psMessage )
+{
+    switch ( psMessage->m_eEvent )
+    {
+    case EM_ADITUNER_SIGNAL_CONNECTED:
+		{
+    		printf("--[%s][%d]--EM_ADITUNER_SIGNAL_CONNECTED--\n", __FUNCTION__, __LINE__);
+		}
+        break;
+
+    case EM_ADITUNER_SIGNAL_LOST:
+		{
+    		printf("--[%s][%d]--EM_ADITUNER_SIGNAL_LOST--\n", __FUNCTION__, __LINE__);
+		}
+        break;
+
+    case EM_ADITUNER_SIGNAL_SEARCHING:
+		{
+    		printf("--[%s][%d]--EM_ADITUNER_SIGNAL_LOST--\n", __FUNCTION__, __LINE__);
+		}
+        break;
+    }
+}

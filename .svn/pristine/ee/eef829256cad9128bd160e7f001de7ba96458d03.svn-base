@@ -1,0 +1,757 @@
+#
+# -= Makefile for application =-
+#
+# Note:
+# . "make config" must be done for initial routines.
+#
+# Usage:
+# . Change the ROOT definition, if necessary;
+#   Make it point to the root of the software tree.
+#
+
+# Destination to the root of software tree
+RUN_DIR = d:/winice
+ROOT = ../../../../..
+ROOT_PRJ = ../prj/app/demo/combo/aui_demo
+RLS_DATE = $(shell date +%y%m%d)
+RLS_NAME = Combo_SAB_$(RLS_DATE)
+
+CA_AP_DIR =
+
+ifdef CA_C2000A
+CA_AP_DIR = c2000aca
+endif
+
+ifdef _CAS9_CA_ENABLE_
+CA_AP_DIR = conax_ap
+endif
+
+ifdef _BC_CA_STD_ENABLE_	
+BC_AP_DIR = bc_ap_std
+endif
+
+ifdef _BC_CA_ENABLE_	#BC AS
+BC_AP_DIR = bc_ap
+endif
+
+ifdef _FTA_ONLY_
+CA_AP_DIR = fta_ap
+endif
+
+ifdef _DVBS_ENABLE_
+NIM_S2_LIB = -lnim_s2
+else
+NIM_S2_LIB =
+endif
+
+ifdef _S3281_
+ifndef _BUILD_OTA_E_
+	ifdef _USE_32M_MEM_
+		ifdef _H264_SUPPORT_
+			SEELIB = libsee_m32
+		else
+			SEELIB = libsee_m32_32M
+		endif
+	else
+		SEELIB = libsee_m32
+	endif
+else
+	ifdef _BUILD_USB_LOADER_
+	SEELIB = libsee_m32
+	else
+	SEELIB = libsee_m32_ota
+	endif
+endif
+BOOT_SEE = boot_see_m32
+MPG_LIB = libmpg2c_m32
+PLUGIN_PATH = ${PLUGINDDK_DIR}/m32
+PLUGIN_EXT_PATH = ${PLUGINEXT_DIR}/m32
+else
+SEELIB = libsee
+BOOT_SEE = boot_see
+MPG_LIB = libmpg2c
+PLUGIN_PATH = ${PLUGINDDK_DIR}
+PLUGIN_EXT_PATH = ${PLUGINEXT_DIR}
+endif
+
+VSC_NAME=
+VSC_LIB_NAME=
+ifdef _CAS9_VSC_ENABLE_
+	VSC_NAME = _vsc
+	ifdef _USE_32M_MEM_
+		VSC_LIB_NAME=vsc_see_se_32M.bin
+	else
+		VSC_LIB_NAME=vsc_see_se_64M.bin
+	endif
+endif
+
+ifdef _S3281_
+	ifdef _USE_32M_MEM_
+		ifdef _M3281_SOLUTION3_SUPPORT_
+			BOOT_CFG = boot_m3281_32M_solution3.cfg
+		else
+			BOOT_CFG = boot_m3281_32M.cfg
+		endif
+		ifdef _SIP_ENABLE_
+			MEM_INIT = S3281_16bit_32M_SIP_wp.abs
+		else
+			MEM_INIT = S3281_16bit_32M_wp.abs
+		endif
+	else
+		ifdef _SIP_ENABLE_
+			BOOT_CFG = boot_m3281_64M.cfg
+			MEM_INIT = S3281_16bit_64M_SIP_wp.abs
+		else
+			BOOT_CFG = boot_m3281_64M.cfg
+			MEM_INIT = S3281_16bit_64M_wp.abs
+		endif
+	endif	
+
+	ifdef _ENABLE_BL_ENCRYPTED_
+		ifdef _BOARD_DEMO_M3281_01V01_
+			ifdef _USE_32M_MEM_
+				BOOTLOADER_DDR = bloader3_3281_bl_encrypted_demoboard_32M${VSC_NAME}.abs
+			else
+				BOOTLOADER_DDR = bloader3_3281_bl_encrypted_demoboard_64M${VSC_NAME}.abs
+			endif
+		else
+			ifdef _USE_32M_MEM_
+				BOOTLOADER_DDR = bloader3_3281_bl_encrypted_debugboard_32M${VSC_NAME}.abs
+			else
+				BOOTLOADER_DDR = bloader3_3281_bl_encrypted_debugboard_64M${VSC_NAME}.abs
+			endif
+		endif
+	else
+		ifdef _BOARD_DEMO_M3281_01V01_
+			ifdef _USE_32M_MEM_
+				BOOTLOADER_DDR = bloader3_3281_security_demoboard_32M${VSC_NAME}.abs
+			else
+				BOOTLOADER_DDR = bloader3_3281_security_demoboard_64M${VSC_NAME}.abs
+			endif
+		else
+			ifdef _USE_32M_MEM_
+				BOOTLOADER_DDR = bloader3_3281_security_debugboard_32M${VSC_NAME}.abs
+			else
+				BOOTLOADER_DDR = bloader3_3281_security_debugboard_64M${VSC_NAME}.abs
+			endif
+		endif
+	endif
+endif
+
+# output file name
+OUT = sabbat_s3606
+SEE_OUT = see_sabbat_s3606
+
+# Link Script File
+ifdef _M3383_SABBAT_
+SEE_LSCR = see_ldscript_M3383_sabbat.ld
+else
+	ifdef _S3281_
+		ifdef _USE_32M_MEM_
+			ifdef _M3281_SOLUTION3_SUPPORT_
+				SEE_LSCR = see_ldscript_M3281_32M_solution3.ld
+			else
+				ifdef _CAS9_VSC_ENABLE_
+					SEE_LSCR = see_ldscript_M3281_VSC_32M.ld
+				else
+					SEE_LSCR = see_ldscript_M3281_32M.ld
+				endif
+			endif
+		else
+			ifdef _CAS9_VSC_ENABLE_
+				SEE_LSCR = see_ldscript_M3281_VSC_64M.ld
+			else
+				SEE_LSCR = see_ldscript_M3281_64M.ld
+			endif
+		endif
+	else
+		SEE_LSCR = see_ldscript.ld
+	endif	
+endif
+
+ifdef _BUILD_OTA_E_
+	ifdef DUAL_ENABLE
+		BSP = blocks_script_7z_ota_dual.txt
+	else
+		ifdef _COMPRESS_LZO
+			BSP = blocks_script_7z_ota_lzo.txt
+		else
+			BSP = blocks_script_7z_ota.txt
+		endif		
+	endif
+else
+	ifdef DUAL_ENABLE
+			ifdef _S3281_
+				ifdef _EROM_UPG_HOST_ENABLE_
+					ifeq ($(_EROM_UPG_HOST_ENABLE_), 1)
+						BSP = blocks_script_7z_M3281_ca_erom_stb_host${VSC_NAME}.txt
+					else
+						BSP = blocks_script_7z_M3281_ca_erom_pc_host${VSC_NAME}.txt
+					endif										
+				else	
+					ifdef _BC_CA_STD_ENABLE_
+						BSP = blocks_script_7z_M3281_vm_std_4M.txt
+					else
+						ifdef _BC_CA_ENABLE_	#BC AS
+							BSP = blocks_script_7z_M3281_vm.txt
+						else
+							ifdef _FTA_ONLY_
+								BSP = blocks_script_7z_M3281_fta.txt
+							else
+								ifdef _CAS9_VSC_ENABLE_
+									BSP = blocks_script_7z_M3281_vsc.txt
+								else
+									BSP = blocks_script_7z_M3281_ca.txt
+								endif
+							endif
+						endif
+					endif
+				endif	
+			else
+					ifdef _BC_CA_ENABLE_
+						BSP = blocks_script_7z_sabbat_s3602_dual_vm.txt
+					else
+							ifdef _M3383_SABBAT_
+								BSP = blocks_script_7z_sabbat_M3383_ca.txt
+							else
+								ifdef _ENABLE_4M_FLASH_
+									BSP = blocks_script_7z_sabbat_s3603_dual_ca_4m.txt
+								else
+									BSP = blocks_script_7z_sabbat_s3603_dual_ca.txt
+								endif
+						 	 endif
+					endif	
+			endif
+	endif
+endif
+
+
+ifdef _DVBS_ENABLE_
+	ifdef _DVBT_ENABLE_
+		DEF_DB = s2dvbt.ddf
+	else
+		ifdef _ISDBT_ENABLE_
+			DEF_DB = s2isdbt.ddf
+		else
+			ifdef _DVBC_ENABLE_
+				DEF_DB = s2dvbc.ddf
+			else
+				DEF_DB = s2.ddf
+			endif
+		endif
+	endif
+else
+	ifdef _DVBT_ENABLE_
+		DEF_DB = dvbt.ddf
+	else
+		ifdef _ISDBT_ENABLE_
+	   		DEF_DB=s2isdbt.ddf
+		else
+			ifdef _DVBC_ENABLE_
+				DEF_DB = s2dvbc.ddf
+			endif		
+		endif
+	endif
+endif
+
+ifdef _S3281_
+	LIB_HDMI =
+else
+	LIB_HDMI = $(DDK_DIR)/libHDMI.a
+endif
+
+merge_tool = fidmerger_ca.exe
+
+ifdef _BC_CA_ENABLE_
+	BSP_OTA = blocks_script_7z_ota_vm_4m.txt
+else
+	ifdef _BC_CA_STD_ENABLE_
+		BSP_OTA = blocks_script_7z_ota_vm_4m.txt
+	else
+	ifdef _M3383_SABBAT_
+		BSP_OTA = blocks_script_7z_ota_m3383.txt
+	else
+		ifdef _ENABLE_4M_FLASH_
+			ifdef _S3281_
+			BSP_OTA = blocks_script_7z_ota_4m_3281.txt
+			else
+			BSP_OTA = blocks_script_7z_ota_4m.txt
+			endif
+		endif
+	endif
+endif
+endif
+
+ifdef _WIFI_ENABLE_
+	USB_WIFI_LIB = $(DDK_DIR)/wifi/lib_rt5370.a
+	NET_CTRL_LIB = $(DDK_DIR)/wifi/*.o
+	NET_LINK = $(shell ls ${NET_CTRL_LIB})
+endif
+
+all :
+	${MAKE} -f MakefileAS.cmd release
+	${MAKE} -f MakefileAS.cmd all
+
+path:	
+	./getpath.sh
+	
+ui :
+	${MAKE} -f MakefileAS.cmd all
+
+config_cpu :
+	cp -f sys_config_3602.h ${ROOT}/inc/sys_config.h
+	cp -f compiler_cpu.def ${ROOT}/src/compiler.def
+
+config_3281 :
+	cp -f sys_config_3281.h ${ROOT}/inc/sys_config.h
+	cp -f compiler_3281.def ${ROOT}/src/compiler.def
+	${MAKE} -f MakefileAS.cmd logiscope
+
+config_3281_ota :
+	cp -f sys_config_3281.h ${ROOT}/inc/sys_config.h
+	cp -f compiler_3281.def ${ROOT}/src/compiler.def
+	echo -e "\n_BUILD_OTA_E_ = 1" >> ${ROOT}/src/compiler.def
+	echo "DEFS += -D_BUILD_OTA_E_" >> ${ROOT}/src/compiler.def
+
+# sync command only used for Ali internal testing. 
+sync :
+	${MAKE} -f MakefileAS.cmd sync
+	
+clean :
+	${MAKE} -f MakefileAS.cmd clean
+
+new :
+	${MAKE} -f MakefileAS.cmd new
+
+nim :
+	${MAKE} -f MakefileAS.cmd nim
+	
+release :
+	${MAKE} -f MakefileAS.cmd release
+
+product_7z :
+	echo Step 1: Compiler application ...
+	${MAKE} all
+	echo Step 2: Compress application bin file ...
+	${MAKE} -f MakefileAS.cmd compress_7z
+	echo Step 3: Generate Flash file ...
+	${MAKE} -f MakefileAS.cmd generate_7z
+	cp -f product_sabbat_*.abs $(ROOT)/obj/
+	echo All finished!
+
+compress_7z :
+	${OBJCOPY} -R .flash -O binary ${OUT}.out ${OUT}; \
+	${OBJCOPY} -j .flash -O binary ${OUT}.out flash.sec; \
+	${OBJCOPY} -R .flash -O binary ${SEE_OUT}.out ${SEE_OUT}; \
+	${OBJCOPY} -j .flash -O binary ${SEE_OUT}.out see_flash.sec; \
+	mv ${OUT} ${OUT}.bak
+	mv ${SEE_OUT} ${SEE_OUT}.bak
+	cd ../prj/tools; \
+	./code_build.exe ../../obj/${OUT}.map ../../obj/${OUT}.bak ../../obj/${OUT};\
+	./code_build.exe ../../obj/${SEE_OUT}.map ../../obj/${SEE_OUT}.bak ../../obj/${SEE_OUT}
+	rm -f ${OUT}.7z; \
+	../prj/tools/lzma e ${OUT} ${OUT}.7z -lc0 -lp2
+	rm -f ${SEE_OUT}.7z; \
+	../prj/tools/lzma e ${SEE_OUT} ${SEE_OUT}.7z -lc0 -lp2
+
+ifdef _BC_CA_ENABLE_
+    generate_7z :
+		rm -f app_${OUT}.bin
+		cp -f ${OUT}.7z ${ROOT_PRJ}/app.bin
+		cp -f ${SEE_OUT}.7z ${ROOT_PRJ}/app_see.bin
+		cp -f ${ROOT_PRJ}/$(DEF_DB) ${ROOT_PRJ}/factory_data_sabbat.bin 
+    ifdef _S3281_
+		cp -f ${ROOT_PRJ}/loader3_encbl/${BOOTLOADER_DDR} ${ROOT_PRJ}/bloader3_3281_security.abs
+		cp -f ${ROOT_PRJ}/loader3_encbl/${BOOT_CFG} ${ROOT_PRJ}/loader3_encbl/boot_m3281.cfg
+		cp -f ${ROOT_PRJ}/loader3_encbl/${MEM_INIT} ${ROOT_PRJ}/loader3_encbl/S3281_wp.abs
+    endif	
+		cd ${ROOT_PRJ}; \
+			../../../../tools/${merge_tool} ${BSP}
+    ifdef _BUILD_OTA_E_
+		cd ${ROOT_PRJ}; \
+		${ROOT}/prj/tools/lzma e product_sabbat_dual_ota.abs otaloader_m3603_se.bin -lc0 -lp2; \
+		cd ${ROOT_PRJ}; \
+		../../../../tools/${merge_tool} ${BSP_OTA}
+    ifdef _BUILD_USB_LOADER_
+			${ROOT_PRJ}/padding.exe ${ROOT_PRJ}/otaloader_m3603_se.bin ${ROOT_PRJ}/usbloader_to_be_signed.bin
+    else
+			${ROOT_PRJ}/padding.exe ${ROOT_PRJ}/otaloader_m3603_se.bin ${ROOT_PRJ}/otaloader_to_be_signed.bin
+    endif
+    else
+		${ROOT_PRJ}/padding.exe ${ROOT_PRJ}/app.bin ${ROOT_PRJ}/app_to_be_signed.bin
+		${ROOT_PRJ}/padding.exe ${ROOT_PRJ}/app_see.bin ${ROOT_PRJ}/app_see_to_be_signed.bin
+    endif
+else	# not _BC_CA_ENABLE_	
+ifdef _BC_CA_STD_ENABLE_ 
+#start of BC STD CA 
+generate_7z :
+	rm -f app_${OUT}.bin
+	cp -f ${OUT}.7z ${ROOT_PRJ}/app.bin
+	cp -f ${SEE_OUT}.7z ${ROOT_PRJ}/app_see.bin
+ifdef _S3281_
+	cp -f ${ROOT_PRJ}/loader3_encbl/${BOOTLOADER_DDR} ${ROOT_PRJ}/bloader3_3281_security.abs
+	cp -f ${ROOT_PRJ}/loader3_encbl/${BOOT_CFG} ${ROOT_PRJ}/loader3_encbl/boot_m3281.cfg
+	cp -f ${ROOT_PRJ}/loader3_encbl/${MEM_INIT} ${ROOT_PRJ}/loader3_encbl/S3281_wp.abs
+endif	
+	cp -f ${ROOT_PRJ}/bloader3_3281_security.abs ${ROOT_PRJ}/${BC_AP_DIR}/bloader.abs
+ifndef _BUILD_OTA_E_
+	cp -f ${OUT}.7z ${ROOT_PRJ}/${BC_AP_DIR}/app.bin
+	cp -f ${SEE_OUT}.7z ${ROOT_PRJ}/${BC_AP_DIR}/app_see.bin
+	cd ${ROOT_PRJ}/${BC_AP_DIR}; \
+	cp -f ../${BSP} ./blocks_script_7z_sabbat_s3602_dual_ca.txt; \
+	sed -i "s/0x06F90101/0x0AF50100/g" ./blocks_script_7z_sabbat_s3602_dual_ca.txt
+	cd ${ROOT_PRJ}/${BC_AP_DIR}; \
+	./pre_build_sec_fw_bc_std_4m.bat
+endif
+	cp -f ${ROOT_PRJ}/$(DEF_DB) ${ROOT_PRJ}/factory_data_sabbat.bin 
+	
+
+	cd ${ROOT_PRJ}; \
+		../../../../tools/${merge_tool} ${BSP}
+ifdef _S3281_		
+	cp -f ${ROOT_PRJ}/product_sabbat_*.abs ${ROOT_PRJ}/${BC_AP_DIR}/
+	cd ${ROOT_PRJ}/${BC_AP_DIR}; \
+		./split_bl_merge_sign_test_bc_std.bat	
+endif
+		
+ifdef _BUILD_OTA_E_ #need review and update
+	cd ${ROOT_PRJ}; \
+	${ROOT}/prj/tools/lzma e product_sabbat_dual_ota.abs otaloader_m3603.bin -lc0 -lp2; \
+	cp -f otaloader_m3603.bin ./${BC_AP_DIR}/otaloader_m3603.bin
+ifdef _ENABLE_4M_FLASH_
+	cd ${ROOT_PRJ}/${BC_AP_DIR}; \
+	cp -f ../${BSP_OTA} ./blocks_script_7z_sabbat_s3602_dual_ca.txt; \
+	./pre_build_sec_ota_bc_std_4m.bat
+	cd ${ROOT_PRJ}; \
+	../../../../tools/${merge_tool} ${BSP_OTA}
+endif
+endif
+#end of BC STD CA
+else	
+generate_7z :
+	rm -f app_${OUT}.bin
+	cp -f ${OUT}.7z ${ROOT_PRJ}/app.bin
+	cp -f ${SEE_OUT}.7z ${ROOT_PRJ}/app_see.bin
+ifndef _BUILD_OTA_E_
+	cp -f ${OUT}.7z ${ROOT_PRJ}/${CA_AP_DIR}/app.bin
+	cp -f ${SEE_OUT}.7z ${ROOT_PRJ}/${CA_AP_DIR}/app_see.bin
+	cd ${ROOT_PRJ}/${CA_AP_DIR}; \
+	cp -f ../${BSP} ./blocks_script_7z_sabbat_s3602_dual_ca.txt; \
+	sed -i "s/0x06F90101/0x0AF50100/g" ./blocks_script_7z_sabbat_s3602_dual_ca.txt
+ifdef _M3383_SABBAT_
+	cd ${ROOT_PRJ}/${CA_AP_DIR}; \
+	./pre_build_sec_fw_m3383.bat
+else
+ifdef  _ENABLE_4M_FLASH_		
+ifdef _CAS9_VSC_ENABLE_
+	cd ${ROOT_PRJ}/${CA_AP_DIR}; \
+	./pre_build_sec_fw_4m_vsc.bat
+else
+	cd ${ROOT_PRJ}/${CA_AP_DIR}; \
+	./pre_build_sec_fw_4m.bat
+endif
+else
+	cd ${ROOT_PRJ}/${CA_AP_DIR}; \
+	./pre_build_sec_fw.bat
+endif
+endif
+endif
+#  ifdef _DVBS_ENABLE_
+	cp -f ${ROOT_PRJ}/$(DEF_DB) ${ROOT_PRJ}/factory_data_sabbat.bin 
+#  endif
+ifdef _CAS9_VSC_ENABLE_
+	cp -f ${ROOT_PRJ}/conax_ap/${VSC_LIB_NAME} ${ROOT_PRJ}/conax_ap/vsc_see_se.bin
+endif
+ifdef _S3281_
+	cp -f ${ROOT_PRJ}/loader3_encbl/${BOOTLOADER_DDR} ${ROOT_PRJ}/bloader3_3281_security.abs
+	cp -f ${ROOT_PRJ}/loader3_encbl/${BOOT_CFG} ${ROOT_PRJ}/loader3_encbl/boot_m3281.cfg
+	cp -f ${ROOT_PRJ}/loader3_encbl/${MEM_INIT} ${ROOT_PRJ}/loader3_encbl/S3281_wp.abs
+ifdef _CAS9_CA_ENABLE_
+	cd ${ROOT_PRJ}; \
+	./universal_key_encrypt.sh
+endif	
+endif
+	cd ${ROOT_PRJ}; \
+		../../../../tools/${merge_tool} ${BSP}
+ifndef _BUILD_OTA_E_
+ifdef _S3281_		
+	cp -f ${ROOT_PRJ}/product_sabbat_*.abs ${ROOT_PRJ}/${CA_AP_DIR}/
+ifndef _ENABLE_BL_ENCRYPTED_
+	cd ${ROOT_PRJ}/${CA_AP_DIR}; \
+		./split_bl_merge_sign_test.bat	
+else
+	cd ${ROOT_PRJ}/${CA_AP_DIR}; \
+		./split_encrypt_bl_merge_sign.bat	
+endif
+else
+	cp -f ${ROOT_PRJ}/product_sabbat_*.abs ${ROOT_PRJ}/${CA_AP_DIR}/			
+	cd ${ROOT_PRJ}/${CA_AP_DIR}; \
+		./split_bl_merge_sign_test.bat	
+endif
+endif	
+	
+ifdef _BUILD_OTA_E_
+	cd ${ROOT_PRJ}; \
+	${ROOT}/prj/tools/lzma e product_sabbat_dual_ota.abs otaloader_m3603.bin -lc0 -lp2; \
+	cp -f otaloader_m3603.bin ./${CA_AP_DIR}/otaloader_m3603.bin
+ifdef _M3383_SABBAT_
+	cd ${ROOT_PRJ}/${CA_AP_DIR}; \
+	cp -f ../${BSP_OTA} ./blocks_script_7z_sabbat_s3602_dual_ca.txt; \
+	./pre_build_sec_ota.bat
+	cd ${ROOT_PRJ}; \
+	../../../../tools/${merge_tool} ${BSP_OTA}
+endif
+ifdef _ENABLE_4M_FLASH_
+	cd ${ROOT_PRJ}/${CA_AP_DIR}; \
+	cp -f ../${BSP_OTA} ./blocks_script_7z_sabbat_s3602_dual_ca.txt; \
+	./pre_build_sec_ota_4m.bat
+	cd ${ROOT_PRJ}; \
+	../../../../tools/${merge_tool} ${BSP_OTA}
+endif
+endif
+endif
+
+endif
+
+ifdef _AUI_
+ifdef _AUI_TEST_
+LFLAG_AUI+= -L$(DDK_DIR) -laui_test -laui
+else
+LFLAG_AUI+= -L$(DDK_DIR) -laui
+endif
+endif
+
+link :
+ifdef _USE_32M_MEM_
+ifdef _LINUX_COMPILER_ENVIRONMENT_
+	${LD} ${LDFLAGS} ${NEED} $(shell ls $(PLUGIN_EXT_PATH)/lib_ntfs.o) -o ${OUT}.out -Map ${OUT}.map \
+	  -T lscript.ld ${LIB} -lstb ${USB_WIFI_LIB} \
+	   ${ALL_LIBS}\
+	   $(MHEG5_V2_LIB) \
+	   -lstb -l7zip -lm -lgcc -lc
+else
+	${LD} ${LDFLAGS} ${NEED} $(shell ls $(PLUGIN_EXT_PATH)/lib_ntfs.o) -o ${OUT}.out -Map ${OUT}.map \
+	  -T lscript.ld --start-group ${LIB} -lstb $(LFLAG_AUI) ${USB_WIFI_LIB} \
+	   ${ALL_LIBS}\
+	   $(MHEG5_V2_LIB) \
+	   -lstb -l7zip -lm -lgcc -lc -le --end-group
+endif
+else
+ifdef _LINUX_COMPILER_ENVIRONMENT_
+	${LD} ${LDFLAGS} ${NEED} $(shell ls $(PLUGIN_EXT_PATH)/*.o ) -o ${OUT}.out -Map ${OUT}.map \
+	  -T lscript.ld ${LIB} $(LIB_HDMI) -lstb ${USB_WIFI_LIB} ${NET_LINK}\
+	   ${ALL_LIBS}\
+	   $(MHEG5_V2_LIB) \
+	   -lstb -l7zip -lm -lgcc -lc
+else
+	${LD} ${LDFLAGS} ${NEED} $(shell ls $(PLUGIN_EXT_PATH)/*.o ) -o ${OUT}.out -Map ${OUT}.map \
+	  -T lscript.ld --start-group ${LIB} $(LIB_HDMI) -lstb ${USB_WIFI_LIB} ${NET_LINK}\
+	   ${ALL_LIBS}\
+	   $(MHEG5_V2_LIB) \
+	   -lstb -l7zip -lm -lgcc -lc -le --end-group
+endif
+endif	   
+	${OBJCOPY} -O binary ${OUT}.out ${OUT}.abs
+#	cp -f ${OUT}.out $(RUN_DIR)/
+#	${OBJDUMP} -D ${OUT}.out > ${OUT}.dis
+# */
+
+
+ifdef _BC_CA_ENABLE_
+link_ota :
+ifdef _BUILD_USB_LOADER_
+ifdef _LINUX_COMPILER_ENVIRONMENT_
+	${LD} ${LDFLAGS} ${NEED} $(shell ls $(PLUGINEXT_DIR)/*_ntfs.o ) -o ${OUT}.out -Map ${OUT}.map \
+	  -T lscript.ld ${LIB} $(LIB_HDMI) -lstb \
+	   ${DDKLIB}.a ${PVR_PLUS}.a ${SMOD_LIB} -llog ${CA_LIB} \
+	   -lstb -l7zip -lm -lgcc -lc
+else
+	${LD} ${LDFLAGS} ${NEED} $(shell ls $(PLUGINEXT_DIR)/*_ntfs.o ) -o ${OUT}.out -Map ${OUT}.map \
+	  -T lscript.ld ${LIB} $(LIB_HDMI) -lstb \
+	   ${DDKLIB}.a ${PVR_PLUS}.a ${SMOD_LIB} -llog ${CA_LIB} \
+	   -lstb -l7zip -lm -lgcc -lc -le
+endif
+	${OBJCOPY} -O binary ${OUT}.out ${OUT}.abs
+else
+ifdef _LINUX_COMPILER_ENVIRONMENT_
+	${LD} ${LDFLAGS} ${NEED} -o ${OUT}.out -Map ${OUT}.map \
+	  -T lscript.ld ${LIB} $(LIB_HDMI) -lstb \
+	   ${DDKLIB}.a ${SMOD_LIB} -llog ${CA_LIB} \
+	   -lstb -l7zip -lm -lgcc -lc
+else
+	${LD} ${LDFLAGS} ${NEED} -o ${OUT}.out -Map ${OUT}.map \
+	  -T lscript.ld ${LIB} $(LIB_HDMI) -lstb \
+	   ${DDKLIB}.a ${SMOD_LIB} -llog ${CA_LIB} \
+	   -lstb -l7zip -lm -lgcc -lc -le
+endif
+	${OBJCOPY} -O binary ${OUT}.out ${OUT}.abs
+#	cp -f ${OUT}.out $(RUN_DIR)/
+#	${OBJDUMP} -D ${OUT}.out > ${OUT}.dis
+# */
+endif
+else
+ifdef _BC_CA_STD_ENABLE_
+link_ota :
+ifdef _BUILD_USB_LOADER_
+ifdef _LINUX_COMPILER_ENVIRONMENT_
+	${LD} ${LDFLAGS} ${NEED} $(shell ls ${PLUGIN_EXT_PATH}/*_ntfs.o ) -o ${OUT}.out -Map ${OUT}.map \
+	  -T lscript.ld ${LIB} $(LIB_HDMI) -lstb \
+	   ${DDKLIB}.a ${PVR_PLUS}.a ${SMOD_LIB} -llog \
+	   -lstb -l7zip -lm -lgcc -lc
+else
+	${LD} ${LDFLAGS} ${NEED} $(shell ls ${PLUGIN_EXT_PATH}/*_ntfs.o ) -o ${OUT}.out -Map ${OUT}.map \
+	  -T lscript.ld ${LIB} $(LIB_HDMI) -lstb \
+	   ${DDKLIB}.a ${PVR_PLUS}.a ${SMOD_LIB} -llog \
+	   -lstb -l7zip -lm -lgcc -lc -le
+endif
+	${OBJCOPY} -O binary ${OUT}.out ${OUT}.abs
+else
+ifdef _LINUX_COMPILER_ENVIRONMENT_
+	${LD} ${LDFLAGS} ${NEED} -o ${OUT}.out -Map ${OUT}.map \
+	  -T lscript.ld ${LIB} $(LIB_HDMI) -lstb \
+	   ${DDKLIB}.a ${SMOD_LIB} -llog \
+	   -lstb -l7zip -lm -lgcc -lc
+else
+	${LD} ${LDFLAGS} ${NEED} -o ${OUT}.out -Map ${OUT}.map \
+	  -T lscript.ld ${LIB} $(LIB_HDMI) -lstb \
+	   ${DDKLIB}.a ${SMOD_LIB} -llog \
+	   -lstb -l7zip -lm -lgcc -lc -le
+endif
+	${OBJCOPY} -O binary ${OUT}.out ${OUT}.abs
+endif
+else
+link_ota :
+ifdef _LINUX_COMPILER_ENVIRONMENT_
+	${LD} ${LDFLAGS} ${NEED} -o ${OUT}.out -Map ${OUT}.map \
+	  -T lscript.ld ${LIB} $(LIB_HDMI) -lstb \
+	   ${DDKLIB}.a ${SMOD_LIB} -llog \
+	   -lstb -l7zip -lm -lgcc -lc
+else
+	${LD} ${LDFLAGS} ${NEED} -o ${OUT}.out -Map ${OUT}.map \
+	  -T lscript.ld ${LIB} $(LIB_HDMI) -lstb \
+	   ${DDKLIB}.a ${SMOD_LIB} -llog \
+	   -lstb -l7zip -lm -lgcc -lc -le
+endif
+	${OBJCOPY} -O binary ${OUT}.out ${OUT}.abs
+#	cp -f ${OUT}.out $(RUN_DIR)/
+#	${OBJDUMP} -D ${OUT}.out > ${OUT}.dis
+# */
+endif
+endif
+see_link : 
+ifdef _USE_32M_MEM_
+ifdef _LINUX_COMPILER_ENVIRONMENT_
+	${LD} ${LDFLAGS} $(shell ls ${PLUGIN_PATH}/plugin_*.o ) -o ${SEE_OUT}.out -Map ${SEE_OUT}.map \
+	  -T ${SEE_LSCR} ${LIB} $(DDK_DIR)/${SEELIB}.a \
+	    $(DDK_DIR)/${MPG_LIB}.a liblog.a\
+	    -lm -lgcc -lc 
+else
+	${LD} ${LDFLAGS} $(shell ls ${PLUGIN_PATH}/plugin_*.o ) -o ${SEE_OUT}.out -Map ${SEE_OUT}.map \
+	  -T ${SEE_LSCR} ${LIB} $(DDK_DIR)/${SEELIB}.a \
+	    $(DDK_DIR)/${MPG_LIB}.a liblog.a\
+	    -lm -lgcc -lc -le
+endif
+else
+ifdef _LINUX_COMPILER_ENVIRONMENT_
+	${LD} ${LDFLAGS} $(shell ls $(PLUGIN_PATH)/*.o ) -o ${SEE_OUT}.out -Map ${SEE_OUT}.map \
+	  -T ${SEE_LSCR} ${LIB} $(LIB_HDMI) $(DDK_DIR)/${SEELIB}.a \
+	    $(DDK_DIR)/${MPG_LIB}.a liblog.a\
+	    -lm -lgcc -lc 
+else
+	${LD} ${LDFLAGS} $(shell ls $(PLUGIN_PATH)/*.o ) -o ${SEE_OUT}.out -Map ${SEE_OUT}.map \
+	  -T ${SEE_LSCR} ${LIB} $(LIB_HDMI) $(DDK_DIR)/${SEELIB}.a \
+	    $(DDK_DIR)/${MPG_LIB}.a liblog.a\
+	    -lm -lgcc -lc -le
+endif
+endif	    
+	${OBJCOPY} -O binary ${SEE_OUT}.out ${SEE_OUT}.abs
+
+# */
+
+see_link_ota :
+ifdef _S3281_
+ifdef _BUILD_USB_LOADER_
+	${LD} ${LDFLAGS} -o ${SEE_OUT}.out -Map ${SEE_OUT}.map \
+	  -T ${SEE_LSCR} ${LIB} $(LIB_HDMI) $(DDK_DIR)/${SEELIB}.a \
+	    $(DDK_DIR)/${MPG_LIB}.a liblog.a\
+	    -lm -lgcc -lc -le
+else
+	${LD} ${LDFLAGS} -o ${SEE_OUT}.out -Map ${SEE_OUT}.map \
+	  -T ${SEE_LSCR} ${LIB} $(LIB_HDMI) $(DDK_DIR)/${SEELIB}.a \
+	    liblog.a\
+	    -lm -lgcc -lc -le
+endif    
+else
+	${LD} ${LDFLAGS} -o ${SEE_OUT}.out -Map ${SEE_OUT}.map \
+	  -T ${SEE_LSCR} ${LIB} $(LIB_HDMI) $(DDK_DIR)/${SEELIB}.a \
+	    $(DDK_DIR)/${MPG_LIB}.a liblog.a\
+	    -lm -lgcc -lc -le
+endif
+	${OBJCOPY} -O binary ${SEE_OUT}.out ${SEE_OUT}.abs
+
+# */
+
+cleanld :
+	rm -f ${OUT}.out ${OUT}.map ${OUT}.dis ${OUT}.abs libstb.a \
+	  ${OUT} flash.sec ${OUT}.gz ${OUT}.7z app_${OUT}.bin
+
+label :
+	${MAKE} -f MakefileAS.cmd label
+
+label_core :
+	${MAKE} -f MakefileAS.cmd label_core
+
+label_sec :
+	${MAKE} -f MakefileAS.cmd label_sec
+
+ddk:	
+	${MAKE} -f MakefileAS.cmd ddk
+
+sdk: plus
+	${MAKE} -f MakefileAS.cmd sdk	
+
+ddk_clean :
+	${MAKE} -f MakefileAS.cmd ddk_clean
+	
+sdk_clean : plus_clean
+	${MAKE} -f MakefileAS.cmd sdk_clean
+
+plus_clean: pplus_clean
+	${MAKE} -f MakefileAS.cmd plus_clean
+	
+sdk_rel:
+	${MAKE} -f MakefileAS.cmd sdk_root
+	${MAKE} -f MakefileAS.cmd sdk_rel
+
+plus: pplus
+	${MAKE} -f MakefileAS.cmd plus
+
+pplus:
+	${MAKE} -f MakefileAS.cmd pplus
+
+pplus_clean:
+	${MAKE} -f MakefileAS.cmd pplus_clean
+	
+dis:
+	cd ${ROOT}/obj ;\
+	sde-objdump -D ${OUT}.out > ${OUT}.dis
+	
+see_dis:
+	cd ${ROOT}/obj ;\
+	sde-objdump -D ${SEE_OUT}.out > ${SEE_OUT}.dis
+
+bin:
+	echo Step 1: Compiler application ...
+	echo Step 2: Compress application bin file ...
+	${MAKE} -f MakefileAS.cmd compress_7z
+	echo Step 3: Generate Flash file ...
+	${MAKE} -f MakefileAS.cmd generate_7z
+	cp -f product_sabbat_*.abs $(ROOT)/obj/
+	echo All finished!
+
+see_enc:
+	${MAKE} -f MakefileAS.cmd see_enc	
+
+bakcp:
+	${MAKE} -f MakefileAS.cmd bakcp	
+

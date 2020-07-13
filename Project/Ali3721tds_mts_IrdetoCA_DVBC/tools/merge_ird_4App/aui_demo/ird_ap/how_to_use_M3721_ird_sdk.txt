@@ -1,0 +1,131 @@
+-------------------------------------------------------------
+For customer
+-------------------------------------------------------------
+1. Reference document(from Irdeto)
+	743536 13.0 Irdeto Loader V5 Operation Guide.pdf
+	740440 7.0 Loader_V5_DVT_Procedure.pdf
+	740992 5.0 Loader 5 Specification.pdf
+	735209 40.0 Irdeto Cloaked CA Agent - Device Integration Overview.pdf
+
+2. CA related code provided by ALi
+   dvt_app: C1800A_ca_release_combo\prj\app\demo\combo\aui_demo\ird_ap\
+   ird_blcore(IRDETO loadercore): C1800A_ca_release_combo\prj\app\demo\combo\aui_demo\ird_ap\LoaderCore\src\ird_blcore\
+   ird_blcore_spi(IRDETO loadercore SPI): \C1800A_ca_release_combo\prj\app\demo\combo\aui_demo\ird_ap\LoaderCore\src\spi\
+   ird_vd(IRDETO Virtual Driver for SoftCell): C1800A_ca_release_combo\prj\app\demo\combo\aui_demo\ird_ap\vd\
+   
+3. CA related material should requested from Irdeto
+	 IRDETO related documents
+	 Upgrade Key (MANKEY, DEVKEY)
+	 DVTSUIT(DVTSUIT is the HL module sign tool provided by IRDETO, all 
+	         HL modules that need to be upgraded must be signed by DVTSUIT 
+	         before upgrading. CSTM need integrate DVTSUIT into SDK before 
+	         use it to sign HL modules.)
+	         
+4. Configure DVTSUIT package
+   copy prj\app\demo\combo\aui_demo\ird_ap\*.cfg to DVTSUIT/USER
+   
+5. SDK compilation:
+   Notice: must compiler IRD loader first, then compiler BL and FW.
+           From SDK18.3b, the flashwr_c3702.abs for wingdb burnning flash is updated, should get latest version from ALi ftp.
+   5.1 FW compiler prepare: merge package plugin_combo_M3702&C1800A_ca_release_combo to ddk_release_combo_3702, select 
+                      one .ubo file from folder "see_abs_ird", rename to "signed_app_see.ubo", then copy to  "aui_demo/ird_ap".
+                      generate the firmware encryption key(16 bytes) and name it as "decrypt_key.bin", then put to 
+                      "aui_demo/ird_ap". generate the firmware RSA key pair using redemo.exe in SDK, then put it 
+                      (sys_sw_pair.key) to "aui_demo/ird_ap".
+                      Ex: ./redemo.exe -G sys_sw_pair.key ejtag.bin 0x1234 0x5678
+   
+   5.2 FW compiler: 
+       5.2.1 IRD loader compiler: edit prj/app/demo/combo/aui_demo/compiler_3702.def:
+                     - Enable _BOARD_M3721_02V01_ = 1
+		                 - Disable other board flag like: #_BOARD_M3712L_01V01_ = 1
+		                 - Enable _DD_SUPPORT = 1 is enable if you need DD/DD+ support
+		                 - Enable _AUI_ = 1
+		                 - Enable _AUI_TEST_ = 1 
+		                 - Enable _BOOT_LOGO_ENABLE_ = 1  
+		                 - Enable _C1800A_CA_ENABLE_ = 1, and disable other CA MACRO(_GEN_CA_ENABLE_)
+		                 - Enable _C1800A_LOADERCORE_ENABLE_ = 1
+		                 - Enable _C1800A_DVT_TEST_ = 1
+		                 - Enable _USE_SIGNED_BL_SEE = 1
+		                 - Enable _C1800A_USE_SIGNED_IFCP_BL_ = 1
+		                 if need use 256M memory:
+		                 - Enable _SUPPORT_256M_MEM = 1
+		                 run below command: 
+		                   make path config_3702_loadercore new ddk aui product_7z
+		                 output is 3721L_ouc_loader_for_sign(_256M).bin in folder aui_demo.
+		   
+		   5.2.2 Boot compiler: copy 3721L_ouc_loader_for_sign(_256M).bin in 5.2.1 to folder Ali_Boot/src/app/loader/loader_i2.
+		                   if need use 256M memory, enable below macro in ALi_Boot\src\app\defcfg\c3702_as_ird.defcfg:
+		                  _SUPPORT_256M_MEM = 1
+		                  enter folder ALi_Boot, run below command:
+                      make defcfg_c3702_ird app
+                      output is in folder ALi_Boot\img, then copy to ALi_SDK\prj\app\demo\combo\aui_demo.
+                      
+		   5.2.3 IRD DVT APP compiler: follow 5.2.1's compiler_3702.def, then run below command:  
+		                   make config_3702 new ddk aui product_7z
+		                 output is DVT APP(product_sabbat_dual.abs) in aui_demo.
+		   
+		   5.2.4 Normal FW compiler: follow 5.2.1's compiler_3702.def, 
+		                  - Disable _C1800A_DVT_TEST_ = 1
+		                 then run below command:  
+		                   make config_3702 new ddk aui product_7z
+		                 output is Normal FW(product_sabbat_dual.abs) in aui_demo.
+
+6. Upgrade method
+   6.1 UART upgrade: TEMU is a UART upgrade tool provided by IRDETO. Put the upgraded files and TEMU in the same directory, 
+                     enter the TEMU directory by using windows command line, use TEMU update file. For example update 
+                     MANKEY.CD5, input the following command:
+                         ./temu.exe  MANKEY.CD5, then power on STB.
+   6.2 USB upgrade:  IRDETO support USB upgrade, it can replace UART upgrade. Copy the upgraded file into your USB disk, 
+                     and rename the file to ALi_update.CD5(must keep this name), Insert the USB disk into the STB, power 
+                     on STB.
+   6.3 OTA upgrade:  IRDETO support OTA-DVB upgrade, OTA-DVB upgrade must use DVT_APP set parameters of OTA, and restart 
+                     STB to update. First, STB run DVT_APP, select Loader NVRAM Parameters menu to config the OTA parameters. 
+                     Then select Upgrade Software, and press OK to save OTA DOWNLOAD FLAG, wait STB reboot.
+                     
+7. Upgrade HL Modules Procedures
+   Burn the DVT APP or Normal FW abs to STB using winGDB.
+   7.1 Upgrade MANKEY£¬DEVKEY and Variant via UART or USB : SDK users need to apply for MANKEY and DEVKEY from IRDETO in advance.
+                     For example, upgrade MANKEY via UART, run the following command:
+                          ./temu.exe  MANKEY.CD5,                   
+                     UART output should has below words: 
+                           LoaderCoreSPI_ReportErrorCode<<<<<<==== 0x000 ===>>>>>>>
+                     Update DEVKEY: 
+                          ./temu.exe DEVKEY.KD5
+                     Update Variant file(VAR_UPD.VD5), which is located in DVTSUIT/DVT_FILES folder:
+                          ./temu.exe VAR_UPD.VD5
+   7.2 Upgrade CSTM SW via USB: after finish step 5.2.3 or 5.2.4, copy aui_demo/ird_ap/app_upg.bin, aui_demo/ird_ap/see_upg.ubo, 
+                     and aui_demo/ird_ap/prst_upg.bin to DVTSUIT/bin. In linux environment, enter DVTSUIT folder, run below command:
+                           ./TestDataGen.py /a
+                     Copy WORK005.CD5 file(to be upgraded file)which is located in DVTSUIT/DVT_FILES folder to USB disk, and 
+                     rename to ALi_update.CD5. Insert the USB disk into the STB and reboot STB. The upgrade software process 
+                     will be a bit long time, the UART will finally output£º
+                           LoaderCoreSPI_ReportErrorCode<<<<<<==== 0xXXX ===>>>>>>>
+                     Pull out the USB disk from STB, then reboot. STB will run bootstrap to check HL modules, and then into 
+                     the application.
+   7.3 Upgrade CSTM SW via OTA: after finish step 5.2.3 or 5.2.4, copy aui_demo/app_upg.bin, aui_demo/ird_ap/see_upg.ubo, 
+                     and aui_demo/ird_ap/prst_upg.bin to DVTSUIT/bin. In linux environment, enter DVTSUIT folder, run below command:
+                           ./TestDataGen.py /a
+                     Copy WORK009.CD5 file(to be upgraded file)which is located in DVTSUIT/DVT_FILES folder to Irdeto Code Download Application,
+                     and config it to generate ts stream. Then use DVT_APP set parameters of OTA and reboot STB. The upgrade software process 
+                     will be a bit long time, the UART will finally output£º
+                           LoaderCoreSPI_ReportErrorCode<<<<<<==== 0xXXX ===>>>>>>>
+                     Reboot STB,STB will run bootstrap to check HL modules, and then into the application.                  
+
+8. HL Modules ID Definition: Refer to _lc_module_id in \ird_ap\LoaderCore\inc\spi\LoaderCoreSPI_Module.h.
+
+9. HL Module encryption:
+	9.1 Apply EIK from Irdeto, then put it as ALi_Boot/src/app/loader/loader_i2/eik.key.
+	9.2 Compiler special Boot to generate encrypted HL module image:
+	     follow 5.2.2, but enable _EN_ENCRYPT_HL_MODULE_=y in ALi_Boot\src\app\defcfg\c3702_as_ird.defcfg, then
+             make defcfg_c3702_ird app
+         output is ALi_Boot\img\bloader3_3702_logo_sec_ird_enc_hl.abs, then copy to 
+         ALi_SDK\prj\app\demo\combo\aui_demo\bloader3_3702_logo_sec_ird.abs.
+    9.3 Compiler FW, follow 5.2.3/5.2.4.
+    9.4 Burn FW in 9.3 to flash, insert USB disk, then power on, wait screen show "dump finish, please power off 
+        STB". Power off STB, get encrypted HL module file "app_upg.bin" in USB disk.
+        Note: before insert USB disk, should make sure the file system of USB disk has no error, or dump file will 
+              fail. Can use chkdsk or other tools to check the USB disk before use. 
+    9.5 follow 7.2(should use "app_upg.bin" in 9.4) to generate ALi_update.CD5. Then can do upgrade as before.    
+
+
+	     

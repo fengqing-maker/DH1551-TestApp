@@ -1,0 +1,45 @@
+1、设置初始化参数
+	服务器地址配置
+	数据配置路径、Project文件
+	订单号，验证客户端发送数据的正确性
+	SN长度、SN起始位置、结束位置、continuty
+	
+	
+
+等待客户端连接：
+连接成功
+接收指令
+解析指令
+构造数据
+	2、读取数据配置
+		
+	
+	3、根据请求数据类型获取本地源数据
+		SN（NVG17110101S010823）
+			length
+			startbit
+			endbit
+			index
+			endindex
+			
+		HDCP
+			文件名（不带后缀）
+		MAC
+		
+		APP
+			文件名
+			文件数据总长
+			已传输长度
+		
+	更新数据配置
+	组合数据
+	发送
+发送数据
+
+
+
+recvandsendto
+parse->datatype->senddatatoclient(contructdata)->send(socket,buff,len)
+len
+
+

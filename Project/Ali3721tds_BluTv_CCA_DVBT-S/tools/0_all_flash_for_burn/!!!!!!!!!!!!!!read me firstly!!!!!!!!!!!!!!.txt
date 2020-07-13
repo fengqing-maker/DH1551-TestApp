@@ -1,0 +1,9 @@
+####此目录为8M完整falsh烧录文件制作包#######
+
+将原始的keres_ecos.bin和RC.bin  copy到本目录，双击merge.bat可生成
+
+注意：
+请首先明确需要烧录哪个key！！！！！！
+【一般现场解扰用客户key, 公司解扰测试用测试key----与CA人员沟通确定】
+请擦key----升key-------【测试key：先man在dev key，或者客户key：先man再cus key】
+

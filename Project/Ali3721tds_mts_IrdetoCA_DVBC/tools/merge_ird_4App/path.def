@@ -1,0 +1,15 @@
+LOCAL_BASE = /home/niuchunguo/Artpal_BL_Just4SVN/Porting/ALI/ali3721_tds/src/SDK4.0_IRD_18.3b/ALi_SDK
+ 
+BASE_DIR = ${LOCAL_BASE}
+INC_DIR = ${BASE_DIR}/inc
+LIB_DIR = ${BASE_DIR}/obj
+REL_DIR = ${BASE_DIR}/rel
+DDK_DIR = ${BASE_DIR}/ddk
+SDK_DIR = ${BASE_DIR}/sdk
+PLUGINDDK_DIR = ${BASE_DIR}/ddk/plugin
+PLUGINEXT_DIR = ${BASE_DIR}/ddk/plugin_ext
+BLSDK_DIR = ${BASE_DIR}/sdk/blsdk
+DDK_BLSDK_DIR = ${BASE_DIR}/ddk/blsdk
+MH5_INC_DIR = ${BASE_DIR}/src/udi/lib_mheg5_v20/inc
+DDK_DLNA_DIR = ${BASE_DIR}/ddk/dlna
+INC_DLNA_DIR = ${BASE_DIR}/inc/dlna

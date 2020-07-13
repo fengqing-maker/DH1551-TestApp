@@ -1,0 +1,37 @@
+# M3527 AUI OTA compilation guide
+--------------------------------------------------------------------------------
+
+Include `ALI RD` & `Customer/ALI QT` introduce.
+
+## Compiler version
+	1. Linux environment: gcc 4.7.3
+	2. Cygwin : gcc3.4.4
+
+--------------------------------------------------------------------------------
+
+
+## For ALI internal RD ##
+
+Compile with full sdk source code.
+
+### Step 1: (compile SEE)
+	1. cd $PRJ_ROOT/src/see/m36f
+	2. make path config_3505_ota new all
+	
+### Step 2: (sync code from sabbat_dual, QT or customer no need this step)
+	1. cd $PRJ_ROOT/prj/app/demo/combo/aui_demo
+	2. make path aui_sync_3505
+
+### Step 3: (config)	
+	1. cd $PRJ_ROOT/prj/app/demo/combo/aui_demo
+	2. Edit compiler_3505.def, 
+		Enable->		_BOARD_M3527_01V01_ = 1
+		Disable all other boards
+	3. Ensure all CA are disabled
+	   If you are compiling CA version, please enable CA relative OPTIONs
+
+### Step 4: (compile)
+	1. cd $PRJ_ROOT/prj/app/demo/combo/aui_demo
+	2. make path config_3505_ota new sdk_clean sdk aui product_7z 
+
+

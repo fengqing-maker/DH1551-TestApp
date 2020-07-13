@@ -1,0 +1,66 @@
+#This makefile just for M3515A project
+PRJ_DIR=./prj/app/demo/combo/aui_demo
+
+# Before make all, you need make config first
+all: libaui nestor aui_test
+	make product_7z -C ${PRJ_DIR}
+
+clean : libaui_clean nestor_clean aui_test_clean
+	make new -C ${PRJ_DIR}
+	
+config:
+	make path -C ${PRJ_DIR}
+	make config_3503 -C ${PRJ_DIR}
+	make ddk -C ${PRJ_DIR}
+	dos2unix ./aui/aui.cfg ./aui/build.sh
+	cp ./prj/app/demo/combo/aui_demo/ali_pmu_bin.h ./inc/hld/pmu
+	make new -C ${PRJ_DIR}
+	make clean -I../../ FLATFORM=TDS -C ./aui/src/tds -f ../makefile
+	make clean -I../inc FLATFORM=TDS -C ./aui/nestor/targetapp -f Makefile
+	make clean -I../ FLATFORM=TDS -C ./aui/samples -f makefile
+	
+libaui:
+	@echo "******************Compile TDS aui******************"
+	make -I../../ FLATFORM=TDS -C ./aui/src/tds -f ../makefile
+	cp ./aui/output/tds/libaui.a ./ddk/
+
+libaui_clean:
+	make clean -I../../ FLATFORM=TDS -C ./aui/src/tds -f ../makefile
+
+
+nestor:
+	#build aui nestor
+	@echo "******************Compile TDS nestor framework*************"
+	make -I../inc FLATFORM=TDS -C ./aui/nestor/targetapp -f Makefile
+	cp ./aui/nestor/targetapp/libnestor.a ./ddk/
+	
+nestor_clean:
+	make clean -I../inc FLATFORM=TDS -C ./aui/nestor/targetapp -f Makefile
+	
+aui_test:
+	# build aui test
+	@echo "******************Compile TDS aui samples******************"
+	make -I../ FLATFORM=TDS -C ./aui/samples -f makefile
+	cp ./aui/output/tds/libaui_test.a ./ddk/
+
+aui_test_clean:
+	make clean -I../ FLATFORM=TDS -C ./aui/samples -f makefile
+
+# app just make aui_demo and link
+app:
+	make ui -C ${PRJ_DIR}
+	make bin -C ${PRJ_DIR}
+
+# Not compile, just generate abs file
+bin:
+	make bin -C ${PRJ_DIR}
+	
+backup_fw:
+	@echo "******************Compile TDS backup_fw******************"
+	mkdir -p ./images/
+	rm -rf ./images/*.*
+	cp -f ./obj/s3503_sabat.ini ./images/
+	cp -f ./obj/*.out ./images/
+	cp -f ./obj/flashwr_3503.abs ./images/
+	cp -f ./obj/product_sabbat_dual.abs ./images/
+	cp -f ./obj/s3503_sf_burn_sabbat.ini ./images/

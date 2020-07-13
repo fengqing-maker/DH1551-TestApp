@@ -1,0 +1,1 @@
+INC   =  -I$(TRUNK_HOME)/Include/adi

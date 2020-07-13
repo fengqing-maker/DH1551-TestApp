@@ -1,0 +1,353 @@
+/*
+ * STBDataInterface.cpp
+ *
+ *  Created on: 2015-9-21
+ *      Author: linc
+ */
+
+#include "STBDataInterface.h"
+#include "STBData.h"
+#include "APAssert.h"
+#include "adi_flash.h"
+
+#define MIN_SN_LEN 4
+#define MIN_HDCP_LEN 128
+#define MIN_MAC_LEN 10
+#define MIN_CHIPID_LEN 4
+#define MIN_INDIVI_RETURN_LEN 36
+
+
+static STBData * g_pSTBData = NULL;
+
+EN_STB_DATA ConfigSTBDataInfo(unsigned int unStartAddr, unsigned int unDataSize, int nDebugLevel)
+{	
+	if(g_pSTBData == NULL)
+	{
+		g_pSTBData = new STBData(unStartAddr, unDataSize, nDebugLevel);
+		APAssert(g_pSTBData != NULL);
+	}
+
+	return E_DATA_SUCCESS;
+}
+
+EN_STB_DATA ConfigSTBDataInfo(STBDataInfo_S *pSTBDataInfo_S, int nDebugLevel)
+{
+	if(g_pSTBData == NULL)
+	{
+		g_pSTBData = new STBData( pSTBDataInfo_S, nDebugLevel);
+		APAssert(g_pSTBData != NULL);
+		return E_DATA_SUCCESS;
+	}
+
+	return E_DATA_PARAM_ERROR;
+}
+
+void SetIFCPAddress(unsigned int unAddr, unsigned int unSize)
+{
+	if(g_pSTBData != NULL)
+	{
+		return g_pSTBData->SetIFCPAddress(unAddr, unSize);
+	}
+}
+
+EN_STB_DATA WriteSN(unsigned char * pucSNBuf, unsigned int unSNLen)
+{
+	if(pucSNBuf == NULL || unSNLen < MIN_SN_LEN)
+	{
+		APAssert(pucSNBuf != NULL);
+		APAssert(unSNLen >= MIN_SN_LEN);
+		
+		return E_DATA_PARAM_ERROR;
+	}
+
+	if(g_pSTBData == NULL)
+	{
+		return E_DATA_NOT_CONFIG_ADDRESS;
+	}
+
+	return g_pSTBData->WriteSN(pucSNBuf, unSNLen);
+}
+
+EN_STB_DATA ReadSN(char * pSNBuf, unsigned int unSNLen)
+{
+	if(pSNBuf == NULL || unSNLen < MIN_SN_LEN)
+	{
+		APAssert(pSNBuf != NULL);
+		APAssert(unSNLen >= MIN_SN_LEN);
+		
+		return E_DATA_PARAM_ERROR;
+	}
+
+	if(g_pSTBData == NULL)
+	{
+		return E_DATA_NOT_CONFIG_ADDRESS;
+	}
+
+	return g_pSTBData->ReadSN(pSNBuf, unSNLen);
+}
+
+EN_STB_DATA WriteHDCPKey(unsigned char * pucHDCPBuf, unsigned int unHDCPLen)
+{
+	if(pucHDCPBuf == NULL || unHDCPLen < MIN_HDCP_LEN)
+	{
+		APAssert(pucHDCPBuf != NULL);
+		APAssert(unHDCPLen >= MIN_HDCP_LEN);
+		
+		return E_DATA_PARAM_ERROR;
+	}
+
+	if(g_pSTBData == NULL)
+	{
+		return E_DATA_NOT_CONFIG_ADDRESS;
+	}
+
+	return g_pSTBData->WriteHDCPKey(pucHDCPBuf, unHDCPLen);
+}
+
+EN_STB_DATA ReadHDCPKey(unsigned char * pucHDCPBuf, unsigned int unHDCPLen)
+{
+	if(pucHDCPBuf == NULL || unHDCPLen < MIN_HDCP_LEN)
+	{
+		APAssert(pucHDCPBuf != NULL);
+		APAssert(unHDCPLen >= MIN_HDCP_LEN);
+		
+		return E_DATA_PARAM_ERROR;
+	}
+
+	if(g_pSTBData == NULL)
+	{
+		return E_DATA_NOT_CONFIG_ADDRESS;
+	}
+
+	return g_pSTBData->ReadHDCPKey(pucHDCPBuf, unHDCPLen);
+}
+
+
+EN_STB_DATA WriteMAC(unsigned char * pucMACBuf, unsigned int unMACLen)
+{
+	if(pucMACBuf == NULL || unMACLen < MIN_MAC_LEN)
+	{
+		APAssert(pucMACBuf != NULL);
+		APAssert(unMACLen >= MIN_MAC_LEN);
+		
+		return E_DATA_PARAM_ERROR;
+	}
+
+	if(g_pSTBData == NULL)
+	{
+		return E_DATA_NOT_CONFIG_ADDRESS;
+	}
+
+	return g_pSTBData->WriteMAC(pucMACBuf, unMACLen);
+}
+
+
+EN_STB_DATA ReadMAC(char * pMACBuf, unsigned int unMACLen)
+{
+	if(pMACBuf == NULL || unMACLen < MIN_MAC_LEN)
+	{
+		APAssert(pMACBuf != NULL);
+		APAssert(unMACLen >= MIN_MAC_LEN);
+		
+		return E_DATA_PARAM_ERROR;
+	}
+
+	if(g_pSTBData == NULL)
+	{
+		return E_DATA_NOT_CONFIG_ADDRESS;
+	}
+
+	return g_pSTBData->ReadMAC(pMACBuf, unMACLen);
+}
+
+EN_STB_DATA WritePEFAndIFCP(unsigned char * pucBuf, unsigned int unLen)
+{
+	if(pucBuf == NULL || unLen <= 0)
+	{
+		APAssert(pucBuf != NULL);
+		APAssert(unLen > 0);
+		
+		return E_DATA_PARAM_ERROR;
+	}
+
+	if(g_pSTBData == NULL)
+	{
+		return E_DATA_NOT_CONFIG_ADDRESS;
+	}
+
+	return g_pSTBData->WritePEFAndIFCP(pucBuf, unLen);
+}
+
+EN_STB_DATA ReadPEF(unsigned char * pPEFBuf, unsigned int unPEFLen, unsigned int & unPEFActLen )
+{
+	if(pPEFBuf == NULL || unPEFLen <= 0)
+	{
+		APAssert(pPEFBuf != NULL);
+		APAssert(unPEFLen > 0);
+		
+		return E_DATA_PARAM_ERROR;
+	}
+
+	if(g_pSTBData == NULL)
+	{
+		return E_DATA_NOT_CONFIG_ADDRESS;
+	}
+
+	return g_pSTBData->ReadPEF(pPEFBuf, unPEFLen, unPEFActLen);
+}
+
+EN_STB_DATA WriteChipID(unsigned char * pucChipIDBuf, unsigned int unChipIDLen)
+{
+	if(pucChipIDBuf == NULL || unChipIDLen < MIN_CHIPID_LEN)
+	{
+		APAssert(pucChipIDBuf != NULL);
+		APAssert(unChipIDLen >= MIN_CHIPID_LEN);
+		
+		return E_DATA_PARAM_ERROR;
+	}
+
+	if(g_pSTBData == NULL)
+	{
+		return E_DATA_NOT_CONFIG_ADDRESS;
+	}
+
+	return g_pSTBData->WriteChipID(pucChipIDBuf, unChipIDLen);
+}
+
+EN_STB_DATA ReadChipID(unsigned char * pChipIDBuf, unsigned int unChipIDLen)
+{
+	if(pChipIDBuf == NULL || unChipIDLen < MIN_CHIPID_LEN)
+	{
+		APAssert(pChipIDBuf != NULL);
+		APAssert(unChipIDLen >= MIN_CHIPID_LEN);
+		
+		return E_DATA_PARAM_ERROR;
+	}
+
+	if(g_pSTBData == NULL)
+	{
+		return E_DATA_NOT_CONFIG_ADDRESS;
+	}
+
+	return g_pSTBData->ReadChipID(pChipIDBuf, unChipIDLen);
+}
+
+EN_STB_DATA WriteSTBData(unsigned char * pucSTBDataBuf, unsigned int unSTBDataLen)
+{
+	if(pucSTBDataBuf == NULL || unSTBDataLen < MIN_INDIVI_RETURN_LEN)
+	{
+		APAssert(pucSTBDataBuf != NULL);
+		APAssert(unSTBDataLen >= MIN_INDIVI_RETURN_LEN);
+		
+		return E_DATA_PARAM_ERROR;
+	}
+
+	if(g_pSTBData == NULL)
+	{
+		return E_DATA_NOT_CONFIG_ADDRESS;
+	}
+
+	return g_pSTBData->WriteSTBData(pucSTBDataBuf, unSTBDataLen);
+}
+
+EN_STB_DATA ReadSTBData(unsigned char * pSTBDataBuf, unsigned int unSTBDataLen)
+{
+	if(pSTBDataBuf == NULL || unSTBDataLen < MIN_INDIVI_RETURN_LEN)
+	{
+		APAssert(pSTBDataBuf != NULL);
+		APAssert(unSTBDataLen >= MIN_INDIVI_RETURN_LEN);
+		
+		return E_DATA_PARAM_ERROR;
+	}
+
+	if(g_pSTBData == NULL)
+	{
+		return E_DATA_NOT_CONFIG_ADDRESS;
+	}
+
+	return g_pSTBData->ReadSTBData(pSTBDataBuf, unSTBDataLen);
+}
+
+EN_STB_DATA WritePVRFlag(unsigned char * pucPVRFlagBuf, unsigned int unPVRFlagLen)
+{
+	if(pucPVRFlagBuf == NULL || unPVRFlagLen <= 0)
+	{
+		APAssert(pucPVRFlagBuf != NULL);
+		APAssert(unPVRFlagLen >= 0);
+		
+		return E_DATA_PARAM_ERROR;
+	}
+
+	if(g_pSTBData == NULL)
+	{
+		return E_DATA_NOT_CONFIG_ADDRESS;
+	}
+
+	return g_pSTBData->WritePVRFlag(pucPVRFlagBuf, unPVRFlagLen);
+}
+
+EN_STB_DATA ReadPVRFlag(unsigned char * pPVRFlagBuf, unsigned int unPVRFlagLen)
+{
+	if(pPVRFlagBuf == NULL || unPVRFlagLen <= 0)
+	{
+		APAssert(pPVRFlagBuf != NULL);
+		APAssert(unPVRFlagLen >= 0);
+		
+		return E_DATA_PARAM_ERROR;
+	}
+
+	if(g_pSTBData == NULL)
+	{
+		return E_DATA_NOT_CONFIG_ADDRESS;
+	}
+
+	return g_pSTBData->ReadPVRFlag(pPVRFlagBuf, unPVRFlagLen);
+}
+
+EN_STB_DATA WriteCustomerCode(unsigned char * pucCustomerCodeBuf, unsigned int unCustomerCodeLen)
+{
+	if (pucCustomerCodeBuf == NULL || unCustomerCodeLen <= 0)
+	{
+		APAssert(pucCustomerCodeBuf != NULL);
+		APAssert(unCustomerCodeLen > 0);
+
+		return E_DATA_PARAM_ERROR;
+	}
+
+	if (g_pSTBData == NULL)
+	{
+		return E_DATA_NOT_CONFIG_ADDRESS;
+	}
+
+	return g_pSTBData->WriteCustomerCode(pucCustomerCodeBuf, unCustomerCodeLen);
+}
+
+EN_STB_DATA ReadCustomerCode(unsigned char * pucCustomerCodeBuf, unsigned int unCustomerCodeLen)
+{
+	if (pucCustomerCodeBuf == NULL || unCustomerCodeLen <= 0)
+	{
+		APAssert(pucCustomerCodeBuf != NULL);
+		APAssert(unCustomerCodeLen > 0);
+
+		return E_DATA_PARAM_ERROR;
+	}
+
+	if (g_pSTBData == NULL)
+	{
+		return E_DATA_NOT_CONFIG_ADDRESS;
+	}
+
+	return g_pSTBData->ReadCustomerCode(pucCustomerCodeBuf, unCustomerCodeLen);
+}
+
+EN_STB_DATA EraseFlashSpace()
+{
+	if (g_pSTBData == NULL)
+	{
+		return E_DATA_NOT_CONFIG_ADDRESS;
+	}
+
+	return g_pSTBData->EraseFlashSpace();
+}
+
+

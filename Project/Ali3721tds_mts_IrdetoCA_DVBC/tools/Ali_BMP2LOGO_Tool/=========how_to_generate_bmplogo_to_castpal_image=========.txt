@@ -1,0 +1,28 @@
+
+---------------------- ！！Read Below Descriptions First！！----------------------
+
+1. 复制bmp格式的图片到BMP2LOGO目录,并命名为castpal_logo.bmp，便于后续命令执行
+
+2. 点击BMPLogo_2_CastpalImage.bat，会先后运行两个exe文件：Ali提供的将bmp制作成显示用m2v文件的bmp2logo.exe和Castpal自己的添加image头的LogoCreate.exe
+
+	2.1 使用ali工具制作出m2v文件,相应配置要求：
+		2.1.1 高清机器为1280*720   标清机器为720*576,  格式可以通过windows的画图工具转化；
+		2.1.2 bmp2logo.exe执行时，在bmp2logo的UI界面Open菜单选择根目录下的castpal_logo.bmp；
+		2.1.3 配置Size == 100（KB）， Bitrate == 0；
+		2.1.4 点击Convert菜单，生成castpal_logo.m2v文件用于下一步加头！
+		2.1.5 点击Quit菜单，退出bmp2logo UI
+		
+	del /a /f castpal_logo.m2v
+	bmp2logo.exe castpalHD.bmp
+	pause
+
+	2.2 将ali工具制作好的m2v文件拷贝到AddLogoHead目录，根据图片的binary名称修改createlogo.bat配置，如
+	
+	LogoCreate  13327094439125.jpg
+	pause
+
+	2.3 BMPLogo_2_CastpalImage.bat运行不报错的情况下，即可生成带castpal ADIBLJPEGLogoHead_S 头的 logo.bin 文件（可直接用于烧录的文件）
+	
+3. 以上，脚本运行正常的情况下，将最终生成的logo.bin用于烧录到flash的logo位置即可显示开机图片---最好验证OK后再发布！
+
+---------------------------------------------------------------------------------------

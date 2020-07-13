@@ -1,0 +1,37 @@
+#ifndef REQUEST_VIDEO_AND_AUDIO_FRAME_H_
+#define REQUEST_VIDEO_AND_AUDIO_FRAME_H_
+
+#include "RequestTableNotify.h"
+#include "APSafeThread.h"
+#include "AVConfig.h"
+#include "APLock.h"
+
+class RequestVideoAndAudioFrame : public APSafeThread
+{
+public:
+	RequestVideoAndAudioFrame(unsigned int unTunerID, RequestTableNotify *pRequestTableNotify);
+	~RequestVideoAndAudioFrame();
+
+public:
+	void OnceProcess();
+	unsigned int StartLock(ADITunerSRCDeliver_U* pDelivery);
+	unsigned int StartPlayer(int nVideoPid, int nAudioPid);
+	void VideoFrameComingNotify();
+	void AudioFrameComingNotify();
+	void SetAVConfig(AVConfig *pAVConfig);
+	unsigned int Stop();
+
+public:
+	RequestTableNotify *m_pRequestTableNotify;
+	unsigned int m_unTunerID;
+	unsigned int m_unLockStatus;
+	ADI_HANDLE m_hDecoder;
+	unsigned int m_unDecoderStatus; //1<<0, video frame coming; 1<<1, audio frame coming
+	AVConfig m_AVConfig;
+	unsigned int m_unTickCount;
+	APLock m_APLock;
+	ADITunerSRCDeliver_U m_curLockDelivery;
+	unsigned int m_unPlayerStatus;
+};
+
+#endif/*REQUEST_VIDEO_AND_AUDIO_FRAME_H_*/

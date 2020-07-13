@@ -1,0 +1,4 @@
+
+merge flashmap.ini
+
+pause

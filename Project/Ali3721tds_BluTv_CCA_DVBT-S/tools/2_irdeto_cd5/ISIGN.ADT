@@ -1,0 +1,2359 @@
+
+=====================================================
+Execution Time ------------ : Wed Oct 23 15:43:20 2019
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 12
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 1
+module id ----------------- : 32
+module version------------- : 1
+
+  Module ------------------ : 0x20
+  Size -------------------- : 4194118
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 1
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0x59639880
+  Compress ---------------- : YES
+  Acutalsize -------------- : 2249568
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 138
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Fri Nov 22 11:37:58 2019
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 12
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 2
+module id ----------------- : 32
+module version------------- : 1
+
+  Module ------------------ : 0x20
+  Size -------------------- : 2202884
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 1
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  Failed decompress ------- : -5
+  Compress ---------------- : NO
+  Acutalsize -------------- : 2203424
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 135
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Fri Nov 22 19:53:28 2019
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 12
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 3
+module id ----------------- : 32
+module version------------- : 1
+
+  Module ------------------ : 0x20
+  Size -------------------- : 2202660
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 1
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  Failed decompress ------- : -5
+  Compress ---------------- : NO
+  Acutalsize -------------- : 2203200
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 135
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Sat Nov 23 14:44:12 2019
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 12
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 4
+module id ----------------- : 32
+module version------------- : 1
+
+  Module ------------------ : 0x20
+  Size -------------------- : 2202660
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 1
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  Failed decompress ------- : -5
+  Compress ---------------- : NO
+  Acutalsize -------------- : 2203200
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 135
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Tue Nov 26 16:25:42 2019
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 12
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 5
+module id ----------------- : 32
+module version------------- : 1
+
+  Module ------------------ : 0x20
+  Size -------------------- : 4193766
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 1
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0x97C7C6E7
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3286368
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 201
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Wed Dec  4 11:54:25 2019
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 12
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 6
+module id ----------------- : 32
+module version------------- : 2
+
+  Module ------------------ : 0x20
+  Size -------------------- : 4193766
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 2
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0x1D68DCF6
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3290880
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 201
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Wed Dec  4 17:01:08 2019
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 12
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 7
+module id ----------------- : 32
+module version------------- : 2
+
+  Module ------------------ : 0x20
+  Size -------------------- : 4193766
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 2
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0xDBF4AD9E
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3290864
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 201
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Wed Dec  4 17:22:24 2019
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 12
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 8
+module id ----------------- : 32
+module version------------- : 2
+
+  Module ------------------ : 0x20
+  Size -------------------- : 4193766
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 2
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0x03AB24BF
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3290864
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 201
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Wed Dec  4 17:33:48 2019
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 12
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 9
+module id ----------------- : 32
+module version------------- : 2
+
+  Module ------------------ : 0x20
+  Size -------------------- : 4193766
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 2
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0xEEC4558F
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3290864
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 201
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Wed Dec  4 17:38:48 2019
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 12
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 10
+module id ----------------- : 32
+module version------------- : 2
+
+  Module ------------------ : 0x20
+  Size -------------------- : 4193766
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 2
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0xBB1FEEFA
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3290880
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 201
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Wed Dec  4 17:53:25 2019
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 12
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 11
+module id ----------------- : 32
+module version------------- : 2
+
+  Module ------------------ : 0x20
+  Size -------------------- : 4193766
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 2
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0x1A3F555B
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3290864
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 201
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Wed Dec  4 17:54:14 2019
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 12
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 12
+module id ----------------- : 32
+module version------------- : 2
+
+  Module ------------------ : 0x20
+  Size -------------------- : 4193766
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 2
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0xB8BB2786
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3290864
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 201
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Mon Dec  9 17:46:33 2019
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 12
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 13
+module id ----------------- : 32
+module version------------- : 2
+
+  Module ------------------ : 0x20
+  Size -------------------- : 2075204
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 2
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  Failed decompress ------- : -5
+  Compress ---------------- : NO
+  Acutalsize -------------- : 2075744
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 127
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Mon Dec  9 18:04:08 2019
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 11
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 14
+module id ----------------- : 32
+module version------------- : 2
+
+  Module ------------------ : 0x20
+  Size -------------------- : 2075204
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 2
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  Failed decompress ------- : -5
+  Compress ---------------- : NO
+  Acutalsize -------------- : 2075744
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 127
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Wed Dec 11 18:31:42 2019
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 11
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 15
+module id ----------------- : 32
+module version------------- : 2
+
+  Module ------------------ : 0x20
+  Size -------------------- : 2202404
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 2
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  Failed decompress ------- : -5
+  Compress ---------------- : NO
+  Acutalsize -------------- : 2202944
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 135
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Mon May 11 12:21:41 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 11
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 16
+module id ----------------- : 32
+module version------------- : 10
+
+  Module ------------------ : 0x20
+  Size -------------------- : 2202500
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 10
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  Failed decompress ------- : -5
+  Compress ---------------- : NO
+  Acutalsize -------------- : 2203040
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 135
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Mon May 11 12:21:57 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 17
+module id ----------------- : 32
+module version------------- : 10
+
+  Module ------------------ : 0x20
+  Size -------------------- : 2202500
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 10
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  Failed decompress ------- : -5
+  Compress ---------------- : NO
+  Acutalsize -------------- : 2203040
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 135
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Mon May 11 12:22:27 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 18
+module id ----------------- : 32
+module version------------- : 17
+
+  Module ------------------ : 0x20
+  Size -------------------- : 2202500
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 17
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  Failed decompress ------- : -5
+  Compress ---------------- : NO
+  Acutalsize -------------- : 2203040
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 135
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Mon May 11 12:22:44 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 19
+module id ----------------- : 32
+module version------------- : 19
+
+  Module ------------------ : 0x20
+  Size -------------------- : 2202500
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 19
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  Failed decompress ------- : -5
+  Compress ---------------- : NO
+  Acutalsize -------------- : 2203040
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 135
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Mon May 11 12:41:17 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 20
+module id ----------------- : 32
+module version------------- : 19
+
+  Module ------------------ : 0x20
+  Size -------------------- : 2202500
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 19
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  Failed decompress ------- : -5
+  Compress ---------------- : NO
+  Acutalsize -------------- : 2203040
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 135
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Sat May 23 14:05:22 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 21
+module id ----------------- : 32
+module version------------- : 19
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3016980
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 19
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  Failed decompress ------- : -5
+  Compress ---------------- : NO
+  Acutalsize -------------- : 3017520
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 185
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Sat May 23 14:14:16 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 22
+module id ----------------- : 32
+module version------------- : 19
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3801088
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 19
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0x4C4F706B
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3380256
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Sat May 23 14:27:27 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 23
+module id ----------------- : 32
+module version------------- : 19
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3801088
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 19
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0x0B3E9650
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3380256
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Sat May 23 14:30:59 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 24
+module id ----------------- : 32
+module version------------- : 19
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3801088
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 19
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0x27CE5B65
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3380256
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Sat May 23 14:44:53 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 25
+module id ----------------- : 32
+module version------------- : 19
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3931974
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 19
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0x345506A0
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3383392
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Sat May 23 14:55:21 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 26
+module id ----------------- : 32
+module version------------- : 19
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3931974
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 19
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0xAC46DA9B
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3383392
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Sat May 23 14:58:00 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 27
+module id ----------------- : 32
+module version------------- : 19
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3931974
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 19
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0xCDBC20B9
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3383392
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Sat May 23 15:21:33 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 28
+module id ----------------- : 32
+module version------------- : 19
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3931974
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 19
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0x04AC836E
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3383392
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Sat May 23 15:34:07 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 29
+module id ----------------- : 32
+module version------------- : 19
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3931974
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 19
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0xF334B6CC
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3383392
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Sat May 23 16:00:10 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 1
+module id ----------------- : 32
+module version------------- : 19
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3931974
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 19
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0x48EEDD2C
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3383392
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Sat May 23 16:04:19 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+
+
+ERROR : ISIGN configuration file "S" not found!
+
+=====================================================
+Execution Time ------------ : Sat May 23 16:04:22 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 2
+module id ----------------- : 32
+module version------------- : 19
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3931974
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 19
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0xEE2800D0
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3383392
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Sat May 23 16:15:48 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 48
+module id ----------------- : 32
+module version------------- : 19
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3931974
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 19
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0xBF1C548E
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3383392
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Sat May 23 17:32:07 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 49
+module id ----------------- : 32
+module version------------- : 19
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3931974
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 19
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0x6EB22061
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3383392
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Mon May 25 14:17:23 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 50
+module id ----------------- : 32
+module version------------- : 19
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3931974
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 19
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0xF19391F1
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3383392
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Mon May 25 14:19:15 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 49
+module id ----------------- : 32
+module version------------- : 50
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3931974
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 50
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0xAD1ED761
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3383392
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Mon May 25 14:19:25 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 50
+module id ----------------- : 32
+module version------------- : 50
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3931974
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 50
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0xA360D0B2
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3383392
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Tue May 26 10:40:39 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 51
+module id ----------------- : 32
+module version------------- : 50
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3931974
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 50
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0x03613820
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3383392
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Tue May 26 13:07:38 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 52
+module id ----------------- : 32
+module version------------- : 50
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3931974
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 50
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0x60AAE82A
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3383392
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Tue May 26 13:27:32 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 53
+module id ----------------- : 32
+module version------------- : 50
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3931974
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 50
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0xDB104154
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3383392
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Tue May 26 13:29:53 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 54
+module id ----------------- : 32
+module version------------- : 50
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3931974
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 50
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0x0B5697D1
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3383392
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Tue May 26 14:26:27 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 55
+module id ----------------- : 32
+module version------------- : 50
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3931974
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 50
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0x99C23AAE
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3383392
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Tue May 26 14:48:27 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 56
+module id ----------------- : 32
+module version------------- : 50
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3931974
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 50
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0x1C0356A8
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3383392
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Tue May 26 15:05:53 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 57
+module id ----------------- : 32
+module version------------- : 50
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3931974
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 50
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0xDE510CEB
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3383392
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Tue May 26 18:36:31 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 58
+module id ----------------- : 32
+module version------------- : 50
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3931974
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 50
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0x9A4D0361
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3383392
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Wed May 27 10:22:19 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 59
+module id ----------------- : 32
+module version------------- : 50
+
+  Module ------------------ : 0x20
+  Size -------------------- : 3931974
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 50
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0xCEFF21DB
+  Compress ---------------- : YES
+  Acutalsize -------------- : 3383392
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 207
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Tue Jun  9 16:33:11 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 60
+module id ----------------- : 32
+module version------------- : 50
+
+  Module ------------------ : 0x20
+  Size -------------------- : 4194118
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 50
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0x8E12B49B
+  Compress ---------------- : YES
+  Acutalsize -------------- : 2947248
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 180
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done
+
+=====================================================
+Execution Time ------------ : Fri Jul  3 14:55:29 2020
+ISIGN   version ----------- : v6.0. 0
+ISIGN   serial number ----- : 0001
+Working Directory --------- : /home/gongjinqiang/TestApp_ALi3721_DC702/Project/Ali3721tds_BluTv_CCA_DVBT-S/tools/2_irdeto_cd5
+Target configuration file - : target.cfg
+Input configuration file -- : setting.cfg
+Parameter Config File ----- : setting.cfg
+Hardware Config File ------ : target.cfg
+Audit File ---------------- : ISIGN.ADT
+SIGNED    ----------------- : YES
+System ID ----------------- : 65535
+Key Version --------------- : 0
+Key read from DISK -------- : NO (internal key used)
+Output File --------------- : IRDETO.CD5
+Action -------------------- : Code Download
+Number of files  ---------- : 1
+Manufacturer Code --------- : 236   (0xec)
+Hardware Version ---------- : 17
+LoaderMinorVersion -------- : 1
+Download ID --------------- : 0
+Variant ------------------- : 236
+SubVariant ---------------- : 0
+Number of modules --------- : 1
+DownloadSequenceNumber ---- : 61
+module id ----------------- : 32
+module version------------- : 50
+
+  Module ------------------ : 0x20
+  Size -------------------- : 4194118
+  BootCheck --------------- : YES
+  Addressable ------------- : NO
+  Version ----------------- : 50
+  Variant ----------------- : 236
+  SubVariant -------------- : 0
+  MemType ----------------- : 0
+  C_CRC_32 ---------------- : 0x4CF46ED7
+  Compress ---------------- : YES
+  Acutalsize -------------- : 2947264
+  Encrypt ----------------- : YES
+  BlockSize --------------- : 16384
+  BlockCount -------------- : 180
+
+Loading download file : IRDETO.CD5
+Output check sum File : IRDETO.CD5.sha1
+Output check sum File Length  : 20
+
+Conversion complete.
+Processing ---------------- : Done

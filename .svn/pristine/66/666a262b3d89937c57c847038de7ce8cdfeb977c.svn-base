@@ -1,0 +1,58 @@
+/*
+* MsUserMessagedefine.h
+*
+*  Created on: 2015-6-1
+*      Author: gongjinjun, Burt.Li
+*/
+
+#ifndef _MS_USER_MESSAGE_DEFINE_H
+#define _MS_USER_MESSAGE_DEFINE_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#define USER_MESSAGE_START                  (10000)
+
+#define MSG_SHOW_TESTAPP_DIALOG			(USER_MESSAGE_START + 1)
+#define MSG_TESTAPP_PLAY				(USER_MESSAGE_START + 2)
+#define MSG_TESTAPP_USB					(USER_MESSAGE_START + 3)
+#define MSG_TESTAPP_ETHERNET			(USER_MESSAGE_START + 4)
+#define MSG_TESTAPP_SMARTCARD			(USER_MESSAGE_START + 5)
+#define MSG_TESTAPP_FRONTPANEL			(USER_MESSAGE_START + 6)
+#define MSG_TESTAPP_SNUPGRADE			(USER_MESSAGE_START + 7)
+
+#define MSG_UPGRADE_START			(USER_MESSAGE_START + 8)
+
+#define MSG_UPGRADE_SUCCESS		(USER_MESSAGE_START + 9)
+
+#define MSG_UPGRADE_FAIL		(USER_MESSAGE_START + 10)
+
+#define MSG_UPGRADE_TIMEOUT		(USER_MESSAGE_START + 11)
+
+#define MSG_UPGRADE_ERASE		(USER_MESSAGE_START + 12)
+
+#define MSG_OTA_START			(USER_MESSAGE_START + 20)
+#define MSG_OTA_WRITE_CORE		(USER_MESSAGE_START + 21)
+#define MSG_OTA_WRITE_RC		(USER_MESSAGE_START + 22)
+#define MSG_OTA_WRITE_APP		(USER_MESSAGE_START + 23)
+#define MSG_OTA_OPEN_HL			(USER_MESSAGE_START + 24)
+
+#define MSG_PLAY_SERVICE_RED		(USER_MESSAGE_START + 25)
+
+#define USER_MESSAGE_END                (50000)  
+
+
+LRESULT MSDoWithUserMessage(HMSWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+
+LRESULT MSInterceptPVRKey(HMSWND hWnd, WPARAM wParam, LPARAM lParam);
+
+LRESULT HandlePVRPublicMessage(HMSWND hWnd, UINT uMessage, WPARAM wParam, LPARAM lParam);
+
+LRESULT MSHandlePVRMessage(HMSWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

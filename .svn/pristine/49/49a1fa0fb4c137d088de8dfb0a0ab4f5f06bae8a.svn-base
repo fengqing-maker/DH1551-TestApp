@@ -1,0 +1,12 @@
+[INPUT]
+TOTAL_SIZE=0x3FFDE6
+BLOCK_NUM=2
+
+FILE_1=ali_encrypted_app.bin
+START_ADDR_1=0x000000
+
+FILE_2=RC.bin
+START_ADDR_2=0x2FFDE6
+
+[OUTPUT]
+FILE_OUT=encrypted_app_rc.bin

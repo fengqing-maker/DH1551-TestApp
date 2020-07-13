@@ -1,0 +1,25 @@
+*******************************************************
+customer compiler method (sdk package),the lib already 
+compiler in the package.
+*******************************************************
+
+step 3. bootloader for 3281
+	 enter dir: loader3_encbl
+   
+      ./build_all_bl_by_sdk.sh
+
+*******************************************************
+Ali internal compiler method (Src label),need compiler 
+the bootloader lib by yourself
+*******************************************************
+1. Compiler all the bootloader for 3281
+	 enter dir: loader3_encbl
+	 ./build_encbl.sh
+
+2, Compiler single bootloader for 3281
+	 enter dir: loader3_encbl
+	 make path rebuild_3281_demo
+	 notice: If you don't change any macro in compiler_3281.def, the default out is: bloader3_3281_security_demoboard_64M.abs
+
+
+   

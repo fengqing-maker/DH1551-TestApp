@@ -1,0 +1,21 @@
+/*
+ * TeletextType.h
+ *
+ *  Created on: 2016-5-9
+ *      Author: timothy.liao
+ */
+
+#ifndef TELETEXTTYPE_H_
+#define TELETEXTTYPE_H_
+
+
+enum TeletextType{
+    E_TELETEXTYPE_RESERVED = 0,
+	E_TELETEXTYPE_INITIAL = 1,
+    E_TELETEXTYPE_SUBTITLE = 2,
+    E_TELETEXTYPE_ADDITIONALINFO = 3,
+    E_TELETEXTYPE_PROGRAMMESCHEDULE = 4,
+    E_TELETEXTYPE_SUBTITLE_FORHEARINGIMPAIRED = 5
+};
+
+#endif /* TELETEXTTYPE_H_ */

@@ -1,0 +1,135 @@
+/*
+ * FactoryTest.h
+ *
+ *  Created on: 2015-8-14
+ *      Author: timothy.liao
+ */
+
+#ifndef FACTORYTEST_H_
+#define FACTORYTEST_H_
+#include "FactoryTestInterface.h"
+#include "FactoryTestNotify.h"
+#include "AVPlay/PlayServiceTest.h"
+#include "FrontPanel/FrontPanelTest.h"
+#include "SmartCard/SmartCardTest.h"
+#include "USB/USBTest.h"
+#include "APSafeThread.h"
+#include "APEvent.h"
+#include "APMessageQueue.h"
+#include "DataUpgrade/SerialUpgrade.h"
+#include "Ethernet/EthernetTest.h"
+#include "GetOTASupport.h"
+#include "APLock.h"
+
+
+class FactoryTest : public FactoryTestInterface, public APSafeThread, public ServicePlayNotify, public FrontPanelNotify, public SmartCardNotify, public USBNotify, public EthernetNotify
+{
+public:
+	FactoryTest(ADISMCProtocol_E eProtocol, UpgradeNotify * pNotify);
+	virtual ~FactoryTest();
+
+public:
+	unsigned int GetFlashStatus(void);
+	void SetFactoryConfig(FactoryTestParamSet csFactoryTestParamSet);
+	int GetHLFlag();
+	void PrintLog(void);
+	int IsExistCustomerCode(void);
+	int SetTestAppViewTitle(char *pcStr, int nLen);
+	int SetAVTestDeliveryInfo(char *pcStr, int nLen);
+	void SetLedStatus(unsigned int unStatus);
+
+	unsigned int StartPlayService();
+	unsigned int StopPlay();
+	unsigned int SetMaxVolume();
+	unsigned int SetMute();
+	unsigned int ShowVideo();
+	unsigned int HideVideo();
+	unsigned int StartPlayLowFrequencyService();
+	unsigned int StartPlayMidFrequencyService();
+	unsigned int StartPlayHighFrequencyService();
+
+	unsigned int StartFrontPanelTest();
+	unsigned int StopFrontPanelTest();
+	unsigned int FrontPanelInputKey(unsigned int unKey);
+
+	unsigned int StartSmartCardTest();
+	unsigned int StopSmartCardTest();
+
+	unsigned int StartEthernetTest();
+	unsigned int StopEthernetTest();
+	unsigned int GetIPName(char *pcIP, int nLen);
+	unsigned int GetMacName(unsigned char *pucMacAddress, unsigned int unLen);
+
+	unsigned int StartUSBTest();
+	unsigned int StopUSBTest();
+
+	unsigned int TriggerOTA();
+	
+	unsigned int StartAssembleTest();
+
+	unsigned int RegisterNotify(FactoryTestNotify* pNotify);
+
+	unsigned int GetTestResult(TestResult_S * pTestResult);
+	
+	void SetSNUpgradeStatus(unsigned int unFinish);
+
+	//notify
+	void ServicePlaySuccessNotify();
+	void ServicePlayTimeoutNotify(unsigned int unStatus);
+	void ServicePlayLockErrorNotify(unsigned int unStatus);
+	void FrontPanelTestFinish(unsigned int unSuccess);
+	void SmartCardInNotify(unsigned int unIndex);
+	void SmartCardOutNotify(unsigned int unIndex);
+	void SmartCardResetNotify(unsigned int unIndex, unsigned int unSuccess);
+	void NoSmartCardNotify();
+	void USBReady(unsigned int unDeviceId, ADIFSDeviceInfo_S* psDeviceInfo);
+	void USBPlugOut(unsigned int unDeviceId);
+	void NoUSBNotify(unsigned int unCheckStatus);
+	void EthernetReadyNotify();
+	void EthernetNotReadyNotify();
+	
+	unsigned int SaveTestResult();
+
+	unsigned int IsReadyToOTA();
+	void SetOTAStatus(int nProc);
+	unsigned int CheckChipID();
+	unsigned int GetSTBType(char *pBuffer, int nLen);
+	
+protected:
+
+	void OnceProcess();
+
+private:
+	unsigned int SendFTMessage(unsigned int aunMsg[], unsigned int unSize, unsigned int nTimeout);
+	unsigned int ReceiveFTMessage(unsigned int aunMsg[], unsigned int unSize, unsigned int nTimeout);
+
+	unsigned int LoadTestResult();
+
+private:	
+	PlayServiceTest m_PlayServiceTest;
+	FrontPanelTest m_FrontPanelTest;
+	SmartCardTest m_SmartCardTest;
+	EthernetTest m_EthernetTest;
+	USBTest m_USBTest;
+	SerialUpgrade m_SerialUpgrade;
+	OTASupport *m_pOTASupport;
+
+	FactoryTestNotify* m_pFactoryTestNotify;
+	APMessageQueue m_APMessageQ;
+	TestResult_S m_stTestResult;
+	
+	BaseTestItem m_BaseTestItem;
+	AVConfig m_AVConfig;
+	USBConfig m_USBConfig;
+	NetConfig m_NetConfig;
+	SMCConfig m_SMCConfig;
+	FPConfig m_FPConfig;
+	SNConfig m_SNConfig;
+	OTAConfig m_OTAConfig;
+
+	APLock m_ResultLock;
+
+	unsigned int m_unFlashStatus;
+};
+
+#endif /* PLAYHISTORY_H_ */

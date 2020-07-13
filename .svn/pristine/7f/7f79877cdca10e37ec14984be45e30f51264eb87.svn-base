@@ -1,0 +1,78 @@
+/*
+* TestAppSupport.h
+*
+*  Created on: 2015-6-3
+*      Author: Burt.Li
+*/
+
+#ifndef TESTAPPSUPPORT_H
+#define TESTAPPSUPPORT_H
+
+#include "FactoryTestInterface.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+unsigned int GetFlashStatus(void);
+unsigned int TestAppStartPlay();
+unsigned int TestAppPlayLowFrequencyService();
+unsigned int TestAppPlayMidFrequencyService();
+unsigned int TestAppPlayHighFrequencyService();
+
+unsigned int TestAppStopPlay();
+
+unsigned int TestAppSetMaxVolume();
+
+unsigned int TestAppSetMute();
+
+unsigned int TestAppHideVideo();
+
+unsigned int TestAppShowVideo();
+
+unsigned int TestAppStartFrontPanelTest();
+
+unsigned int TestAppStopFrontPanelTest();
+
+unsigned int TestAppFrontPanelTestReigisterKeys(unsigned int aunKeys[], unsigned int unCount);
+
+unsigned int TestAppFrontPanelInputKey(unsigned int unKey);
+
+unsigned int TestAppStartSmartCardTest();
+
+unsigned int TestAppStopSmartCardTest();
+
+unsigned int TestAppStartUSBTest();
+
+unsigned int TestAppStartEthernetTest();
+
+unsigned int TestAppStopUSBTest();
+
+unsigned int TestAppStartUpgradeSN();
+
+unsigned int TestAppTriggerOTA();
+
+unsigned int TestAppStartAssembleTest();
+
+unsigned int GetTestResult(TestResult_S * pTestResult);
+
+unsigned int SaveTestResult();
+
+int GetHLFlag();
+
+void PrintLog(void);
+
+unsigned int TestAppStartOTA();
+
+unsigned int GetIPName(char *pcIP, int nLen);
+
+unsigned int GetMacName(unsigned char *pucMacAddress, unsigned int unLen);
+
+int SetTestAppViewTitle(char *pcStr, int nLen);
+int SetAVTestDeliveryInfo(char *pcStr, int nLen);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

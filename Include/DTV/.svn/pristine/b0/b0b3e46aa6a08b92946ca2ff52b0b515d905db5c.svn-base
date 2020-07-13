@@ -1,0 +1,19 @@
+/*
+* AutoVideoStandardMode.h
+*
+*  Created on: 2016-2-16
+*      Author: timothy.liao
+*/
+
+#ifndef AUTOVIDEOSTANDARDMODE_H_
+#define AUTOVIDEOSTANDARDMODE_H_
+
+enum AutoVideoStandardMode{
+    E_AUTOVIDEOSTANDARD_MANUAL = 0,
+    E_AUTOVIDEOSTANDARD_AUTO,
+    E_AUTOVIDEOSTANDARD_AUTO_PALB,
+    E_AUTOVIDEOSTANDARD_AUTO_PALN,
+    E_AUTOVIDEOSTANDARD_MAX
+};
+
+#endif /* AUTOVIDEOSTANDARDMODE_H_ */

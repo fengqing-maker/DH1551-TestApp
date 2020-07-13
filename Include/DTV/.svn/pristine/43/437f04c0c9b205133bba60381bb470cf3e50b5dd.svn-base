@@ -1,0 +1,21 @@
+/*
+ * TerrestrialModulationMode.h
+ *
+ *  Created on: 2015-3-16
+ *      Author: Demo
+ */
+
+#ifndef TERRESTRIALMODULATIONMODE_H_
+#define TERRESTRIALMODULATIONMODE_H_
+
+
+enum TerrestrialModulationMode{
+	E_TERRESTRIAL_MODULATION_QPSK = 0,
+	E_TERRESTRIAL_MODULATION_16QAM = 1,
+	E_TERRESTRIAL_MODULATION_64QAM = 2,
+	E_TERRESTRIAL_MODULATION_RESERVED =3
+};
+
+
+
+#endif /* TERRESTRIALMODULATIONMODE_H_ */

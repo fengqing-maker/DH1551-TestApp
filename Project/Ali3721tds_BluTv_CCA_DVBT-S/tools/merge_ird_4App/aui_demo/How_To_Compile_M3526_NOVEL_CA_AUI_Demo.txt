@@ -1,0 +1,29 @@
+step 1:
+	get Release PKG and extract it
+	put ACS_release_combo/... merge to ddk_release_combo_3505
+	
+step 2:
+	put decrypt_key.bin，sys_sw_pair.key，see_test_pair.key，see_sw_pair.key，orig_bl_key.bin copy to
+	ddk_release_combo_3505/prj/app/demo/combo/sabbat_dual/gen_ap/
+	ddk_release_combo_3505/prj/app/demo/combo/aui_demo/gen_ap/
+	
+step 3:
+	cd  ddk_release_combo_3505/prj/app/demo/combo/aui_demo and Edit compiler_3505.def
+	Enable _LINUX_COMPILER_ENVIRONMENT_ = 1  
+	Disable _CYGWIN_COMPILER_ENVIRONMENT_ = 1
+	Enable _AUI_TEST_AUTO_ = 1
+	Enable _BOARD_M3526_01V01_ = 1
+	Disable _BOARD_M3527_01V01_ = 1
+	Enable _RD_DEBUG_ = 1
+	Enable _SHOW_ALI_DEMO_ON_SCREEN = 1
+	Disable _CAS9_CA_ENABLE_ = 1
+	Enable _GEN_CA_ENABLE_ = 1
+	Enable _NOVEL_ENABLE_ = 1
+	
+step 4：
+	cd  ddk_release_combo_3505/prj/app/demo/combo/aui_demo
+	make path config_3505
+	make new ddk aui product_7z
+	
+step 5:
+	when compile success, put flashwr_unify.abs copy to $PRJ_ROOT/obj

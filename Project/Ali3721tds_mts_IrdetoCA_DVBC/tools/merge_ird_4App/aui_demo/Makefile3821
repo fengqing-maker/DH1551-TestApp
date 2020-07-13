@@ -1,0 +1,716 @@
+#
+# -= Makefile for application =-
+#
+# Note:
+# . "make config" must be done for initial routines.
+#
+# Usage:
+# . Change the ROOT definition, if necessary;
+#   Make it point to the root of the software tree.
+#
+# Detect compile environment and specify compiler
+OS := $(shell uname -s)
+IS_LINUX  := $(shell echo $(OS) | grep -i linux)
+IS_CYGWIN := $(shell echo $(OS) | grep -i cygwin)
+
+# Destination to the root of software tree
+RUN_DIR = d:/winice
+ROOT = ../../../../..
+ROOT_PRJ = ../prj/app/demo/combo/aui_demo
+PMU_SRC = ${ROOT}/src/lld/pmu/mcu/keil_prj
+PLUGIN_DIR = $(ROOT)/ddk/plugin
+RLS_DATE = $(shell date +%y%m%d)
+RLS_NAME = Combo_SAB_$(RLS_DATE)
+
+include ${ROOT}/src/path.def
+include ${ROOT}/src/compiler.def
+
+ifdef _LINUX_COMPILER_ENVIRONMENT_
+LIBE =
+LIBSTDCPP = -lstdc++
+else
+LIBE =	-le
+LIBSTDCPP =
+endif
+
+MAKEFILE = Makefile3821.cmd
+
+
+
+CONAX_AP_DIR =
+ifdef _CAS7_CA_ENABLE_
+CONAX_AP_DIR = conax_ap7
+endif
+ifdef _CAS9_CA_ENABLE_
+CA_AP_DIR = conax_ap
+endif
+ifdef _BC_CA_ENABLE_
+CA_AP_DIR = bc_ap
+endif
+ifdef _DVBS_ENABLE_
+NIM_S2_LIB = -lnim_s2
+else
+NIM_S2_LIB =
+endif
+
+ifndef _BUILD_OTA_E_
+SEELIB = libsee_m382x
+else
+SEELIB = libsee_m382x_ota
+endif
+BOOT_SEE = boot_see
+MPG_LIB = libmpg2c
+PLUGIN_PATH = ${PLUGINDDK_DIR}
+PLUGIN_EXT_PATH = ${PLUGINEXT_DIR}
+
+ifdef _M36F_SINGLE_CPU
+	ifdef _BOARD_DB_M3821_02V01_
+		ifdef _BOOT_LOGO_ENABLE_
+			BOOTLOADER_DDR = bloader3_3821_single_64M_logo.abs
+		else
+			BOOTLOADER_DDR = bloader3_3821_single_64M.abs
+		endif
+	else
+		BOOTLOADER_DDR = bloader3_3821_single.abs
+	endif
+endif
+
+
+
+ifdef _BOARD_DB_M3821_01V01_
+	MEMCFG = memcfg_3821_1600MHZ.abs
+else
+	ifdef _BOARD_DB_M3822_01V01_
+		MEMCFG = memcfg_3822.abs
+	else
+		ifdef _BOARD_DB_M3823_01V01_
+			MEMCFG = memcfg_3823_1600MHz.abs
+		else
+			ifdef _BOARD_DB_M3823_02V01_
+				ifdef _SUPPORT_256M_MEM
+					MEMCFG = memcfg_3823_256MB_1600MHz.abs
+				else
+					MEMCFG = memcfg_3823_1600MHz.abs
+				endif
+			else	
+			ifdef _BOARD_SB_M3821_01V01_
+				MEMCFG = memcfg_3821_sorting.abs
+			else
+				ifdef _BOARD_DB_M3821_02V01_
+					MEMCFG = memcfg_3821_ddr2.abs
+				else
+					ifdef _BOARD_SB_M3823_01V01_
+						MEMCFG = memcfg_3823_1066MHz.abs
+					else
+						MEMCFG = memcfg_3821.abs
+					endif
+				endif
+			endif
+		endif
+	endif
+endif
+endif
+
+# output file name
+OUT = Sabbat_s382x
+SEE_OUT = see_sabbat_s382x
+
+# Link Script File
+SEE_LSCR = see_ldscript.ld
+
+ifdef _BUILD_OTA_E_
+	ifdef DUAL_ENABLE
+            ifdef _CAS9_CA_ENABLE_
+                    BSP = blocks_script_7z_ota_m3823_dual.txt
+            else
+		BSP = blocks_script_7z_ota_s3821_dual.txt
+            endif
+	else
+		ifdef _COMPRESS_LZO
+			BSP = blocks_script_7z_ota_lzo.txt
+		else
+			BSP = blocks_script_7z_ota.txt
+		endif		
+	endif
+else
+		ifdef DUAL_ENABLE
+			ifdef _CAS9_CA_ENABLE_
+			BSP = blocks_script_7z_sabbat_s3821_dual_cas9.txt
+			else
+            ifdef _BC_CA_ENABLE_
+                BSP = blocks_script_7z_sabbat_s3821_dual_bc.txt
+            else
+			ifdef _CAS7_CA_ENABLE_
+			BSP = blocks_script_7z_sabbat_s3821_dual_swca.txt
+			else
+				ifdef _BOOT_LOGO_ENABLE_
+				BSP = blocks_script_7z_sabbat_s3821_dual_logo.txt				
+				else
+				BSP = blocks_script_7z_sabbat_s3821_dual.txt
+				endif
+			endif
+			endif
+        endif
+		else
+			ifdef _CAS7_CA_ENABLE_
+			BSP = blocks_script_7z_sabbat_s3821_single_swca.txt
+			else
+			BSP = blocks_script_7z_sabbat_s3821_single.txt
+			endif
+		endif
+endif
+
+ifdef _BOOT_LOGO_ENABLE_
+	LOGO_EN=_logo
+else
+	LOGO_EN=
+endif
+
+BOOTLOADER_MA = bloader3_3821${LOGO_EN}_sec${VSC_NAME}.abs
+SEE_BL_SIG = see_bloader3_3821${LOGO_EN}_sec_s.abs
+
+BOOTLOADER_MA_RT = bloader3_3821_dual${LOGO_EN}.abs
+
+ifdef _DVBS_ENABLE_
+	DEF_DB = s2.ddf
+else
+	ifdef _DVBT_ENABLE_
+		DEF_DB = dvbt.ddf
+	else
+		ifdef _ISDBT_ENABLE_
+	   		DEF_DB=s2isdbt.ddf
+	   	else
+	   			ifdef _DVBC_ENABLE_
+				DEF_DB = s2dvbc.ddf
+				endif
+	   	endif
+	endif
+endif
+
+LIB_HDMI = $(DDK_DIR)/libHDMI.a
+
+ifdef _LINUX_COMPILER_ENVIRONMENT_
+TOOLS            = tools/tools_linux
+SECURE1          = Secure_1
+BL_TOOL          = bl_tool
+else
+TOOLS = tools
+SECURE1          = Secure_1.exe
+BL_TOOL          = bl_tool.exe
+endif
+ifdef _CAS9_CA_ENABLE_
+merge_tool_t = fidmerger_ca
+else
+    ifdef _BC_CA_ENABLE_
+        merge_tool_t = fidmerger_ca
+    else
+merge_tool_t = fidmerger
+endif
+endif
+
+ifdef _LINUX_COMPILER_ENVIRONMENT_
+merge_tool = $(merge_tool_t)
+else
+merge_tool = $(merge_tool_t).exe
+endif
+
+ifdef _WIFI_ENABLE_
+ifdef _WIFI_MT7601_ENABLE_
+ifdef _WIFI_DIRECT_ENABLE_
+	USB_WIFI_7601_LIB = $(DDK_DIR)/wifi/lib_mt7601_p2p_gusb.a
+else
+	USB_WIFI_7601_LIB = $(DDK_DIR)/wifi/lib_mt7601_gusb.a
+endif
+endif
+ifdef _WIFI_RT5370_ENABLE_
+	USB_WIFI_LIB = $(DDK_DIR)/wifi/lib_rt5370_gusb.a
+endif
+	NET_CTRL_LIB = $(DDK_DIR)/wifi/*.o
+	NET_LINK = $(shell ls ${NET_CTRL_LIB})
+endif
+
+ifdef _USB3G_SUPPORT_
+	USB_3G_LIB = $(DDK_DIR)/ali_3g/lib_3g_modem.a
+endif
+
+all :
+	${MAKE} -f ${MAKEFILE} release
+	${MAKE} -f ${MAKEFILE} all
+
+path:	
+	./getpath.sh
+	
+ui :
+	${MAKE} -f ${MAKEFILE} all
+cfg_env_3821:
+ifdef IS_LINUX
+	sed -i 's/^#_LINUX_COMPILER_ENVIRONMENT_ = 1/_LINUX_COMPILER_ENVIRONMENT_ = 1/' compiler_3821.def
+	sed -i 's/^_CYGWIN_COMPILER_ENVIRONMENT_ = 1/#_CYGWIN_COMPILER_ENVIRONMENT_ = 1/' compiler_3821.def
+endif
+ifdef IS_CYGWIN
+	sed -i 's/^_LINUX_COMPILER_ENVIRONMENT_ = 1/#_LINUX_COMPILER_ENVIRONMENT_ = 1/' compiler_3821.def
+	sed -i 's/^#_CYGWIN_COMPILER_ENVIRONMENT_ = 1/_CYGWIN_COMPILER_ENVIRONMENT_ = 1/' compiler_3821.def
+endif	
+config_3821 : cfg_env_3821
+	cp -f sys_config_3821.h ${ROOT}/inc/sys_config.h
+	cp -f sys_memmap_3821.h	${ROOT}/inc/sys_memmap.h
+	cp -f compiler_3821.def ${ROOT}/src/compiler.def
+	cp -f ${PMU_SRC}/ali_pmu_bin_3821.h  ${ROOT}/prj/app/demo/combo/aui_demo/ali_pmu_bin.h
+config_3821_ota : cfg_env_3821
+	cp -f sys_config_3821.h ${ROOT}/inc/sys_config.h
+	cp -f sys_memmap_3821.h	${ROOT}/inc/sys_memmap.h
+	cp -f compiler_3821.def ${ROOT}/src/compiler.def
+	echo -e "\n_BUILD_OTA_E_ = 1" >> ${ROOT}/src/compiler.def
+	echo "DEFS += -D_BUILD_OTA_E_" >> ${ROOT}/src/compiler.def
+
+# sync command only used for Ali internal testing. 
+
+sync :
+	${MAKE} -f ${MAKEFILE} sync
+	
+syncbl :
+	${MAKE} -f ${MAKEFILE} syncbl
+	
+clean :
+	${MAKE} -f ${MAKEFILE} clean
+
+release :
+	${MAKE} -f ${MAKEFILE} release
+	
+new :
+	${MAKE} -f ${MAKEFILE} new
+
+nim :
+	${MAKE} -f ${MAKEFILE} nim
+
+product_7z :
+	echo Step 1: Compiler application ...
+	${MAKE} all
+	echo Step 2: Compress application bin file ...
+	${MAKE} -f ${MAKEFILE} compress_7z
+	echo Step 3: Generate Flash file ...
+	${MAKE} -f ${MAKEFILE} generate_7z
+	cp -f ../aui_demo/product_sabbat_*.abs $(ROOT)/obj/
+	echo All finished!
+
+define  compress_7z-cas9_ca_enable
+	mv ${OUT} ${OUT}.bak
+	mv ${SEE_OUT} ${SEE_OUT}.bak
+	cd ../prj/${TOOLS}; \
+	./code_build.exe ../../obj/${OUT}.map ../../obj/${OUT}.bak ../../obj/${OUT};\
+	./code_build.exe ../../obj/${SEE_OUT}.map ../../obj/${SEE_OUT}.bak ../../obj/${SEE_OUT}
+
+	# Sign SEE_SW with SEE_Root_PK
+	cp ${SEE_OUT} ${ROOT_PRJ}/${CA_AP_DIR}/app_see_clear.bin
+	cd ${ROOT_PRJ}/${CA_AP_DIR} && \
+	../../../../../${TOOLS}/${BL_TOOL} SEE_Sign_with_SeeRootPK.cmd;
+	cp -f ${ROOT_PRJ}/${CA_AP_DIR}/app_see_clear.bin_s ${SEE_OUT}
+	cp -f ${ROOT_PRJ}/${CA_AP_DIR}/app_see_clear.bin_sl see_sabbat_s382x.sig
+	cp -f ${ROOT_PRJ}/${CA_AP_DIR}/s3821_sabat.ini ./
+	unix2dos s3821_sabat.ini
+
+	../prj/tools/lzma e ${OUT} ${OUT}.7z -lc0 -lp2
+	../prj/tools/lzma e ${SEE_OUT} ${SEE_OUT}.7z -lc0 -lp2
+	rm -f ${ROOT_PRJ}/app.bin;
+	rm -f ${ROOT_PRJ}/app_see.bin;
+	cp -f ${OUT}.7z ${ROOT_PRJ}/app.bin;
+	cp -f ${SEE_OUT}.7z ${ROOT_PRJ}/app_see.bin;
+endef
+
+define  compress_7z-bc_ca_enable
+	mv ${OUT} ${OUT}.bak
+	mv ${SEE_OUT} ${SEE_OUT}.bak
+	cd ../prj/${TOOLS}; \
+	./code_build.exe ../../obj/${OUT}.map ../../obj/${OUT}.bak ../../obj/${OUT};\
+	./code_build.exe ../../obj/${SEE_OUT}.map ../../obj/${SEE_OUT}.bak ../../obj/${SEE_OUT}
+
+	# Sign SEE_SW with SEE_Root_PK
+	cp ${SEE_OUT} ${ROOT_PRJ}/${CA_AP_DIR}/app_see_clear.bin
+	cd ${ROOT_PRJ}/${CA_AP_DIR} && \
+	../../../../../${TOOLS}/${BL_TOOL} SEE_Sign_with_SeeRootPK.cmd;
+	cp -f ${ROOT_PRJ}/${CA_AP_DIR}/app_see_clear.bin_s ${SEE_OUT}
+	cp -f ${ROOT_PRJ}/${CA_AP_DIR}/app_see_clear.bin_sl see_sabbat_s382x.sig
+	cp -f ${ROOT_PRJ}/${CA_AP_DIR}/s3821_sabat.ini ./
+	unix2dos s3821_sabat.ini
+
+	../prj/tools/lzma e ${OUT} ${OUT}.7z -lc0 -lp2
+	../prj/tools/lzma e ${SEE_OUT} ${SEE_OUT}.7z -lc0 -lp2
+	rm -f ${ROOT_PRJ}/app.bin;
+	rm -f ${ROOT_PRJ}/app_see.bin;
+	cp -f ${OUT}.7z ${ROOT_PRJ}/app.bin;
+	cp -f ${SEE_OUT}.7z ${ROOT_PRJ}/app_see.bin;
+
+	${ROOT_PRJ}/padding.exe ${ROOT_PRJ}/app.bin ${ROOT_PRJ}/app_to_be_signed.bin
+	${ROOT_PRJ}/padding.exe ${ROOT_PRJ}/app_see.bin ${ROOT_PRJ}/app_see_to_be_signed.bin
+endef
+
+define compress_7z-normal
+	../prj/${TOOLS}/lzma e ${OUT} ${OUT}.7z -lc0 -lp2
+	../prj/${TOOLS}/lzma e ${SEE_OUT} ${SEE_OUT}.7z -lc0 -lp2
+endef
+
+define compress_7z-compress_lzo
+	../prj/${TOOLS}/lzox99 ${OUT} ${OUT}.7z
+	../prj/${TOOLS}/lzox99 ${SEE_OUT} ${SEE_OUT}.7z
+endef
+
+define dual_compress_7z
+compress_7z:
+	${OBJCOPY} -R .flash -O binary ${OUT}.out ${OUT};
+	-${OBJCOPY} -j .flash -O binary ${OUT}.out flash.sec;
+	${OBJCOPY} -R .flash -O binary ${SEE_OUT}.out ${SEE_OUT};
+	-${OBJCOPY} -j .flash -O binary ${SEE_OUT}.out see_flash.sec;
+	cp -f ${ROOT_PRJ}/platform/chip/m3821/bootcfg/boot_3821_128M.cfg boot.cfg
+
+	rm -f ${OUT}.7z;
+	rm -f ${SEE_OUT}.7z;
+
+ifdef _CAS9_CA_ENABLE_
+	$(call compress_7z-cas9_ca_enable)
+else
+ifdef _BC_CA_ENABLE_
+	$(call compress_7z-bc_ca_enable)
+else
+ifdef _BUILD_OTA_E_
+	$(call compress_7z-normal)
+else
+ifdef _COMPRESS_LZO
+	$(call compress_7z-compress_lzo)
+else
+	$(call compress_7z-normal)
+endif
+endif
+endif
+endif
+endef
+
+pre_boot_total_area_cas9:
+	$(call pre_boot_total_area-cas9_ca_enable)
+
+define pre_boot_total_area-cas9_ca_enable
+### generate the boot total area
+	cp -f ${ROOT_PRJ}/${BOOTLOADER_MA} ${ROOT_PRJ}/${CA_AP_DIR}/bl_in.abs
+	cd ${ROOT_PRJ}/${CA_AP_DIR} && \
+	../../../../../${TOOLS}/${BL_TOOL} M3823_BL_Generate.cmd;
+
+	@cp -f ${ROOT_PRJ}/${CA_AP_DIR}/ExtKey_Block_demo.abs ${ROOT_PRJ}/${CA_AP_DIR}/ExtKey_Block_demo_ali.abs;
+	@cp -f ${ROOT_PRJ}/${CA_AP_DIR}/ExtKey_Block_sign_demo.abs ${ROOT_PRJ}/${CA_AP_DIR}/ExtKey_Block_sign_demo_ali.abs;
+	@cp -f ${ROOT_PRJ}/${CA_AP_DIR}/Boot_Code_sign_demo.abs ${ROOT_PRJ}/${CA_AP_DIR}/Boot_Code_sign_demo_ali.abs;
+	@cp -f ${ROOT_PRJ}/${CA_AP_DIR}/Params_Area_sign_demo.abs ${ROOT_PRJ}/${CA_AP_DIR}/Params_Area_sign_demo_ali.abs;
+endef
+
+pre_boot_total_area:
+	${MAKE} -f ${MAKEFILE} pre_boot_total_area
+
+define generate_7z-cas9_ca_enable
+# Merge the bootloader
+ifdef _ENABLE_ALI_DEMO_KEY_DEBUG_
+	@cp -f ${ROOT_PRJ}/${CA_AP_DIR}/AUX_Code_Enc_demo_M3823.abs ${ROOT_PRJ}/${CA_AP_DIR}/AUX_Code_Enc_demo.abs;
+	@cp -f ${ROOT_PRJ}/${CA_AP_DIR}/AUX_Code_sign_demo_M3823_ali.abs ${ROOT_PRJ}/${CA_AP_DIR}/AUX_Code_sign_demo_ali.abs;
+	$(call pre_boot_total_area-cas9_ca_enable)
+	cd ${ROOT_PRJ}/${CA_AP_DIR} && \
+	../../../../../${TOOLS}/${BL_TOOL} AS_Merge_ALi.cmd;
+else
+	@cp -f ${ROOT_PRJ}/${CA_AP_DIR}/AUX_Code_Enc_demo_M3823.abs ${ROOT_PRJ}/${CA_AP_DIR}/AUX_Code_Enc_demo.abs;
+	@cp -f ${ROOT_PRJ}/${CA_AP_DIR}/AUX_Code_sign_demo_M3823_cnx.abs ${ROOT_PRJ}/${CA_AP_DIR}/AUX_Code_sign_demo_cnx.abs;
+	cd ${ROOT_PRJ}/${CA_AP_DIR} && \
+	../../../../../${TOOLS}/${BL_TOOL} AS_Merge_CA.cmd;
+endif
+ifdef _ENABLE_BL_ENCRYPTED_
+	cd ${ROOT_PRJ}/${CA_AP_DIR} && \
+	../../../../../${TOOLS}/${BL_TOOL} BL_Encrypted.cmd;
+endif
+	cp -f ${ROOT_PRJ}/$(CA_AP_DIR)/boot_total_area.abs ${ROOT_PRJ}/bloader3_3821_sec_wh.abs
+
+# Merge the firmware
+	cp -f ${ROOT_PRJ}/$(DEF_DB) ${ROOT_PRJ}/factory_data_sabbat.bin
+ifdef _CAS9_VSC_ENABLE_
+	cp -f ${ROOT_PRJ}/conax_ap/${VSC_LIB_NAME} ${ROOT_PRJ}/conax_ap/vsc_see_se.bin
+endif
+	cd ${ROOT_PRJ}; \
+	../../../../${TOOLS}/${merge_tool} ${BSP}
+
+# Sign and Encrypt the Main/See
+ifndef _BUILD_OTA_E_
+	cp -f ${ROOT_PRJ}/product_sabbat_*.abs ${ROOT_PRJ}/${CA_AP_DIR}/
+ifdef _CAS9_VSC_ENABLE_
+	cd ${ROOT_PRJ}/${CA_AP_DIR}; \
+	../../../../../${TOOLS}/${BL_TOOL} FW_Sign_Enc_VSC.cmd
+else
+	cd ${ROOT_PRJ}/${CA_AP_DIR}; \
+	../../../../../${TOOLS}/${BL_TOOL} FW_Sign_Enc.cmd
+endif
+	cp -f ${ROOT_PRJ}/${CA_AP_DIR}/product_sabbat_*.abs ${ROOT_PRJ}/
+else
+	cp -f ${ROOT_PRJ}/product_sabbat_dual_ota.abs ${ROOT_PRJ}/${CA_AP_DIR}/
+	cd ${ROOT_PRJ}/${CA_AP_DIR}; \
+	../../../../../${TOOLS}/${BL_TOOL} FW_OTA_Sign_Enc.cmd
+	cp -f ${ROOT_PRJ}/${CA_AP_DIR}/product_sabbat_dual_ota.abs ${ROOT_PRJ}/
+endif
+endef
+
+define generate_7z-bc_ca_enable
+# Merge the bootloader
+ifdef _ENABLE_ALI_DEMO_KEY_DEBUG_
+	@cp -f ${ROOT_PRJ}/${CA_AP_DIR}/AUX_Code_Enc_demo_M3823.abs ${ROOT_PRJ}/${CA_AP_DIR}/AUX_Code_Enc_demo.abs;
+	@cp -f ${ROOT_PRJ}/${CA_AP_DIR}/AUX_Code_sign_demo_M3823_ali.abs ${ROOT_PRJ}/${CA_AP_DIR}/AUX_Code_sign_demo_ali.abs;
+	$(call pre_boot_total_area-cas9_ca_enable)
+	cd ${ROOT_PRJ}/${CA_AP_DIR} && \
+	../../../../../${TOOLS}/${BL_TOOL} AS_Merge_ALi.cmd;
+else
+	@cp -f ${ROOT_PRJ}/${CA_AP_DIR}/AUX_Code_Enc_demo_M3823.abs ${ROOT_PRJ}/${CA_AP_DIR}/AUX_Code_Enc_demo.abs;
+	@cp -f ${ROOT_PRJ}/${CA_AP_DIR}/AUX_Code_sign_demo_M3823_cnx.abs ${ROOT_PRJ}/${CA_AP_DIR}/AUX_Code_sign_demo_cnx.abs;
+	cd ${ROOT_PRJ}/${CA_AP_DIR} && \
+	../../../../../${TOOLS}/${BL_TOOL} AS_Merge_CA.cmd;
+endif
+ifdef _ENABLE_BL_ENCRYPTED_
+	cd ${ROOT_PRJ}/${CA_AP_DIR} && \
+	../../../../../${TOOLS}/${BL_TOOL} BL_Encrypted.cmd;
+endif
+	cp -f ${ROOT_PRJ}/$(CA_AP_DIR)/boot_total_area.abs ${ROOT_PRJ}/bloader3_3821_sec_wh.abs
+
+# Merge the firmware
+	cp -f ${ROOT_PRJ}/$(DEF_DB) ${ROOT_PRJ}/factory_data_sabbat.bin
+	cd ${ROOT_PRJ}; \
+	../../../../${TOOLS}/${merge_tool} ${BSP}
+endef
+
+define generate_7z-normal
+	rm -f app_${OUT}.bin
+	cp -f ${OUT}.7z ${ROOT_PRJ}/app.bin
+	cp -f ${SEE_OUT}.7z ${ROOT_PRJ}/app_see.bin
+	cp -f ${ROOT_PRJ}/platform/chip/m3821/memcfg/${MEMCFG} ${ROOT_PRJ}/memcfg_3821.abs
+	cp -f ${ROOT_PRJ}/$(DEF_DB) ${ROOT_PRJ}/factory_data_sabbat.bin 
+	cp -f ${ROOT_PRJ}/${BOOTLOADER_MA_RT} ${ROOT_PRJ}/bloader3_3821_dual_rt.abs
+	cd ${ROOT_PRJ}; \
+	  ../../../../${TOOLS}/${merge_tool} ${BSP}
+endef
+
+define dual_generate_7z
+generate_7z:
+ifdef _CAS9_CA_ENABLE_
+	$(call generate_7z-cas9_ca_enable)
+else
+ifdef _BC_CA_ENABLE_
+	$(call generate_7z-bc_ca_enable)
+else
+	$(call generate_7z-normal)
+endif		# endif _BC_CA_ENABLE_
+endif		# endif _CAS9_CA_ENABLE_
+endef
+
+ifdef _AUI_
+LFLAG_AUI += -L$(DDK_DIR)
+ifdef _AUI_TEST_
+LFLAG_AUI += -laui_test -laui
+endif
+
+
+ifdef _AUI_NESTOR_
+ifdef _TEST_OLD_CI_
+LFLAG_AUI+= -L$(DDK_DIR) -lnestor -laui
+else
+LFLAG_AUI+= -L$(DDK_DIR) --start-group -laui_nestor -laliciframework --end-group -laui
+endif
+endif
+
+endif
+
+define dual_link
+link:
+	${LD} ${LDFLAGS} ${NEED} $(shell ls $(PLUGINEXT_DIR)/*.o ) -o ${OUT}.out -Map ${OUT}.map \
+	  -T lscript.ld ${LIB} $(DDK_DIR)/libHDMI.a $(LFLAG_AUI) -lstb ${USB_WIFI_LIB} $(USB_WIFI_7601_LIB) $(USB_3G_LIB)\
+	   --start-group ${ALL_LIBS} \
+	   $(MHEG5_V2_LIB) \
+	   -lstb --end-group \
+	   -lstb -l7zip -lm -lgcc ${LIBSTDCPP} -lc ${LIBE}
+	${OBJCOPY} -O binary ${OUT}.out ${OUT}.abs
+endef
+
+define single_compress_7z
+compress_7z :
+	${OBJCOPY} -R .flash -O binary ${OUT}.out ${OUT}; \
+	${OBJCOPY} -j .flash -O binary ${OUT}.out flash.sec; \
+	rm -f ${OUT}.7z; \
+#add for fast boot up
+ifdef _BUILD_OTA_E_
+	../prj/${TOOLS}/lzma e ${OUT} ${OUT}.7z -lc0 -lp2
+else
+ifdef _COMPRESS_LZO
+	../prj/${TOOLS}/lzox99 ${OUT} ${OUT}.7z
+else
+	../prj/${TOOLS}/lzma e ${OUT} ${OUT}.7z -lc0 -lp2
+endif
+endif
+endef
+
+define single_generate_7z
+generate_7z :
+	rm -f app_${OUT}.bin
+	cp -f ${OUT}.7z ${ROOT_PRJ}/app.bin
+	cp -f ${ROOT_PRJ}/$(DEF_DB) ${ROOT_PRJ}/factory_data_sabbat.bin
+	cp -f ${ROOT_PRJ}/${MEMCFG} ${ROOT_PRJ}/memcfg_3821.abs
+	cd ${ROOT_PRJ}; \
+	  ../../../../${TOOLS}/${merge_tool} ${BSP}
+endef
+
+define single_link
+link :
+	${LD} ${LDFLAGS} ${NEED} $(shell ls $(PLUGINEXT_DIR)/*.o ) $(shell ls $(PLUGINDDK_DIR)/*.o ) -o ${OUT}.out -Map ${OUT}.map \
+	  -T lscript.ld ${LIB} $(LIB_HDMI)  -lstb ${USB_WIFI_LIB} $(USB_3G_LIB) ${NET_LINK} \
+	   ${ALL_LIBS} \
+	   $(MHEG5_V2_LIB) \
+	   -lstb -l7zip -lm ${LIBSTDCPP} -lgcc -lc
+	${OBJCOPY} -O binary ${OUT}.out ${OUT}.abs
+endef
+
+define common_compress_7z
+ifdef DUAL_ENABLE
+$(call dual_compress_7z)
+else
+$(call single_compress_7z)
+endif
+endef
+
+define common_generate_7z
+ifdef DUAL_ENABLE
+$(call dual_generate_7z)
+else
+$(call single_generate_7z)
+endif
+endef
+
+define common_link
+ifdef DUAL_ENABLE
+$(call dual_link)
+else
+$(call single_link)
+endif
+endef
+
+$(eval $(call common_compress_7z))
+$(eval $(call common_generate_7z))
+$(eval $(call common_link))
+
+link_ota :
+	${LD} ${LDFLAGS} ${NEED} -o ${OUT}.out -Map ${OUT}.map \
+	  -T lscript.ld ${LIB} $(LIB_HDMI) -lstb ${USB_WIFI_LIB} ${NET_LINK}\
+	   --start-group ${DDKLIB}.a ${SMOD_LIB} -lstb --end-group -llog \
+	   -l7zip -lm -lgcc -lc -le
+	${OBJCOPY} -O binary ${OUT}.out ${OUT}.abs
+#	cp -f ${OUT}.out $(RUN_DIR)/
+#	${OBJDUMP} -D ${OUT}.out > ${OUT}.dis
+# */
+
+see_link : 
+	${LD} ${LDFLAGS} $(shell ls $(PLUGIN_PATH)/*.o ) -o ${SEE_OUT}.out -Map ${SEE_OUT}.map \
+	  -T ${SEE_LSCR} ${LIB} $(LIB_HDMI) $(DDK_DIR)/${SEELIB}.a \
+	    $(DDK_DIR)/${MPG_LIB}.a liblog.a\
+	    -lm -lgcc ${LIBSTDCPP} -lc ${LIBE}
+	${OBJCOPY} -O binary ${SEE_OUT}.out ${SEE_OUT}.abs
+
+# */
+
+see_link_ota :
+	${LD} ${LDFLAGS} -o ${SEE_OUT}.out -Map ${SEE_OUT}.map \
+	  -T ${SEE_LSCR} ${LIB} $(LIB_HDMI) $(DDK_DIR)/${SEELIB}.a \
+	     liblog.a\
+	    -lm -lgcc -lc -le
+	${OBJCOPY} -O binary ${SEE_OUT}.out ${SEE_OUT}.abs
+
+# */
+cleanld :
+	rm -f ${OUT}.out ${OUT}.map ${OUT}.dis ${OUT}.abs libstb.a \
+	  ${OUT} flash.sec ${OUT}.gz ${OUT}.7z app_${OUT}.bin
+
+label :
+	${MAKE} -f ${MAKEFILE} label
+
+label_core :
+	${MAKE} -f ${MAKEFILE} label_core
+
+label_sec :
+	${MAKE} -f ${MAKEFILE} label_sec
+
+ddk:	
+	${MAKE} -f ${MAKEFILE} ddk
+
+sdk: plus
+	${MAKE} -f ${MAKEFILE} sdk	
+
+ddk_clean :
+	${MAKE} -f ${MAKEFILE} ddk_clean
+	
+sdk_clean : plus_clean
+	${MAKE} -f ${MAKEFILE} sdk_clean
+
+plus_clean: pplus_clean
+	${MAKE} -f ${MAKEFILE} plus_clean
+	
+sdk_rel:
+	${MAKE} -f ${MAKEFILE} sdk_root
+	${MAKE} -f ${MAKEFILE} sdk_rel_35
+
+plus: pplus
+	${MAKE} -f ${MAKEFILE} plus
+
+pplus:
+	${MAKE} -f ${MAKEFILE} pplus
+
+pplus_clean:
+	${MAKE} -f ${MAKEFILE} pplus_clean
+
+dis:
+	cd ${ROOT}/obj ;\
+	sde-objdump -D ${OUT}.out > ${OUT}.dis
+	
+see_dis:
+	cd ${ROOT}/obj ;\
+	sde-objdump -D ${SEE_OUT}.out > ${SEE_OUT}.dis
+bin:
+	echo Step 0: Check perm ...
+	-chmod -R a+x ../../../../${TOOLS}/*
+	echo Step 1: Compiler application ...
+	echo Step 2: Compress application bin file ...
+	${MAKE} -f ${MAKEFILE} compress_7z
+	echo Step 3: Generate Flash file ...
+	${MAKE} -f ${MAKEFILE} generate_7z
+	cp -f ../aui_demo/product_sabbat_*.abs $(ROOT)/obj/
+	echo All finished!
+
+mheg5_v20_all:
+	${MAKE} -f ${MAKEFILE} mheg5_v20_core
+	${MAKE} -f ${MAKEFILE} mheg5_v20_app	
+	
+mheg5_v20_core:	
+	${MAKE} -f ${MAKEFILE} mheg5_v20_core
+	
+mheg5_v20_app:	
+	${MAKE} -f ${MAKEFILE} mheg5_v20_app
+
+mheg5_v20_all_clean :
+	${MAKE} -f ${MAKEFILE} mheg5_v20_core_clean
+	${MAKE} -f ${MAKEFILE} mheg5_v20_app_clean
+
+mheg5_v20_core_clean :
+	${MAKE} -f ${MAKEFILE} mheg5_v20_core_clean
+
+mheg5_v20_app_clean :
+	${MAKE} -f ${MAKEFILE} mheg5_v20_app_clean
+
+mheg5_v20_rel:
+	${MAKE} -f ${MAKEFILE} mheg5_v20_rel
+
+ciplus_rel:
+	${MAKE} -f ${MAKEFILE} ciplus_rel
+bakcp:
+	${MAKE} -f ${MAKEFILE} bakcp	
+
+KK_MOD:
+	${MAKE} -f ${MAKEFILE} KK_MOD	
+
+aui :
+	${MAKE} -f ${MAKEFILE} aui
+	
+alici :
+	${MAKE} -f ${MAKEFILE} alici

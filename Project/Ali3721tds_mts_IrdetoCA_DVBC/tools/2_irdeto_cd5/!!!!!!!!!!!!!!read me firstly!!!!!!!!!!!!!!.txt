@@ -1,0 +1,15 @@
+#####################此目录为IRDETO规范*.CD5升级文件制作包#######################
+
+将使用Ali Merge工具包生成的ali_app.bin和RC.bin copy到本目录，双击mergeApp.bat可生成合并的dvtapp.bin
+
+在linux下运行./ISIGN setting.cfg
+
+
+注意：irdeto规范是在app加了头的186字节
+所以在配置app+rc地址的时候有调整
+我们在flash中配置的app+rc大小是0x600000--------这里去掉头我们的数据payload大小为0x600000-186=0x5Fff46
+相应的RC也需要偏移为0x5Fff46【原始相对app为0x600000】
+
+dss.dat  软件版本dsn的记录：16进制打开查看
+
+如果需要正式的app软件签字，请外发dvtapp.bin给irdeto签字

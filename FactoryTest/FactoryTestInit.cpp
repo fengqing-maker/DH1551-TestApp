@@ -1,0 +1,175 @@
+/*
+ * FactoryTestInit.cpp
+ *
+ *  Created on: 2015-8-14
+ *      Author: timothy.liao
+ */
+
+#include "FactoryTestInit.h"
+#include "APAssert.h"
+#include "FactoryTest.h"
+#include "TestAppNotify.h"
+#include "SNNotify.h"
+#include "FlashCheck.h"
+
+typedef enum
+{
+	INIT_SUCCESS = 0x1,
+	INIT_PRASE_FAIL = 0x2,
+	INIT_HEAD_LOST = 0x4,
+	INIT_FLASH_CRC_LOST = 0x8,
+	INIT_FLASH_CHECK_ERROR = 0x10,
+	INIT_SET_CFG_ERROR = 0x20,
+}InitStatus_E;
+
+FactoryTest* g_pFactoryTest = NULL;
+
+unsigned int FactoryTestInit1(ADISMCProtocol_E eProtocol, char *pFileName, int nNameLen)
+{	
+	unsigned int unRet = 0;
+	IndividualXMLParse tempIndividualXMLParse;
+	FactoryTestParamSet tempFactoryTestParamSet;
+	XMLNode *pTempXMLNode = NULL;
+
+	do
+	{
+		if(tempIndividualXMLParse.ReadAndParseConfig( pFileName, nNameLen ) == 0)
+		{
+			printf("-[%s][%d]-----ReadAndParseConfig Fail-\n", __FUNCTION__, __LINE__);
+			break;
+		}
+
+		pTempXMLNode = tempIndividualXMLParse.GetXMLNode();
+		if(pTempXMLNode == NULL)
+		{
+			printf("-[%s][%d]-----GetXMLNode Fail-\n", __FUNCTION__, __LINE__);
+			break;
+		}
+		
+		FlashCheck tempFlashCheck;
+		if(tempFlashCheck.SetCrcCheckInfo(pTempXMLNode) == 0)
+		{
+			printf("-[%s][%d]-----SetCrcCheckInfo Fail-\n", __FUNCTION__, __LINE__);
+			break;
+		}
+		
+		if(tempFlashCheck.StartCheck() == 0)
+		{
+			printf("-[%s][%d]-----StartCheck Fail-\n", __FUNCTION__, __LINE__);
+			break;
+		}
+		
+		if(tempFactoryTestParamSet.SetAllConfig(pTempXMLNode) == 0)
+		{
+			printf("-[%s][%d]-----SetAllConfig Fail-\n", __FUNCTION__, __LINE__);
+			break;
+		}
+		
+		unRet = 1;
+	}while(0);
+	
+	UpgradeNotify * pSNNotify = new SNNotify;
+
+	g_pFactoryTest = new FactoryTest(eProtocol, pSNNotify);
+
+	if(g_pFactoryTest != NULL)
+	{
+		
+		TestAppNotify* pTestAppNotify = new TestAppNotify;
+		
+		g_pFactoryTest->RegisterNotify(pTestAppNotify);
+		
+		if(unRet == 0)
+		{
+			//tempFactoryTestParamSet.SetDefaultConfig();
+			
+			printf("-[%s][%d]-----Parse Fail-\n", __FUNCTION__, __LINE__);
+		}
+		else
+		{
+			printf("-[%s][%d]-----Parse Success-\n", __FUNCTION__, __LINE__);
+		
+			g_pFactoryTest->SetFactoryConfig(tempFactoryTestParamSet);
+		}
+	}
+
+	return unRet;
+}
+
+unsigned int FactoryTestInit(ADISMCProtocol_E eProtocol, unsigned int unFLASHAddress, unsigned int unSize)
+{	
+	unsigned int unRet = 0;
+	IndividualXMLParse tempIndividualXMLParse;
+	FactoryTestParamSet tempFactoryTestParamSet;
+	XMLNode *pTempXMLNode = NULL;
+
+	do
+	{
+		if(tempIndividualXMLParse.ReadAndParseConfig(unFLASHAddress, unSize) == 0)
+		{
+			printf("-[%s][%d]-----ReadAndParseConfig Fail-\n", __FUNCTION__, __LINE__);
+			break;
+		}
+
+		pTempXMLNode = tempIndividualXMLParse.GetXMLNode();
+		if(pTempXMLNode == NULL)
+		{
+			printf("-[%s][%d]-----GetXMLNode Fail-\n", __FUNCTION__, __LINE__);
+			break;
+		}
+		
+		FlashCheck tempFlashCheck;
+		if(tempFlashCheck.SetCrcCheckInfo(pTempXMLNode) == 0)
+		{
+			printf("-[%s][%d]-----SetCrcCheckInfo Fail-\n", __FUNCTION__, __LINE__);
+			break;
+		}
+		
+		if(tempFlashCheck.StartCheck() == 0)
+		{
+			printf("-[%s][%d]-----StartCheck Fail-\n", __FUNCTION__, __LINE__);
+			break;
+		}
+		
+		if(tempFactoryTestParamSet.SetAllConfig(pTempXMLNode) == 0)
+		{
+			printf("-[%s][%d]-----SetAllConfig Fail-\n", __FUNCTION__, __LINE__);
+			break;
+		}
+		
+		unRet = 1;
+	}while(0);
+	
+	UpgradeNotify * pSNNotify = new SNNotify;
+
+	g_pFactoryTest = new FactoryTest(eProtocol, pSNNotify);
+
+	if(g_pFactoryTest != NULL)
+	{
+		
+		TestAppNotify* pTestAppNotify = new TestAppNotify;
+		
+		g_pFactoryTest->RegisterNotify(pTestAppNotify);
+		
+		if(unRet == 0)
+		{
+			//tempFactoryTestParamSet.SetDefaultConfig();
+			
+			printf("-[%s][%d]-----Parse Fail-\n", __FUNCTION__, __LINE__);
+		}
+		else
+		{
+			printf("-[%s][%d]-----Parse Success-\n", __FUNCTION__, __LINE__);
+		
+			g_pFactoryTest->SetFactoryConfig(tempFactoryTestParamSet);
+		}
+	}
+
+	return unRet;
+}
+
+FactoryTestInterface * GetFactoryTestInterface()
+{
+	return g_pFactoryTest;
+}
+

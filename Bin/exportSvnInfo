@@ -1,0 +1,38 @@
+#!/bin/sh
+
+#-----------------------------------------usage----------------------------------------------------#
+#exportSvnVersion svnpath  version_file_path
+#-------------------------------------------end----------------------------------------------------#
+
+if [ ! -d "$1" ];then
+svn_path=$(pwd)
+else
+svn_path=$1
+fi
+
+
+export SRC_VERSION=$(svn info $svn_path| grep "^最后修改的修订版\| grep ^最后修改的版本: \|^Last Changed Rev: "|grep -Eo '[0-9]+');
+export SRC_SVN_URL=$(svn info $svn_path| grep "^URL: "|cut -d' ' -f2);
+echo "current module source code svn version=$SRC_VERSION";
+echo "current compiling mode=$COMPILING_MODE";
+echo "current svn url=$SRC_SVN_URL"
+
+if [ -d "$2" ];then
+version_file=$2/version.h
+else
+version_file=${svn_path}/version.h
+fi
+
+if [ "-x$AutoCompile" = "-xy" ];then
+compile_mode=AutoCompile
+else
+compile_mode=ManualCompile
+fi
+
+echo "#define SRC_VERSION_APP \"(svn:$SRC_VERSION) ($SRC_SVN_URL) (mode:$compile_mode)\"" >${version_file}
+
+echo "#define SRC_VERSION_SVN \"$SRC_VERSION\"" >>${version_file}
+
+echo "" >> ${version_file}
+
+

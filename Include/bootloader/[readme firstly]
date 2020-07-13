@@ -1,0 +1,14 @@
+adi_blproject_helper.h 
+::提供给booter/loader/dvt工程使用, 不给app使用
+
+adi_bootloader_common.h
+::通用公共头文件 bl app都需要使用
+
+adi_castpal_bl.h
+::castpal通用规范bl使用头文件
+
+adi_irdeto_bl.h
+::irdeto bl V3.2规范使用头文件
+
+adi_irdeto_bl_v5.h
+::irdeto bl V5规范使用头文件

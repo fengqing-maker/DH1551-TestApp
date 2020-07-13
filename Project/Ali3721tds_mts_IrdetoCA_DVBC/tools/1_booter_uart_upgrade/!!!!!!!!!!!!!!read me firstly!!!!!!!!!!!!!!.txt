@@ -1,0 +1,9 @@
+将merge工具包生成的ali_app.bin和RC.bin  copy到本目录，双击========create_rs232========.bat可生成串口升级文件out.rs232
+
+注意：
+flashmap.ini&&rs232_cfg.ini中的地址配置
+
+flashmap.ini： 为app和RC在flash的相对地址【由于只升级app&rc, 所以app相对地址为0, RC地址则是偏移】，需要check
+
+rs232_cfg.ini：需要注意FLASH_START_ADDR必须准确配置【写flash的起始地址,参见flashmap配置！！此项目app为0x2C0000】
+

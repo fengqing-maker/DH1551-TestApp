@@ -1,0 +1,685 @@
+/*
+ * SerialUpgrade.cpp
+ *
+ *  Created on: 2015-8-17
+ *      Author: linc
+ */
+
+#include "SerialUpgrade.h"
+#include "adi_typedef.h"
+#include "adi_os.h"
+#include "adi_flash.h"
+#include "stdio.h"
+#include "string.h"
+#include "STBDataInterface.h"
+#include "ReturnfileType.h"
+#include "ReadSTBAndCardID.h"
+
+#define VERIFY_SN
+
+#define HEAD_FLAG (0xEF)
+#define SN_LEN (32)
+#define MAC_LEN (32)
+#define CHIP_ID_LEN (256)
+#define HDCP_LEN (520)
+#define PEF_LEN	(16*1024)
+#define MAX_UPGRADE_COUNT (3)
+
+
+SerialUpgrade::SerialUpgrade(UpgradeNotify * pNotify) : 
+APSafeThread(7*17, 64*1024, "SerialUpgrade", strlen("SerialUpgrade")), m_pUpgradeNotify(pNotify)
+{
+	m_WriteType = E_ABV_WRITE;
+
+	if(CheckChipID() == 0)
+	{
+		m_nStatus = CHIPID_ERROR;
+	}
+	else
+	{
+		m_nStatus = MAX_STATUS;
+	}
+}
+
+SerialUpgrade::~SerialUpgrade()
+{
+	Exit ( );
+}
+
+void SerialUpgrade::Init(SNConfig csSNConfig)
+{
+	memcpy(&m_SNConfig, &csSNConfig, sizeof(SNConfig));
+
+	m_WriteType += m_SNConfig.m_nSN * E_SN_WRITE;
+	m_WriteType += m_SNConfig.m_nHDCP * E_HDCP_WRITE;
+	m_WriteType += m_SNConfig.m_nMAC * E_MAC_WRITE;
+	m_WriteType += m_SNConfig.m_nPEF * E_PEF_WRITE;
+	m_WriteType += m_SNConfig.m_nCxPerson * E_CONAX_PERSONALIZE;
+
+	m_SerialBuf.SetType( m_SNConfig.m_unConnType );
+
+	if(m_ListenConn.Init(m_SNConfig.m_unConnType,m_SNConfig.m_acIP, strlen(m_SNConfig.m_acIP), m_SNConfig.m_usPort))
+	{
+		m_SerialBuf.WriteLog("*************m_ListenConn.SetRecvFlag:%d*************\r\n",m_WriteType);
+		
+		StartRun();
+	}
+	else
+	{
+		m_SerialBuf.WriteLog("*************Create Connect Fail*************\r\n");
+	}
+
+}
+
+void SerialUpgrade::OnceProcess()
+{	
+	if(CanStartUpgradeSN() > 0 && m_ListenConn.IsConnect())
+	{
+		if( m_WriteType == E_ABV_WRITE )
+		{
+			if( IsCaDataBurned() )
+			{
+				if(m_nStatus != UPGRADE_FINISHED)
+				{
+					m_nStatus = UPGRADE_FINISHED;
+					SaveUpgradeStatus();
+					m_pUpgradeNotify->UpgradeSuccess();
+					Exit ( );
+				}
+			}
+			
+			ADIOSThreadSleep(500);
+		}
+		else
+		{
+			switch(m_nStatus)
+			{
+			case WAIT_UPGRADE_DATA:
+				StartWriteFlash();
+				break;
+
+			case WAIT_CONAX_PERSONALIZE:
+				//ConaxPersonalize();
+				break;
+				
+			case WAIT_SEND_RETURNFILE:
+				SendReturnFile();
+				break;
+				
+			case WAIT_DB_RESULT:
+				InsertDataIntoDB();
+				break;
+				
+			case WAIT_VERIFY:
+				StartVerify();
+				break;
+
+			case UPGRADE_FINISHED:
+				UpgradeFinish();
+				break;
+
+			case CHIPID_ERROR:
+				RemindChipIDError();
+				break;
+				
+			case WAIT_COMMAND:
+				RepairStep((UPGRADE_COMMAND)0);
+				break;
+
+			default:
+				break;
+			}
+		}
+	}		
+	
+	ADIOSThreadSleep(500);
+}
+
+void SerialUpgrade::StartWriteFlash(void)
+{
+	unsigned int unFinish = 0;
+	ADICHIPID_S stChipID = {0};
+	unsigned char aucBuffer[16*1024] = {0};
+	unsigned int unIndex = 0;
+	unsigned int unSendLen = 0;
+	unsigned char ucSendData[32] = {0};
+
+	do
+	{		
+		if(SendAndReceiveUartData(E_UPGRADE_COMMAND_STB_SEND_UPGRADE_COMMAND, E_UPGRADE_COMMAND_PC_SEND_ACK, NULL, 0, 0) == 0)
+		{
+			m_SerialBuf.WriteLog("*************Wait for PC_SEND_ACK No TimeOut*************\r\n");
+			break;
+		}
+
+		if(m_WriteType & E_PEF_WRITE)
+		{
+			if(GetChipID(&stChipID) > 0)
+			{
+				unSendLen = stChipID.m_nLength - 4;
+				memcpy(ucSendData, &stChipID.m_szChipID[4], unSendLen);				
+			}
+		}
+
+		if(SendAndReceiveUartData(E_UPGRADE_COMMAND_STB_REQ_SN, E_UPGRADE_COMMAND_PC_SEND_SN, ucSendData, unSendLen, 15 * 1000) == 0)
+		{
+			m_SerialBuf.WriteLog("*************Wait for PC_SEND_Data TimeOut*************\r\n");
+			break;
+		}
+
+		memcpy(aucBuffer, m_CommandData.m_aucData, m_CommandData.m_nDataLen);
+
+		if(m_WriteType & E_SN_WRITE)
+		{
+			unsigned int unSNLen = 0;
+			unsigned char aucSN[32] = {0};
+			unSNLen = (aucBuffer[unIndex] << 8) | aucBuffer[unIndex+1];
+			unIndex += 2;
+
+			if (unSNLen + 6 >= SN_LEN)
+			{
+				m_SerialBuf.WriteLog("[%s][%d]SN too long,Len:%d\n", __FUNCTION__, __LINE__, unSNLen);
+				break;
+			}
+			
+			memcpy(aucSN, &aucBuffer[unIndex], unSNLen);
+			m_SerialBuf.WriteLog("[%s][%d]SN:%s,Len:%d\n", __FUNCTION__, __LINE__, aucSN, unSNLen);
+			
+			if (WriteSN(aucSN, unSNLen) != E_DATA_SUCCESS)
+			{
+				m_SerialBuf.WriteLog("[%s][%d]WriteSN Fail\n", __FUNCTION__, __LINE__);
+				break;
+			}
+			unIndex += unSNLen;
+		}
+		
+		if(m_WriteType & E_HDCP_WRITE)
+		{
+			unsigned int unHDCPLen = 0;
+			unsigned char aucHDCP[520] = {0};
+
+			unHDCPLen = (aucBuffer[unIndex] << 8) | aucBuffer[unIndex+1];
+			unIndex += 2;
+
+			if (unHDCPLen + 6 >= HDCP_LEN)
+			{
+				m_SerialBuf.WriteLog("[%s][%d]HDCPKey Too Long unHDCPLen:%d\n", __FUNCTION__, __LINE__, unHDCPLen);
+				break;				
+			}
+			
+			memcpy(aucHDCP, &aucBuffer[unIndex], unHDCPLen);
+				
+			m_SerialBuf.WriteLog("[%s][%d]HDCPLen:%d\n", __FUNCTION__, __LINE__, unHDCPLen);
+			
+			if(	HDMIKeyEncrypt(aucHDCP, unHDCPLen) == 0 )
+			{
+				m_SerialBuf.WriteLog("[%s][%d]fail to HDMIKeyEncrypt\n", __FUNCTION__, __LINE__);
+				break;
+			}
+			
+			if (WriteHDCPKey(aucHDCP, unHDCPLen) != E_DATA_SUCCESS)
+			{
+				m_SerialBuf.WriteLog("[%s][%d]WriteHDCPKey Fail\n", __FUNCTION__, __LINE__);
+				break;
+			}
+			unIndex += unHDCPLen;
+		}
+
+		if(m_WriteType & E_MAC_WRITE)
+		{
+			unsigned int unMacLen = 0;
+			unsigned char aucMac[32] = {0};
+
+			unMacLen = (aucBuffer[unIndex] << 8) | aucBuffer[unIndex+1];
+			unIndex += 2;
+			
+			if (unMacLen + 6 >= MAC_LEN)
+			{
+				m_SerialBuf.WriteLog("[%s][%d]MAC:Len:%d\n", __FUNCTION__, __LINE__, unMacLen);
+				break;
+			}
+			
+			memcpy(aucMac, &aucBuffer[unIndex], unMacLen);	         
+			if (WriteMAC(aucMac, unMacLen) != E_DATA_SUCCESS)
+			{
+				m_SerialBuf.WriteLog("[%s][%d]WriteMAC Fail aucMac=%s\n", __FUNCTION__, __LINE__, aucMac);
+				break;
+			}
+			unIndex += unMacLen;
+		}
+
+		if(m_WriteType & E_PEF_WRITE)
+		{
+			unsigned int unPEFLen = 0;
+			unsigned char aucPEF[PEF_LEN] = {0};
+
+			unPEFLen = (aucBuffer[unIndex] << 8) | aucBuffer[unIndex+1];
+			unIndex += 2;
+			
+			m_SerialBuf.WriteLog("[%s][%d]pef Len:%d  \n\n", __FUNCTION__, __LINE__, unPEFLen);		
+			if (unPEFLen + 6 >= PEF_LEN)
+			{
+				m_SerialBuf.WriteLog("[%s][%d]pef too long Len:%d  \n\n", __FUNCTION__, __LINE__, unPEFLen);
+				break;
+			}
+		    
+			memcpy(aucPEF, &aucBuffer[unIndex], unPEFLen);
+			int nPefRet = WritePEFAndIFCP(aucPEF, unPEFLen);
+			m_SerialBuf.WriteLog("[%s][%d]WritePEF nPefRet:%d\n", __FUNCTION__, __LINE__, nPefRet);
+			if (nPefRet != E_DATA_SUCCESS)
+			{
+				m_SerialBuf.WriteLog("[%s][%d]WritePEF Fail\n", __FUNCTION__, __LINE__);
+				break;
+			}
+			unIndex += unPEFLen;
+		}
+		
+		if(WriteChipIDToFlash() == 0)
+		{
+			m_SerialBuf.WriteLog("*************WriteChipIDToFlash Fail*************\r\n");
+			break;
+		}
+
+		unFinish = 1;
+	}while(0);
+
+	if(unFinish > 0)
+	{
+		if(m_WriteType & E_CONAX_PERSONALIZE)
+		{
+			m_nStatus = WAIT_CONAX_PERSONALIZE;
+		}
+		else
+		{
+			m_nStatus = WAIT_SEND_RETURNFILE;
+		}
+		SaveUpgradeStatus();
+		m_pUpgradeNotify->UpgradeSuccess();		
+	}
+}
+
+void SerialUpgrade::SendReturnFile(void)
+{
+	unsigned int unFinished = 0;
+	unsigned char aucStr[1024] = {0};
+	unsigned int unDataLen = 0;
+
+	do
+	{
+		if(SendAndReceiveUartData(E_UPGRADE_COMMAND_STB_SEND_WAIT_SEND_UPGRADE_RESULT, E_UPGRADE_COMMAND_PC_SEND_REQ_UPGRADE_RESULT, NULL, 0, 0) == 0)
+		{
+			m_SerialBuf.WriteLog("**************WAIT REQUEST RETURNFILE ERROR************\r\n");
+			break;
+		}
+
+		unDataLen = ConstructReturnFile(&aucStr[1], sizeof(aucStr) - 1);
+		if(unDataLen == 0)
+		{
+			aucStr[0] = 0;
+			m_SerialBuf.WriteLog("*************ConstructAllData Fail*************\r\n");
+		}
+		else
+		{
+			aucStr[0] = 1;
+			m_SerialBuf.WriteLog("*************ConstructAllData Success****unDataLen:%d*********\r\n", unDataLen);
+		}
+		
+		if(SendAndReceiveUartData(E_UPGRADE_COMMAND_STB_SEND_UPGRADE_RESULT, E_UPGRADE_COMMAND_PC_SEND_UPGRADE_RESULT, aucStr, (unDataLen + 1), 10 * 1000) == 0)
+		{
+			m_SerialBuf.WriteLog("*************Wait for PC_SEND_UPGRADE_RESULT TimeOut:10S*************\r\n");
+			break;
+		}
+
+		if(m_CommandData.m_aucData[0] == 0)
+		{
+			m_SerialBuf.WriteLog("******PC_SEND_UPGRADE_RESULT fail*******\r\n");
+			break;
+		}
+		
+		unFinished = 1;
+	}while(0);
+	
+	if(unFinished > 0)
+	{
+		m_nStatus = WAIT_DB_RESULT;
+		//SaveUpgradeStatus();
+	}
+	
+}
+
+void SerialUpgrade::InsertDataIntoDB(void)
+{
+	unsigned int unFinished = 0;
+
+	do
+	{
+		if(SendAndReceiveUartData(E_UPGRADE_COMMAND_STB_SEND_INSERT_DB, E_UPGRADE_COMMAND_PC_SEND_INSERT_RESULT, NULL, 0, 0) == 0)
+		{
+			m_SerialBuf.WriteLog("**************INSERT DB ERROR************\r\n");
+			break;
+		}
+
+		if(m_CommandData.m_aucData[0] == 0)
+		{
+			m_SerialBuf.WriteLog("*************INSERT DB FAIL*************\r\n");
+			break;
+		}
+		
+		m_SerialBuf.WriteLog("*************INSERT DB SUCCESS*************\r\n");
+
+		unFinished = 1;
+	}while(0);
+
+	if(unFinished > 0)
+	{
+		//m_nStatus = WAIT_VERIFY;
+		m_nStatus = UPGRADE_FINISHED;
+		m_pUpgradeNotify->UpgradeSuccess();
+		SaveUpgradeStatus();
+	}
+}
+
+void SerialUpgrade::StartVerify(void)
+{
+	unsigned int unFinished = 0;
+	unsigned char aucStr[1024] = {0};
+	unsigned int unDataLen = 0;
+
+	do
+	{
+		if(SendAndReceiveUartData(E_UPGRADE_COMMAND_STB_SEND_WAIT_VERIFY, E_UPGRADE_COMMAND_PC_SEND_VERIFY_COMMNAD, NULL, 0, 0) == 0)
+		{
+			m_SerialBuf.WriteLog("**************WAIT VERIFY ERROR************\r\n");
+			break;
+		}
+		
+		unDataLen = ConstructReturnFile(&aucStr[1], sizeof(aucStr) - 1);
+		if(unDataLen == 0)
+		{
+			aucStr[0] = 0;
+			m_SerialBuf.WriteLog("*************ConstructAllData Fail*************\r\n");
+		}
+		else
+		{
+			aucStr[0] = 1;
+			m_SerialBuf.WriteLog("*************ConstructAllData Success*************\r\n");
+		}
+		if(SendAndReceiveUartData(E_UPGRADE_COMMAND_STB_SEND_VERIFY_DATA, E_UPGRADE_COMMAND_PC_SEND_VERIFY_RESULT, aucStr, (unDataLen + 1), 5 * 1000) == 0)
+		{
+			m_SerialBuf.WriteLog("*************Wait for Verify Result TimeOut:5S*************\r\n");
+			break;
+		}
+		
+		if(m_CommandData.m_aucData[0] == 0)
+		{
+			m_SerialBuf.WriteLog("*************Verify FAIL*************\r\n");
+			break;
+		}
+
+		unFinished = 1;
+	}while(0);
+
+	if(unFinished == 1)
+	{
+		m_nStatus = UPGRADE_FINISHED;
+		m_pUpgradeNotify->UpgradeSuccess();
+		SaveUpgradeStatus();
+	}
+}
+
+void SerialUpgrade::UpgradeFinish(void)
+{
+	if (m_ListenConn.SendDataTo(NULL, 0, E_UPGRADE_COMMAND_STB_SEND_VERIFY_FINISHED) == 0)
+	{
+		m_SerialBuf.WriteLog("*************STB NOTIFY VERIFICATION Result Fail!!! *************\r\n");
+	}
+	else
+	{
+		m_nStatus = WAIT_COMMAND;
+	}
+}
+
+void SerialUpgrade::RemindChipIDError(void)
+{
+	if(SendAndReceiveUartData(E_UPGRADE_COMMAND_STB_SEND_CHIPID_ERROR, E_UPGRADE_COMMAND_PC_SEND_ERASE_COMMNAD, NULL, 0, 0) == 0)
+	{
+		m_nStatus = CHIPID_ERROR;
+		m_SerialBuf.WriteLog("*************WAIT ERASE FAIL!!!*************\r\n");
+	}
+	else
+	{
+		StartErase();
+	}
+}
+
+void SerialUpgrade::SendUpgradeStatus(void)
+{
+	int nCount = 2;
+	unsigned char aucStr = m_nStatus;
+
+	while(nCount > 0)
+	{
+		if(m_ListenConn.SendDataTo(&aucStr, 1, E_UPGRADE_COMMAND_STB_SEND_UPGRADE_STATUS) == 0)
+		{
+			m_SerialBuf.WriteLog("*************SEND UPGRADE STATUS Fail!*************\r\n");
+			break;
+		}
+		nCount--;
+	}
+}
+
+void SerialUpgrade::StartErase(void)
+{
+	unsigned char aucStr[8] = {0};
+	
+	m_SerialBuf.WriteLog("[%s][%d]\n", __FUNCTION__, __LINE__);
+	if (EraseAllData() > 0)
+	{
+		aucStr[0] = 1;
+		m_nStatus = WAIT_UPGRADE_DATA;
+		
+		GetFactoryTestInterface()->SetSNUpgradeStatus(0);
+		m_pUpgradeNotify->UpgradeEraseSuccess();
+		m_SerialBuf.WriteLog("*************ERASE DATA SUCCESS!!!*************\r\n");
+	}
+	else
+	{
+		aucStr[0] = 0;
+		m_SerialBuf.WriteLog("*************ERASE DATA FAIL!!!*************\r\n");
+	}
+
+	m_ListenConn.SendDataTo(aucStr, 1, E_UPGRADE_COMMAND_STB_SEND_ERASE_RESULT);
+	
+	ADIOSThreadSleep(1000);//等待工具端接收完成
+}
+
+void SerialUpgrade::Stop()
+{	
+	Exit();
+}
+
+void SerialUpgrade::SaveUpgradeStatus()
+{
+	GetFactoryTestInterface()->SetSNUpgradeStatus(m_nStatus);
+}
+
+int SerialUpgrade::RepairStep(UPGRADE_COMMAND enCOMMAND)
+{
+	int nRet = 1;
+
+	if(enCOMMAND == 0)
+	{
+		if(m_ListenConn.GetCommandData(&m_CommandData))
+		{
+			enCOMMAND = (UPGRADE_COMMAND)m_CommandData.m_nCommand;
+		}
+	}
+	
+	switch(enCOMMAND)
+	{
+		case E_UPGRADE_COMMAND_PC_SEND_REQ_RETURNFILE_AGAIN:
+		if(m_nStatus > WAIT_UPGRADE_DATA && m_nStatus < MAX_STATUS)
+		{
+			SendReturnFile();
+		}
+			break;
+			
+		case E_UPGRADE_COMMAND_PC_SEND_ERASE_COMMNAD:
+			StartErase();
+			break;
+			
+		case E_UPGRADE_COMMAND_PC_REQ_UPGRADE_STATUS:
+			SendUpgradeStatus();
+			break;
+			
+		default:
+			nRet = 0;
+			break;
+	}
+
+	return nRet;
+}
+
+unsigned int SerialUpgrade::SendAndReceiveUartData(UPGRADE_COMMAND enSendCOMMAND, UPGRADE_COMMAND enWantReceiveCOMMAND, unsigned char aucStr[], unsigned int unLen, unsigned int unTimeOut)
+{
+	unsigned int unRet = 0;
+	unsigned int unCurTime = 0;
+	UPGRADE_COMMAND enCOMMAND = E_UPGRADE_COMMAND_END;
+
+	if(unTimeOut == 0)
+	{
+		unTimeOut = 0xFFFFFFFF;
+	}
+	
+	do{
+		if((unCurTime % 2000) == 0)
+		{
+			m_ListenConn.SendDataTo(aucStr, unLen, enSendCOMMAND);
+			m_SerialBuf.WriteLog("*************SendData enSendCOMMAND=0x%x*************\r\n", enSendCOMMAND);
+		}
+		
+		memset(&m_CommandData, 0, sizeof(CommandData));
+		if(m_ListenConn.GetCommandData(&m_CommandData))
+		{
+			m_SerialBuf.WriteLog("*************UartReceiveData Command=0x%x, nLen=0x%x*************\r\n", m_CommandData.m_nCommand, m_CommandData.m_nDataLen);
+			enCOMMAND = (UPGRADE_COMMAND)m_CommandData.m_nCommand;
+			if (enCOMMAND == enWantReceiveCOMMAND)
+			{
+				unRet = 1;
+				break;
+			}
+			else if(RepairStep(enCOMMAND))
+			{
+				break;
+			}
+		}
+		
+		ADIOSThreadSleep(1000);
+		unCurTime += 1000;	
+		
+	}while (unCurTime < unTimeOut);
+
+	return unRet;
+}
+
+unsigned int SerialUpgrade::GetChipID(ADICHIPID_S * pADICHIPID)
+{
+	unsigned int unChipIDLen = 0;
+
+	if(pADICHIPID != NULL && ADIGetChipID(pADICHIPID) == ADI_SUCCESS)
+	{
+		unChipIDLen = pADICHIPID->m_nLength;
+		m_SerialBuf.WriteLog("[%s][%d]ChidID Len:%d\n", __FUNCTION__, __LINE__, unChipIDLen);
+	}
+
+	return unChipIDLen;
+}
+
+unsigned int SerialUpgrade::WriteChipIDToFlash(void)
+{
+	unsigned int unRet = 0;
+	ADICHIPID_S stChipID = {0};
+
+	if(GetChipID(&stChipID) > 0)
+	{
+		m_SerialBuf.WriteLog("len:%d,%x%x%x%x\n", stChipID.m_nLength, stChipID.m_szChipID[0], stChipID.m_szChipID[1], stChipID.m_szChipID[2], stChipID.m_szChipID[3]);
+		
+		if(WriteChipID(stChipID.m_szChipID, stChipID.m_nLength) == E_DATA_SUCCESS)
+		{
+			unRet = 1;
+		}
+	}
+
+	return unRet;
+}
+
+unsigned int SerialUpgrade::CheckChipID(void)
+{
+	unsigned int unRet = 0;
+	ADICHIPID_S stOrgChipID = {0};
+	ADICHIPID_S stChipID = {0};
+
+	if(ReadChipID(stChipID.m_szChipID, sizeof(stChipID.m_szChipID)) == E_DATA_SUCCESS)
+	{
+		if(GetChipID(&stOrgChipID) > 0)
+		{
+			if(stOrgChipID.m_nLength <= sizeof(stChipID.m_szChipID))
+			{
+				if(memcmp(stChipID.m_szChipID, stOrgChipID.m_szChipID, stOrgChipID.m_nLength) == 0)
+				{
+					unRet = 1;
+				}
+			}
+		}
+	}
+	else
+	{
+		unRet = 1;
+	}
+
+	return unRet;
+}
+
+unsigned int SerialUpgrade::EraseAllData(void)
+{
+	unsigned int unRet = 0;
+	
+	if( EraseFlashSpace() == E_DATA_SUCCESS)
+	{
+		unRet = 1;
+	}
+
+	return unRet;
+}
+
+unsigned int SerialUpgrade::CanStartUpgradeSN(void)
+{
+	unsigned int unRet = 0;
+	TestResult_S stTestResult = {0};
+	FactoryTestInterface * pFactoryTest = GetFactoryTestInterface();
+
+	if(pFactoryTest != NULL && pFactoryTest->GetTestResult(&stTestResult) > 0 && stTestResult.nAVResult == 1 && stTestResult.nFPResult == 1 && stTestResult.nSMCResult == 1 && stTestResult.nUSBResult == 1 && stTestResult.nEthernetResult== 1)
+	{
+		if(m_WriteType != E_ABV_WRITE)
+		{
+			if(m_ListenConn.GetRunStatus() == 0)
+			{
+				m_ListenConn.SetRunStatus(1);
+			}
+		}
+		
+		if(m_nStatus == MAX_STATUS)
+		{
+			m_nStatus = stTestResult.nSNResult;
+		}
+		unRet = 1;
+	}
+	
+	return unRet;
+}
+
+void SerialUpgrade::PrintAllLogInfo(void)
+{
+	m_SerialBuf.PrintAllLogInfo();
+}
+

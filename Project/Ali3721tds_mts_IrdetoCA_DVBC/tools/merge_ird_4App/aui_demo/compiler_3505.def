@@ -1,0 +1,932 @@
+### Config Compiler Environment ###
+#_LINUX_COMPILER_ENVIRONMENT_ = 1  
+_CYGWIN_COMPILER_ENVIRONMENT_ = 1
+
+# Detect compile environment and specify compiler!!!
+
+#OS := $(shell uname -s)
+#IS_LINUX  := $(shell echo $(OS) | grep -i linux)
+#IS_CYGWIN := $(shell echo $(OS) | grep -i cygwin)
+
+#optimize cygwin compile speed.
+#if you want compile code in linux, enable LINUX_COMPILER_ENVIRONMENT_
+ifdef _LINUX_COMPILER_ENVIRONMENT_
+IS_LINUX = 1 
+else
+IS_CYGWIN = 1
+endif
+
+ifdef IS_LINUX
+_LINUX_COMPILER_ENVIRONMENT_ = 1
+else
+ifdef IS_CYGWIN
+_CYGWIN_COMPILER_ENVIRONMENT_ = 1
+endif
+endif
+
+ifdef _LINUX_COMPILER_ENVIRONMENT_
+CC_MIPS_4_3_VER = /opt/mips-4.3
+#CC_DIR = /opt/mips-4.3
+CC_DIR = /opt/mips-sde-elf-4.7.3
+CCTOOL = mips-sde-elf-
+CCBIN_DIR = ${CC_DIR}/bin
+CC_VER = $(shell $(CCBIN_DIR)/$(CCTOOL)gcc --version | grep -o '[345]\.[0123456789]\.[0123456789]')
+else
+ifdef _CYGWIN_COMPILER_ENVIRONMENT_
+CC_DIR = $(dir $(shell which sde-gcc.exe))..
+CCTOOL = sde-
+CCBIN_DIR = ${CC_DIR}/bin
+CC_VER = 3.4.4
+else
+$(error "compile environment detect error, please specify by handle")
+endif
+endif
+
+#_BOARD_M3521_01V01_ = 1
+#_BOARD_M3526_01V01_ = 1
+_BOARD_M3527_01V01_ = 1
+#_BOARD_M3626_01V01_ = 1
+#_BOARD_M3627_02V01_ = 1
+#_BOARD_M3727_02V01_ = 1
+#_BOARD_M3712_01V01_ = 1
+#_BOARD_M3712L_01V01_ = 1
+#_BOARD_S3521_01V01_ = 1
+#_BOARD_S3527_01V01_ = 1
+
+
+ifdef _BOARD_M3521_01V01_
+_BOARD_DB_M3521_01V01_ = 1
+_DVBS_ENABLE_=1
+endif
+
+ifdef _BOARD_M3526_01V01_
+_BOARD_DB_M3526_01V01_ = 1
+_SUPPORT_TUNER_M3031_ = 1
+_DVBS_ENABLE_=1
+endif
+
+ifdef _BOARD_M3527_01V01_
+_BOARD_DB_M3527_01V01_ = 1
+_SUPPORT_TUNER_M3031_ = 1
+_DVBS_ENABLE_=1
+_NAND_ENABLE_=1
+endif
+
+ifdef _BOARD_M3626_01V01_
+_BOARD_DB_M3626_01V01_ = 1
+_DVBT2_ENABLE_=1
+endif
+
+ifdef _BOARD_M3627_02V01_
+_BOARD_DB_M3627_02V01_ = 1
+_SUPPORT_TUNER_M3031_ = 1
+_DVBS_ENABLE_=1
+_NAND_ENABLE_=1
+_DVBT2_ENABLE_=1
+endif
+
+ifdef _BOARD_M3727_01V01_
+_BOARD_DB_M3727_01V01_ = 1
+_DVBC_ENABLE_=1
+endif
+
+ifdef _BOARD_M3727_02V01_
+_BOARD_DB_M3727_02V01_ = 1
+_NAND_ENABLE_=1
+_DVBC_ENABLE_=1
+endif
+
+ifdef _BOARD_M3712_01V01_
+_BOARD_DB_M3712_01V01_ = 1
+#_NAND_ENABLE_=1
+_DVBC_ENABLE_=1
+endif
+
+ifdef _BOARD_M3712L_01V01_
+_BOARD_DB_M3712L_01V01_ = 1
+_DVBC_ENABLE_=1
+endif
+
+ifdef _BOARD_S3521_01V01_
+_BOARD_SB_M3521_01V01_ = 1
+_DVBS_ENABLE_=1
+endif
+
+ifdef _BOARD_S3527_01V01_
+_BOARD_SB_M3527_01V01_ = 1
+_DVBS_ENABLE_=1
+endif
+
+
+
+### Compiler option that change by QT / RD or Customer
+
+######################################
+##_RD_DEBUG_  to swith some share pin and SDBBP ###
+######################################
+#_RD_DEBUG_ = 1
+_HEVC_SUPPORT_ = 1
+#_ENABLE_BL_ENCRYPTED_ = 1
+_ENABLE_ALI_DEMO_SBPSIGN_DEBUG_ = 1		# for SBP signature
+_ENABLE_ALI_DEMO_KEY_DEBUG_ = 1			# for SCS signature
+#_VERSION_CONTROL_ = 1
+#_SCPI_SUPPORT_=1
+#_RETAILER_PROJECT_=1
+#_BOOTROM_ENABLE_ = 1
+#LOGISCOPE_CMD_LINE = 1
+####################
+#_BUILD_OTA_E_=1
+#_BUILD_USB_LOADER_GEN =1     #### must define BUILD_OTA_E and BUILD_USB_LOADER with BUILD_USB_LOADER_GEN
+#_BUILD_USB_LOADER_=1         #### must define BUILD_OTA_E with BUILD_USB_LOADER
+#_BUILD_UPG_LOADER_=1         #### only for C0200A_CA_ENABLE right now
+_SHOW_ALI_DEMO_ON_SCREEN = 1
+#_SFU_TEST_SUPPORT=1
+#_SATA_SUPPORT=1
+#_OPENSSL_ENABLE = 1
+#_MHEG5_V20_ENABLE_ = 1
+#_C0200A_CA_ENABLE_ = 1
+#_C0200A_CA_DAL_TEST_ = 1     #### only open it if C0200A_CA_ENABLE = 1, and need to test DAL
+#_C0200A_SSD_VERIFY_DISABLE_ = 1         #### only open it if C0200A_CA_ENABLE = 1, and need to test SSD without ssd verify
+#_CAS9_CA_ENABLE_ = 1
+#_CAS9_SMC_DEBUG_ = 1
+#_CAS9_VSC_ENABLE_ = 1
+#_CAS9_VSC_API_ENABLE_ = 1   #For VSC SEE hardening
+#_CAS9_VSC_RAP_ENABLE_ = 1
+#_CAS9_SC_UPG_ = 1
+#_CAS7_CA_ENABLE_ = 1  
+### general ca ap
+_GEN_CA_ENABLE_ = 1
+#_BC_CA_ENABLE_ = 1
+#_BC_CA_STD_ENABLE_ = 1
+#_A_CA_ENABLE_ = 1
+#_CIPLUS_CC_ENABLE_ = 1
+#_SUPPORT_64M_MEM=1
+#_PM_TEST_SUPPORT_ = 1
+#_SAT2IP_SERVER_ENABLE_ = 1
+#_PVR2IP_SERVER_ENABLE_ = 1
+#_SAT2IP_CLIENT_ENABLE_ = 1
+#_LIB_UPNP_ENABLE_ = 1
+#_USB3G_SUPPORT_ = 1
+#_HILINK_SUPPORT_ = 1
+#_ENABLE_ALI_PLAY = 1
+#_BOOT_LOGO_ENABLE_ = 1
+#_VFB_SUPPORT_ = 1
+#_DISABLE_MEDIA_PLAYER_ = 1
+#_NOCS3_SUPPORT_ = 1
+#_NOCS3_CSD_SEC_TEST_ = 1
+
+#_ALI_FSC_ENABLE_ = 1
+
+#_WIFISTORAGE_ENABLE_ = 1
+#_PLAY_ENABLE_ = 1
+#_RTSP_SUPPORT_ = 1
+#_WIFI_RT5370_ENABLE_ = 1
+#_WIFI_MT7601_ENABLE_ = 1
+#_WIFI_DIRECT_ENABLE_ = 1
+#_WIFI_DISPLAY_ENABLE_ = 1
+#_USB_ETHERNET_ENABLE_ = 1
+#_DD_SUPPORT = 1
+
+#_ALI_CAST_=1
+#_VPN_ENABLE_ = 1
+ifdef _ALI_CAST_
+_WIFI_MT7601_ENABLE_ = 1
+_WIFI_DIRECT_ENABLE_ = 1
+_WIFI_DISPLAY_ENABLE_ = 1
+endif
+
+ifdef _ENABLE_BL_ENCRYPTED_
+DEFS += -D_ENABLE_BL_ENCRYPTED_
+endif
+
+ifdef _WIFI_RT5370_ENABLE_
+_WIFI_ENABLE_ = 1
+endif
+
+ifdef _WIFI_MT7601_ENABLE_
+_WIFI_ENABLE_ = 1
+endif
+
+ifdef _M3503B_ENABLE_
+_BOOT_LOGO_ENABLE_ = 1
+endif
+#_MPLOADER_UPG_HOST_ENABLE_=1
+
+#export _MAC_TEST=1
+#_WIFI_ENABLE_ = 1
+#_INVW_JUICE = 1
+#add for fast boot up
+#export _FAST_BOOT_UP=1
+ifndef _BOARD_M3601B_01V01_
+#export _COMPRESS_LZO=1
+endif
+
+#_SD_ONLY_ = 1     ### macro for M3315
+#_USE_64M_MEM_=1 #3315 64M
+#_DVBS_ENABLE_=1
+#_DVBT_ENABLE_=1
+#_DVBC_ENABLE_=1
+#_ISDBT_ENABLE_=1
+#_DVBT2_ENABLE_=1
+ifdef _DVBT2_ENABLE_
+_DVBT_ENABLE_=1
+endif
+_AUI_ = 1
+_AUI_TEST_ = 1
+
+# This option is for OLD NESTOR in AUI
+_TEST_OLD_CI_ = 1
+
+# When enable this option, Nestor will use memory beyond 128M, AS project need disable it.
+_NESTOR_USE_EXT_MEM_ = 1
+
+# This option is for New NESTOR in ci.git
+#_AUI_NESTOR_ = 1
+_AUI_NEED_ALI_LIB_ = 1
+#_AUI_NIM0_INVALID_CASE_FOR_TWO_TUNER_SOLUTION_ = 1
+#_DD_DDPLUS_SIGNATURE = 1
+ifdef _AUI_NESTOR_
+_NESTOR_SUPPORT_ = 1
+endif
+
+ifdef _NESTOR_SUPPORT_
+_ENABLE_NESTOR_WATCHDOG_ = 1
+_AUI_NEED_ALI_LIB_ = 1
+
+ifdef _AUI_TEST_
+ # When define _AUI_TEST_MINI_SUPPORT_, means that TDS firmware only support mini version 
+ # sample code: flash support(to modify MAC of DUT)
+_AUI_TEST_MINI_SUPPORT_=1
+endif #_AUI_TEST_
+endif #_NESTOR_SUPPORT_
+
+#################################################################
+##_EROM_UPG_HOST_ENABLE_  to compile Erom upgrade host firmware
+##_EROM_UPG_HOST_ENABLE_ = 1:	for STB->STB
+##_EROM_UPG_HOST_ENABLE_ = 2:	for PC->STB
+################################################
+#_EROM_UPG_HOST_ENABLE_ = 1
+#_EROM_UPG_HOST_THREE_LADDER_ENC_SW_UK = 1
+
+#################################################################
+##_MPLOADER_UPG_HOST_ENABLE_  to compile MPLoader upgrade host firmware
+################################################
+#_MPLOADER_UPG_HOST_ENABLE_=1
+
+######################################################
+#_WARNING_TO_ERROR=1
+
+### Warning: Do NOT modify blew code, unless you know what you are doing.
+
+#APPRELEASE = 16.2.0
+APPLABEL = SDK4.0ia.16.2_SEC_S2_20160608
+LIBCORERELEASE = 16.1.0
+LIBCORELABEL = SDK4.0ia.16.2_SEC_S2_20160608
+LIBPLUSRELEASE	= 16.2.0
+LIBPLUSLABEL = ${APPLABEL}
+
+# Global switchs for program
+# _DEBUG_PRINTF_: enable PRINTF function, else nothing will do.
+# _DEBUG_VERSION_: disable SDRAM init and copy code from FLASH to SDRAM. <boot.s>
+
+# _M36F_SINGLE_CPU only test for Ali internal
+#export _M36F_SINGLE_CPU=1
+export _MPEG4_SUPPORT=1
+
+ifdef _BC_CA_ENABLE_
+#_BC_CERTIFICATION_ = 1
+#_BC_DEBUG_MODE_CERTIFICATION_=1			
+#_BC_VER0_=1
+#_BC_VER1_=1
+#_BC_VER2_=1
+endif
+
+ifdef _SUPPORT_64M_MEM
+# case (1) _M36F_SINGLE_CPU only test for Ali internal(128M solution)
+# case (2) _M36F_SINGLE_CPU used for 64M solution
+export _M36F_SINGLE_CPU=1
+endif
+
+#BOOT_NAME_EXT=boot_v40b_single
+LIBCORE_NAME_EXT=libcore_v40e_m3505_single
+LIBPLUG_NAME_EXT=libplus_v40b_single
+
+DEFS = -D_DEBUG_VERSION_
+
+export _M3505_=1
+DEFS += -D_M3505_
+DEFS += -D_ALI_TDS_
+
+ifdef _M3503B_ENABLE_
+DEFS += -D_M3503B_
+endif
+
+ifdef _BOARD_DB_M3521_01V01_
+DEFS += -D_BOARD_DB_M3521_01V01_
+endif
+
+ifdef _BOARD_DB_M3526_01V01_
+DEFS += -D_BOARD_DB_M3526_01V01_
+endif
+
+ifdef _BOARD_DB_M3527_01V01_
+DEFS += -D_BOARD_DB_M3527_01V01_
+endif
+
+ifdef _BOARD_DB_M3626_01V01_
+DEFS += -D_BOARD_DB_M3626_01V01_
+endif
+
+ifdef _BOARD_DB_M3627_02V01_
+DEFS += -D_BOARD_DB_M3627_02V01_
+endif
+
+ifdef _BOARD_DB_M3727_01V01_
+DEFS += -D_BOARD_DB_M3727_01V01_
+endif
+
+ifdef _BOARD_DB_M3727_02V01_
+DEFS += -D_BOARD_DB_M3727_02V01_
+endif
+
+ifdef _BOARD_DB_M3712_01V01_
+DEFS += -D_BOARD_DB_M3712_01V01_
+endif
+
+ifdef _BOARD_DB_M3712L_01V01_
+DEFS += -D_BOARD_DB_M3712L_01V01_
+endif
+
+ifdef _BOARD_SB_M3521_01V01_
+DEFS += -D_BOARD_SB_M3521_01V01_
+endif
+
+ifdef _BOARD_SB_M3527_01V01_
+DEFS += -D_BOARD_SB_M3527_01V01_
+endif
+
+
+ifdef _BUILD_UPG_LOADER_
+_BUILD_OTA_E_=1
+_BUILD_USB_LOADER_=1
+endif
+
+ifdef _RD_DEBUG_
+DEFS += -D_RD_DEBUG_
+endif
+ifdef _BOOTROM_ENABLE_
+DEFS += -D_BOOTROM_ENABLE_
+endif
+ifdef _ENABLE_NESTOR_WATCHDOG_
+DEFS += -D_ENABLE_NESTOR_WATCHDOG_
+endif
+ifdef _HEVC_SUPPORT_
+DEFS += -D_HEVC_SUPPORT_
+endif
+
+ifdef _VERSION_CONTROL_
+DEFS += -D_VERSION_CONTROL_
+endif
+
+ifdef _SCPI_SUPPORT_
+DEFS += -D_SCPI_SUPPORT_
+endif
+
+ifdef _RETAILER_PROJECT_
+DEFS += -D_RETAILER_PROJECT_
+endif
+
+ifdef _BUILD_OTA_E_
+DEFS += -D_BUILD_OTA_E_
+endif
+
+ifdef _SHOW_ALI_DEMO_ON_SCREEN
+DEFS += -D_SHOW_ALI_DEMO_ON_SCREEN
+endif
+
+ifdef _SFU_TEST_SUPPORT
+DEFS += -D_SFU_TEST_SUPPORT
+endif
+ifdef _MPEG4_SUPPORT
+DEFS += -D_MPEG4_SUPPORT
+endif
+
+ifdef _SUPPORT_64M_MEM
+DEFS += -D_SUPPORT_64M_MEM
+endif
+
+ifdef _M36F_SINGLE_CPU
+DEFS += -D_M36F_SINGLE_CPU
+endif
+
+
+ifdef _SATA_SUPPORT
+DEFS += -D_SATA_SUPPORT
+endif
+
+ifdef _OPENSSL_ENABLE
+DEFS += -D_OPENSSL_ENABLE
+endif
+
+ifdef _MHEG5_V20_ENABLE_
+DEFS += -D_MHEG5_V20_ENABLE_
+MHEG_INC_DIR = $(MH5_INC_DIR)
+endif
+
+ifdef _ENABLE_ALI_DEMO_KEY_DEBUG_
+DEFS += -D_ENABLE_ALI_DEMO_KEY_DEBUG_
+endif
+
+ifdef _C0200A_CA_ENABLE_
+DEFS += -D_C0200A_CA_ENABLE_
+endif
+
+ifdef _C0200A_CA_DAL_TEST_
+DEFS += -D_C0200A_CA_DAL_TEST_
+endif
+
+ifdef _C0200A_SSD_VERIFY_DISABLE_
+DEFS += -D_C0200A_SSD_VERIFY_DISABLE_
+endif
+
+ifdef _C0200A_SSD_TEST_
+DEFS += -D_C0200A_SSD_TEST_
+endif
+
+ifdef _NOCS3_CSD_SEC_TEST_
+DEFS += -D_NOCS3_CSD_SEC_TEST_
+endif
+
+ifdef _NAND_ENABLE_
+DEFS += -D_NAND_ENABLE_
+endif
+
+ifdef _CAS9_CA_ENABLE_
+_ENABLE_4M_FLASH_ = 1
+_M3515_SECURE_BOOT_ENABLE_=1
+_VFB_SUPPORT_ = 1
+DEFS += -D_CAS9_CA_ENABLE_
+endif
+
+ifdef _CAS9_SMC_DEBUG_
+DEFS += -D_CAS9_SMC_DEBUG_
+endif
+
+ifdef _CAS9_VSC_ENABLE_
+DEFS += -D_CAS9_VSC_ENABLE_
+endif
+
+ifdef _CAS9_VSC_API_ENABLE_
+DEFS += -D_CAS9_VSC_API_ENABLE_
+endif
+
+ifdef _CAS9_VSC_RAP_ENABLE_
+DEFS += -DCAS9_VSC_RAP_ENABLE
+endif
+ifdef _CAS9_SC_UPG_
+DEFS += -D_CAS9_SC_UPG_
+endif
+
+
+ifdef _CAS7_CA_ENABLE_   
+DEFS += -D_CAS7_CA_ENABLE_
+endif
+
+ifdef _A_CA_ENABLE_   
+DEFS += -D_A_CA_ENABLE_
+endif
+
+ifdef _GEN_CA_ENABLE_
+_ENABLE_4M_FLASH_ = 1
+DEFS += -D_GEN_CA_ENABLE_
+_M3515_SECURE_BOOT_ENABLE_=1
+endif
+
+ifdef _ENABLE_4M_FLASH_
+DEFS += -D_ENABLE_4M_FLASH_
+endif
+
+ifdef _BC_CA_ENABLE_
+DEFS += -D_BC_CA_ENABLE_
+endif
+
+ifdef _VFB_SUPPORT_
+DEFS += -D_VFB_SUPPORT_
+endif
+
+ifdef _DISABLE_MEDIA_PLAYER_
+DEFS += -D_DISABLE_MEDIA_PLAYER_
+endif
+
+ifdef _BC_CA_STD_ENABLE_
+DEFS += -D_BC_CA_STD_ENABLE_
+endif
+ifdef _M3515_SECURE_BOOT_ENABLE_
+DEFS += -D_M3515_SECURE_BOOT_ENABLE_
+endif
+
+ifdef _BC_CERTIFICATION_
+DEFS += -D_BC_CERTIFICATION_
+endif
+
+ifdef _BC_DEBUG_MODE_CERTIFICATION_
+DEFS += -D_BC_DEBUG_MODE_CERTIFICATION_
+endif
+
+ifdef _BC_VER0_
+DEFS += -D_BC_VER0_
+endif
+
+ifdef _BC_VER1_
+DEFS += -D_BC_VER1_
+endif
+
+ifdef _BC_VER2_
+DEFS += -D_BC_VER2_
+endif
+
+ifdef _BUILD_USB_LOADER_
+DEFS += -D_BUILD_USB_LOADER_
+endif
+
+ifdef _BUILD_USB_LOADER_GEN
+DEFS += -D_BUILD_USB_LOADER_GEN
+endif
+
+ifdef _BUILD_UPG_LOADER_
+DEFS += -D_BUILD_UPG_LOADER_
+endif
+
+ifdef _CIPLUS_CC_ENABLE_
+DEFS += -D_CIPLUS_CC_ENABLE_
+endif
+
+ifdef _WIFI_ENABLE_
+ifndef _CAS9_CA_ENABLE_
+DEFS += -D_WIFI_ENABLE_
+ifdef _WIFI_MT7601_ENABLE_
+DEFS += -D_WIFI_MT7601_ENABLE_
+ifdef _WIFI_DIRECT_ENABLE_
+DEFS += -D_WIFI_DIRECT_ENABLE_
+endif
+endif
+ifdef _WIFI_RT5370_ENABLE_
+DEFS += -D_WIFI_RT5370_ENABLE_
+endif
+endif
+endif
+
+ifdef _USB_ETHERNET_ENABLE_
+DEFS += -D_USB_ETHERNET_SUPPORT_
+endif
+
+ifdef _SD_ONLY_
+DEFS += -D_SD_ONLY_
+endif
+
+ifdef _USE_64M_MEM_
+DEFS += -D_USE_64M_MEM_
+endif
+
+ifdef _USB3G_SUPPORT_ 
+DEFS += -D_USB3G_SUPPORT_
+endif
+
+ifdef _HILINK_SUPPORT_ 
+DEFS += -D_HILINK_SUPPORT_
+endif
+
+ifdef _PM_TEST_SUPPORT_
+DEFS += -D_PM_TEST_SUPPORT_
+endif
+
+ifdef _ALI_FSC_ENABLE_
+DEFS += -D_ALI_FSC_ENABLE_
+endif
+
+ifdef _SUPPORT_TUNER_M3031_
+DEFS += -D_SUPPORT_TUNER_M3031_
+endif
+
+ifeq ($(CC_DIR), $(CC_MIPS_4_3_VER))
+DEFS += -D_MIPS_4_3_
+endif
+
+
+ifdef _DD_SUPPORT
+DEFS += -D_DD_SUPPORT
+ifdef _DD_DDPLUS_SIGNATURE
+DEFS += -D_DD_DDPLUS_SIGNATURE
+endif
+endif
+
+
+
+ifdef _INVW_JUICE
+
+JUICE_PLATFORM_DIR=$(BASE_DIR)/src/udi/Inview
+
+DEFS += -D_ALI_M3606 -D_INVW_JUICE \
+        -I$(JUICE_PLATFORM_DIR)/include/juice \
+        -I$(JUICE_PLATFORM_DIR)/include/juice/inview \
+        -I$(JUICE_PLATFORM_DIR)/include/ \
+        -I$(JUICE_PLATFORM_DIR)/platform-include \
+        -I$(JUICE_PLATFORM_DIR)/include/juice/kiwi64/kapi \
+        -I$(JUICE_PLATFORM_DIR)/include/juice/kiwi64/juicex
+
+
+ifdef _INVIEW_DEBUG
+DEFS += -D_INVIEW_DEBUG
+endif
+
+endif
+
+ifdef _EROM_UPG_HOST_ENABLE_
+DEFS += -D_EROM_UPG_HOST_ENABLE_
+endif
+
+ifdef _EROM_UPG_HOST_THREE_LADDER_ENC_SW_UK
+DEFS += -D_EROM_UPG_HOST_THREE_LADDER_ENC_SW_UK
+endif
+
+ifdef _DVBS_ENABLE_
+DEFS += -D_DVBS_ENABLE_
+endif
+
+ifdef _DVBT_ENABLE_
+DEFS += -D_DVBT_ENABLE_
+endif
+
+ifdef _DVBT2_ENABLE_
+DEFS += -D_DVBT2_ENABLE_
+endif
+
+ifdef _DVBC_ENABLE_
+DEFS += -D_DVBC_ENABLE_
+endif
+
+ifdef _ISDBT_ENABLE_
+DEFS += -D_ISDBT_ENABLE_
+endif
+
+ifdef _MAC_TEST
+DEFS += -D_MAC_TEST
+endif
+
+ifdef _BOOT_LOGO_ENABLE_ 
+DEFS += -D_BOOT_LOGO_ENABLE_ 
+endif
+#add for fast boot up
+ifdef _FAST_BOOT_UP
+DEFS += -D_FAST_BOOT_UP
+endif
+
+ifdef _COMPRESS_LZO
+DEFS += -D_COMPRESS_LZO
+endif
+AUI_INC = 
+
+ifdef _AUI_
+DEFS += -D_AUI_
+DEFS += -DAUI_3505
+AUI_INC = ${BASE_DIR}/aui/inc
+endif
+
+ifdef _AUI_NEED_ALI_LIB_
+DEFS += -D_AUI_NEED_ALI_LIB_
+endif
+
+ifdef _AUI_TEST_
+DEFS += -D_AUI_TEST_
+AUI_INC = ${BASE_DIR}/aui/inc
+endif
+
+ifdef _AUI_TEST_MINI_SUPPORT_
+DEFS += -D_AUI_TEST_MINI_SUPPORT_
+endif
+
+
+ifdef _TEST_OLD_CI_
+DEFS += -D_TEST_OLD_CI_
+endif
+
+ifdef _AUI_NESTOR_
+DEFS += -D_AUI_NESTOR_
+AUI_INC = ${BASE_DIR}/aui/inc
+endif
+ifdef _NESTOR_USE_EXT_MEM_
+DEFS += -D_NESTOR_USE_EXT_MEM_
+endif
+
+ifdef _NESTOR_SUPPORT_
+DEFS += -D_NESTOR_SUPPORT_
+endif
+
+ifdef _C0200A_CA_ENABLE_
+EXTRA_CFLAGS += -I${BASE_DIR}/aui/inc
+endif
+
+ifdef _AUI_NIM0_INVALID_CASE_FOR_TWO_TUNER_SOLUTION_
+DEFS += -DAUI_NIM0_INVALID_CASE_FOR_TWO_TUNER_SOLUTION
+endif
+
+
+ifdef _SAT2IP_SERVER_ENABLE_
+DEFS += -D_SAT2IP_SERVER_ENABLE_
+endif
+ifdef _SAT2IP_CLIENT_ENABLE_
+DEFS += -D_SAT2IP_CLIENT_ENABLE_
+endif
+ifdef _LIB_UPNP_ENABLE_
+DEFS += -D_LIB_UPNP_ENABLE_
+endif
+
+ifdef _WIFI_DISPLAY_ENABLE_
+DEFS += -D_WIFI_DISPLAY_ENABLE_
+endif
+
+ifdef _PVR2IP_SERVER_ENABLE_
+DEFS += -D_PVR2IP_SERVER_ENABLE_
+endif
+ifdef _ALI_CAST_
+DEFS += -D_ALI_CAST_
+endif
+
+ifdef _VPN_ENABLE_
+DEFS += -D_VPN_ENABLE_
+endif
+ifdef _MPLOADER_UPG_HOST_ENABLE_
+DEFS += -D_MPLOADER_UPG_HOST_ENABLE_
+endif
+
+ifdef _LINUX_COMPILER_ENVIRONMENT_
+LIB = -L${CC_DIR}/lib/gcc/mips-sde-elf/${CC_VER}/el/sof \
+      -L${CC_DIR}/mips-sde-elf/lib/el/sof
+
+AS = ${CCBIN_DIR}/${CCTOOL}gcc
+CC = ${CCBIN_DIR}/${CCTOOL}gcc
+
+CXX = ${CCBIN_DIR}/${CCTOOL}g++
+
+LD = ${CCBIN_DIR}/${CCTOOL}ld
+NM = ${CCBIN_DIR}/${CCTOOL}nm
+OBJDUMP = ${CCBIN_DIR}/${CCTOOL}objdump
+OBJCOPY = ${CCBIN_DIR}/${CCTOOL}objcopy
+AR = ${CCBIN_DIR}/${CCTOOL}ar
+STRIP = ${CCBIN_DIR}/${CCTOOL}strip
+else
+ifdef _CYGWIN_COMPILER_ENVIRONMENT_
+LIB = -L${CC_DIR}/lib/gcc/sde/${CC_VER}/el/mips32r2/sof \
+      -L${CC_DIR}/sde/lib/el/mips32r2/sof
+
+AS = ${CCBIN_DIR}/${CCTOOL}gcc
+CC = ${CCBIN_DIR}/${CCTOOL}gcc
+
+CXX = ${CCBIN_DIR}/${CCTOOL}g++
+
+LD = ${CCBIN_DIR}/${CCTOOL}ld
+NM = ${CCBIN_DIR}/${CCTOOL}nm
+
+OBJDUMP = ${CCBIN_DIR}/${CCTOOL}objdump
+OBJCOPY = ${CCBIN_DIR}/${CCTOOL}objcopy
+AR = ${CCBIN_DIR}/${CCTOOL}ar
+STRIP = ${CCBIN_DIR}/${CCTOOL}strip
+else
+$(error "compile environment detect error, please specify by handle")
+endif
+endif
+
+DEFS += -D_STRIP_PLUGIN_OUTPUT
+_STRIP_PLUGIN_OUTPUT = 1
+
+INC_DIBCOM_DIR = ${BASE_DIR}/src/lld/nim/isdbt/dibcom/driver/include
+INC_DIBCOM_DIR_2 = ${BASE_DIR}/src/lld/nim/isdbt/dibcom/include
+
+SECURE_FLAGS = -Wall -Wno-unused-parameter -Wno-unused-function -Wformat=2 -D_FORTIFY_SOURCE=2
+
+CFLAGS = -g -EL -mips32r2 -O1 -msoft-float -fsigned-char -fno-builtin-printf ${DEFS} -I${INC_DIR} \
+      -I${INC_DIR}/freetype2/freetype2 \
+      -I${INC_DIR}/freetype2 \
+      ${EXTRA_CFLAGS}
+
+CPPFLAGS =
+
+C32FLAGS = -g -EL -mips32r2 -O1 -msoft-float -fsigned-char -fno-builtin-printf ${DEFS} -I${INC_DIR} 
+
+ASFLAGS = -gstabs -EL -c -mips32r2 -O1 ${DEFS} -I${INC_DIR}
+
+CFLAGSMIP2 = -g -EL -mips2 -O1 -msoft-float -fsigned-char -fno-builtin-printf ${DEFS} -I${INC_DIR} \
+      -I${INC_DIR}/freetype2/freetype2 \
+      -I${INC_DIR}/freetype2 \
+      ${EXTRA_CFLAGS}
+ifdef _INVW_JUICE
+CPPFLAGS += -ffunction-sections
+endif
+
+ifdef _MHEG5_V20_ENABLE_
+CFLAGS += -I$(MHEG_INC_DIR)
+C32FLAGS += -I$(MHEG_INC_DIR)
+ASFLAGS += -I$(MHEG_INC_DIR)
+endif
+
+ifdef _LINUX_COMPILER_ENVIRONMENT_
+CFLAGS += -fno-inline-small-functions \
+      -I${CC_DIR}/lib/gcc/mips-sde-elf/${CC_VER}/include \
+      -I${CC_DIR}/mips-sde-elf/include
+CPPFLAGS += \
+      -I${CC_DIR}/lib/gcc/mips-sde-elf/${CC_VER}/include \
+      -I${CC_DIR}/mips-sde-elf/include
+C32FLAGS += -fno-inline-small-functions \
+      -I${CC_DIR}/lib/gcc/mips-sde-elf/${CC_VER}/include \
+      -I${CC_DIR}/mips-sde-elf/include
+
+ifeq ($(CC_VER),4.7.3)
+CFLAGS   += -fstack-protector -fstack-protector-all -Wstack-protector -Wall
+CPPFLAGS += -fstack-protector -fstack-protector-all -Wstack-protector -Wall
+C32FLAGS += -fstack-protector -fstack-protector-all -Wstack-protector -Wall
+endif
+ifdef _AUI_
+CFLAGS += -I${AUI_INC} -DAUI_TDS 
+endif
+else
+
+ifdef _CYGWIN_COMPILER_ENVIRONMENT_
+CFLAGS += \
+	${SECURE_FLAGS} \
+      -I${CC_DIR}/lib/gcc/sde/${CC_VER}/include \
+      -I${CC_DIR}/sde/include
+CPPFLAGS += \
+	${SECURE_FLAGS} \
+      -I${CC_DIR}/lib/gcc/sde/${CC_VER}/include \
+      -I${CC_DIR}/sde/include
+C32FLAGS += \
+	${SECURE_FLAGS} \
+      -I${CC_DIR}/lib/gcc/sde/${CC_VER}/include \
+      -I${CC_DIR}/sde/include
+
+ASFLAGS += ${SECURE_FLAGS}
+
+ifdef _AUI_
+CFLAGS += -I${AUI_INC} -DAUI_TDS 
+endif
+
+else
+$(error "compile environment detect error, please specify by handle")
+endif
+endif
+
+# Global switchs for linker
+#   __BOOT_FROM_FLASH: Current application boot from FLASH by itself.
+#        =0: Boot from SDRAM;  =1: Boot from FLASH by itself.
+#   __BOOT_LOADER: Current application use boot loader boot from FLASH.
+#        =0: Without boot loader;  =1: With boot loader;
+LDFLAGS = -g -EL -O1 -defsym __BOOT_FROM_FLASH=0 -defsym __BOOT_LOADER=0
+
+ifndef _M36F_SINGLE_CPU
+
+HLD_DECA_REMOTE = 1
+HLD_SND_REMOTE = 1
+HLD_VP_REMOTE = 1
+#LIB_SUBT_REMOTE = 1
+LIB_CLOSE_CAPTION_REMOTE = 1
+#LIB_TTX_REMOTE = 1
+#HLD_SDEC_REMOTE = 1
+#LLD_ISDBTCC_REMOTE = 1
+#LIB_ISDBTCC_REMOTE = 1
+#HLD_VBI_REMOTE = 1
+LLD_DECA_M36F_REMOTE = 1
+LLD_SND_M36F_REMOTE = 1
+LLD_VP_M36F_REMOTE = 1
+#LLD_SDEC_SW_REMOTE = 1
+LLD_VBI_M33_REMOTE = 1
+LLD_DMX_M36F_REMOTE = 1
+LLD_DSC_M36F_REMOTE = 1
+LLD_CRYPTO_M36F_REMOTE = 1
+LLD_TRNG_M36F_REMOTE = 1
+HLD_DSC_REMOTE = 1
+HLD_CRYPTO_REMOTE = 1
+HLD_DECV_REMOTE = 1
+HLD_AVSYNC_REMOTE = 1
+LLD_DECV_M36_REMOTE = 1
+LLD_DECV_AVC_REMOTE = 1
+LLD_AVSYNC_REMOTE = 1
+LIB_PE_ADV_VIDEO_ENGINE_REMOTE = 1
+LIB_PE_MUSIC_ENGINE_REMOTE = 1
+LIB_PE_IMAGE_ENGINE_REMOTE = 1
+HLD_PVR_REMOTE = 1
+HLD_CERT_REMOTE = 1
+HLD_CF_REMOTE = 1
+DEFS += -DDUAL_ENABLE -DMAIN_CPU
+DUAL_ENABLE = 1
+MAIN_CPU = 1
+LLD_HVE_HEVC_REMOTE = 1
+
+export _SEE_ALI_CPU_=1
+DEFS += -D_SEE_ALI_CPU_
+endif
+# ALiPlay 2.0
+ifdef _ENABLE_ALI_PLAY
+_ALI_PLAY_VERSION_ = 2
+DEFS += -D_ALI_PLAY_VERSION_=$(_ALI_PLAY_VERSION_)
+endif
+
