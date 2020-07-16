@@ -225,7 +225,7 @@ unsigned int OTASupport::WriteCoreAndCfg(void)
 					printf("\n %s %d wt core file failed from flash\n",__FUNCTION__, __LINE__);
 					break;
 				}
-			printf("\n %s %d wt core successfully  from USB\n",__FUNCTION__, __LINE__);
+			printf("\n %s %d wt core successfully  from flash\n",__FUNCTION__, __LINE__);
 				
 			}
 			else
@@ -481,6 +481,8 @@ unsigned int OTASupport::ReadAndWriteBlockData( CoreDataInfo & inputCoreDataInfo
 
 	unsigned int unDataBufLen = GetBlockDataLen( inputCoreDataInfo );
 
+	printf("[%s][%d] unDataBufLen %d, inputCoreDataInfo.unDataSize %d, unFlashSize %d\n", __FUNCTION__, __LINE__, unDataBufLen, inputCoreDataInfo.unDataSize, unFlashSize);
+
 	if ( unDataBufLen > 0 && unDataBufLen == inputCoreDataInfo.unDataSize && unDataBufLen <= unFlashSize )
 	{
 		unsigned char * pucDataBuf = ( unsigned char * ) ADIOSMalloc ( unFlashSize );
@@ -489,6 +491,8 @@ unsigned int OTASupport::ReadAndWriteBlockData( CoreDataInfo & inputCoreDataInfo
 		if ( pucDataBuf != NULL )
 		{
 			unsigned int unDataLen = GetBlockData( inputCoreDataInfo, pucDataBuf, unFlashSize );
+			
+			printf("[%s][%d] unDataLen %d\n", __FUNCTION__, __LINE__, unDataLen);
 
 			if ( unDataLen > 0 )
 			{
@@ -496,7 +500,6 @@ unsigned int OTASupport::ReadAndWriteBlockData( CoreDataInfo & inputCoreDataInfo
 				unsigned int unCfgLen = 10*1024;
 				unsigned char *pTempCfg = ( unsigned char * ) ADIOSMalloc ( unCfgLen );
 
-				printf("[%s][%d] unDataLen %d\n", __FUNCTION__, __LINE__, unDataLen);
 				if(pTempCfg != NULL)
 				{
 					memset(pTempCfg, 0xff, unCfgLen);

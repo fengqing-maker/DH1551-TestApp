@@ -167,11 +167,13 @@ void SerialUpgrade::StartWriteFlash(void)
 				memcpy(ucSendData, &stChipID.m_szChipID[4], unSendLen);				
 			}
 		}
+
 		if(SendAndReceiveUartData(E_UPGRADE_COMMAND_STB_REQ_SN, E_UPGRADE_COMMAND_PC_SEND_SN, ucSendData, unSendLen, 20 * 1000) == 0)
 		{
 			m_SerialBuf.WriteLog("*************Wait for PC_SEND_Data TimeOut*************\r\n");
 			break;
 		}
+
 		memcpy(aucBuffer, m_CommandData.m_aucData, m_CommandData.m_nDataLen);
 
 		if(m_WriteType & E_SN_WRITE)
@@ -556,7 +558,7 @@ void SerialUpgrade::StartVerify(void)
 			aucStr[0] = 1;
 			m_SerialBuf.WriteLog("*************ConstructAllData Success*************\r\n");
 		}
-		if(SendAndReceiveUartData(E_UPGRADE_COMMAND_STB_SEND_VERIFY_DATA, E_UPGRADE_COMMAND_PC_SEND_VERIFY_RESULT, aucStr, (unDataLen + 1), 5 * 1000) == 0)
+		if(SendAndReceiveUartData(E_UPGRADE_COMMAND_STB_SEND_VERIFY_DATA, E_UPGRADE_COMMAND_PC_SEND_VERIFY_RESULT, aucStr, (unDataLen + 1), 10 * 1000) == 0)
 		{
 			m_SerialBuf.WriteLog("*************Wait for Verify Result TimeOut:5S*************\r\n");
 			break;
@@ -567,7 +569,7 @@ void SerialUpgrade::StartVerify(void)
 			m_SerialBuf.WriteLog("*************Verify FAIL*************\r\n");
 			break;
 		}
-
+		
 		unFinished = 1;
 	}while(0);
 
@@ -753,7 +755,6 @@ unsigned int SerialUpgrade::WriteChipIDToFlash(void)
 
 	if(GetChipID(&stChipID) > 0)
 	{
-		printf("WriteChipIDToFlash 744\n");
 		m_SerialBuf.WriteLog("len:%d,%x%x%x%x\n", stChipID.m_nLength, stChipID.m_szChipID[0], stChipID.m_szChipID[1], stChipID.m_szChipID[2], stChipID.m_szChipID[3]);
 		
 		if(WriteChipID(stChipID.m_szChipID, stChipID.m_nLength) == E_DATA_SUCCESS)
