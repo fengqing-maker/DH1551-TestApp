@@ -172,6 +172,7 @@ static LRESULT OnInitTestAppDialogView(HMSWND hWnd, WPARAM wParam, LPARAM lParam
 	AuraAddShortcutKey(hWnd, FT_VK_E6, FT_VK_E6);
 	AuraAddShortcutKey(hWnd, ADI_VK_COLORED_KEY_3, ADI_VK_COLORED_KEY_3);
 	AuraAddShortcutKey(hWnd, ADI_VK_9, ADI_VK_9);
+	AuraAddShortcutKey(hWnd, ADI_VK_FAV, ADI_VK_FAV);
 
 	AuraAddShortcutKey(hWnd, FT_VK_FP_POWER, FT_VK_FP_POWER);
 	AuraAddShortcutKey(hWnd, FT_VK_FP_OK, FT_VK_FP_OK);
